@@ -1,0 +1,191 @@
+import api from "./api";
+
+export type BillingPlan = {
+  code: string;
+  name: string;
+  price_id: string | null;
+  monthly_credits: number;
+};
+
+export type BillingPlansResponse = {
+  success: boolean;
+  plans: BillingPlan[];
+};
+
+export type BillingSubscription = {
+  plan_code: string;
+  plan_name: string;
+  status: string;
+  paddle_customer_id: string | null;
+  paddle_subscription_id: string | null;
+  current_period_start: string | null;
+  current_period_end: string | null;
+  next_billed_at: string | null;
+  cancel_at_period_end: boolean;
+  canceled_at: string | null;
+};
+
+export type BillingCredits = {
+  available: number;
+  monthly: number;
+  purchased: number;
+  reserved: number;
+  monthly_allowance: number;
+  cycle_started_at: string | null;
+  cycle_ends_at: string | null;
+};
+
+export type BillingStatusResponse = {
+  success: boolean;
+  billing: BillingSubscription;
+  credits: BillingCredits;
+};
+
+export type BillingCheckoutResponse = {
+  success: boolean;
+  checkout: {
+    price_id: string;
+    quantity: number;
+    custom_data: {
+      gridbeacon_user_id: string;
+      plan_code: string;
+    };
+  };
+};
+
+export async function getBillingPlans():
+Promise<BillingPlansResponse> {
+  const response = await api.get(
+    "/billing/plans"
+  );
+
+  return response.data;
+}
+
+export async function getBillingStatus():
+Promise<BillingStatusResponse> {
+  const response = await api.get(
+    "/billing/status"
+  );
+
+  return response.data;
+}
+
+export async function getBillingCheckoutConfig(
+  planCode: string
+): Promise<BillingCheckoutResponse> {
+  const response = await api.post(
+    "/billing/checkout-config",
+    {
+      plan_code: planCode,
+    }
+  );
+
+  return response.data;
+}
+
+export async function cancelBillingSubscription():
+Promise<{
+  success: boolean;
+  message: string;
+  subscription_id: string;
+  status: string;
+}> {
+  const response = await api.post(
+    "/billing/cancel"
+  );
+
+  return response.data;
+}
+
+export async function resumeBillingSubscription():
+Promise<{
+  success: boolean;
+  message: string;
+  subscription_id: string;
+  status: string;
+}> {
+  const response = await api.post(
+    "/billing/resume"
+  );
+
+  return response.data;
+}
+
+export async function createBillingPortal():
+Promise<{
+  success: boolean;
+  portal_url: string;
+}> {
+  const response = await api.post(
+    "/billing/portal"
+  );
+
+  return response.data;
+}
+
+export async function changeBillingPlan(
+  planCode: string
+) {
+  const response = await api.post(
+    "/billing/change-plan",
+    {
+      plan_code: planCode,
+    }
+  );
+
+  return response.data as {
+    success: boolean;
+    message: string;
+    plan_code: string;
+    paddle_subscription_id: string;
+  };
+}
+
+export type CreditPack = {
+  code: string;
+  name: string;
+  credits: number;
+  price_usd: string;
+  price_id: string | null;
+};
+
+export type CreditPacksResponse = {
+  success: boolean;
+  packs: CreditPack[];
+};
+
+export type CreditPackCheckoutResponse = {
+  success: boolean;
+  checkout: {
+    price_id: string;
+    quantity: number;
+    custom_data: {
+      purchase_type: string;
+      pack_code: string;
+      gridbeacon_user_id: string;
+    };
+  };
+};
+
+export async function getCreditPacks():
+Promise<CreditPacksResponse> {
+  const response = await api.get(
+    "/billing/credit-packs"
+  );
+
+  return response.data;
+}
+
+export async function getCreditPackCheckoutConfig(
+  packCode: string
+): Promise<CreditPackCheckoutResponse> {
+  const response = await api.post(
+    "/billing/credit-packs/checkout-config",
+    {
+      pack_code: packCode,
+    }
+  );
+
+  return response.data;
+}

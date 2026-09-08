@@ -1,0 +1,12 @@
+Manrope
+Designed by Mikhail Sharanda.
+Licensed under the SIL Open Font License, Version 1.1.
+
+Source: https://github.com/sharanda/manrope
+License text: https://openfontlicense.org
+
+The subset shipped here (manrope-latin-variable.woff2) is the Latin
+variable instance served by Google Fonts, weights 400-800.
+
+NOTE: the full OFL 1.1 text should be pasted into this file. It could
+not be fetched automatically when the font was added.
