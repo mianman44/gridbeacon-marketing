@@ -1,0 +1,11 @@
+const fs=require('fs'),vm=require('vm');
+const source=fs.readFileSync('C:/Users/Win10/Downloads/stitch_gmb_rank_tracker_website/code.html','utf8');
+const ctx={tailwind:{}};vm.runInNewContext(source.match(/<script>\s*(tailwind.config[\s\S]*?)<\/script>/)[1],ctx,{timeout:1000});
+const config=ctx.tailwind.config;config.content=['./components/marketing/stitch-features.html'];config.important='#stitch-features';config.corePlugins={preflight:false};
+fs.writeFileSync('design/features-tailwind.cjs','module.exports='+JSON.stringify(config,null,2));
+let html=source.match(/<body[^>]*>([\s\S]*?)<\/body>/)[1].replace(/<!--([\s\S]*?)-->/g,'').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace(/<header[\s\S]*?<\/header>/,'').replace('<main>','<main id="main-content">');
+const routes={'Features':'/features','How it works':'/how-it-works','Pricing & Credits':'/pricing','For Agencies':'/#agency-solutions','Sign In':'/login','Geo-Grid Heatmaps':'#deep-dive-grid','Interactive Scan Matrix':'/#live-grid-preview','How Scans Work':'/how-it-works','White-Label Portal':'/#agency-solutions','Credit Pricing':'/pricing','Local SEO Glossary':'/#local-seo-glossary','Agency Partner Program':'/#agency-solutions','Privacy Policy':'/privacy','Terms of Service':'/terms','Security & Compliance':'/security','Status Console':'/contact','Privacy':'/privacy','Terms':'/terms','Live Interactive Demo':'/#live-grid-preview','Explore Competitor Matrix Specs':'#deep-dive-competitor'};
+html=html.replace(/<a\b([^>]*)href="#"([^>]*)>([\s\S]*?)<\/a>/g,(all,a,b,body)=>{const label=body.replace(/<[^>]+>/g,'').replaceAll('&amp;','&').trim().replace(/\s+/g,' ');const href=routes[label]||(label.startsWith('vs ')?'#comparison-table':/Free|Credits/.test(label)?'/signup':/Grid\s*Beacon/.test(label)?'/':'#deep-dive-competitor');return `<a${a}href="${href}"${b}>${body}</a>`});
+fs.writeFileSync('components/marketing/stitch-features.html',html);
+fs.writeFileSync('components/marketing/stitch-features-markup.ts','export const featuresMarkup='+JSON.stringify(html)+';\n');
+console.log('Imported feature sections.');

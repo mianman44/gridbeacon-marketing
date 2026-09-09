@@ -101,6 +101,7 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable}`}
       suppressHydrationWarning
     >
+      <head><link rel="stylesheet" href="/features-fonts.css" /></head>
       <body className="font-sans antialiased bg-slate-50 text-slate-900">
         <Providers>
           {children}

@@ -1,0 +1,29 @@
+#stitch-how{font-family:'Plus Jakarta Sans',sans-serif;background:white;color:#0f172a;line-height:1.5;font-feature-settings:normal}
+#stitch-how *,#stitch-how *::before,#stitch-how *::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+#stitch-how h1,#stitch-how h2,#stitch-how h3,#stitch-how h4,#stitch-how p{margin:0;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit}
+#stitch-how a{color:inherit;text-decoration:inherit}#stitch-how ul{list-style:none;margin:0;padding:0}#stitch-how img,#stitch-how svg{display:block;vertical-align:middle}#stitch-how img{max-width:100%;height:auto}#stitch-how table{border-collapse:collapse;text-indent:0;border-color:inherit}
+#stitch-how .glass-nav{background:rgba(255,255,255,.88);backdrop-filter:blur(14px)}
+#stitch-how .badge-grid-pill{background:linear-gradient(180deg,#fff 0%,#f1f5f9 100%);border:1px solid #e2e8f0}
+#stitch-how .hero-glow-bg{background:radial-gradient(circle at 50% 0%,rgba(37,99,235,.08) 0%,rgba(248,250,255,0) 70%)}
+#stitch-how section[id]{scroll-margin-top:150px}#stitch-how a:focus-visible{outline:3px solid #2563eb;outline-offset:4px}
+@media(prefers-reduced-motion:reduce){#stitch-how *,#stitch-how *::before,#stitch-how *::after{animation:none!important;transition:none!important}}
+
+
+    #stitch-how .grid-bg-subtle {
+      background-size: 32px 32px;
+      background-image: linear-gradient(to right, rgba(226, 232, 240, 0.5) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(226, 232, 240, 0.5) 1px, transparent 1px);
+    }
+    #stitch-how .grid-bg-dark {
+      background-size: 36px 36px;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    }
+    #stitch-how .mac-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      display: inline-block;
+    }
+  
+#stitch-how{background:#f8fafc;color:#1e293b}#stitch-how button{cursor:pointer;font-family:inherit}#stitch-how button:focus-visible{outline:3px solid #2563eb;outline-offset:3px}

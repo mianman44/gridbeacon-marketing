@@ -1,0 +1,14 @@
+#stitch-home { background:#f8f9ff; color:#0b1c30; font-family:Inter,Arial,sans-serif; font-size:15px; line-height:24px; font-feature-settings:normal; }
+#stitch-home *, #stitch-home *::before, #stitch-home *::after { box-sizing:border-box; border-width:0; border-style:solid; border-color:#e5e7eb; }
+#stitch-home h1, #stitch-home h2, #stitch-home h3, #stitch-home h4, #stitch-home p { margin:0; font-size:inherit; font-weight:inherit; line-height:inherit; letter-spacing:inherit; }
+#stitch-home a { color:inherit; text-decoration:inherit; }
+#stitch-home ul { list-style:none; margin:0; padding:0; }
+#stitch-home img { display:block; max-width:100%; height:auto; }
+#stitch-home strong { font-weight:bolder; }
+#stitch-home .material-symbols-outlined { font-family:'Material Symbols Outlined'; font-weight:normal; font-style:normal; font-size:24px; line-height:1; letter-spacing:normal; text-transform:none; display:inline-block; white-space:nowrap; word-wrap:normal; direction:ltr; -webkit-font-feature-settings:'liga'; -webkit-font-smoothing:antialiased; }
+#stitch-home section[id] { scroll-margin-top:100px; }
+#stitch-home summary { cursor:pointer; list-style:none; }
+#stitch-home summary::-webkit-details-marker { display:none; }
+#stitch-home a:focus-visible, #stitch-home summary:focus-visible { outline:3px solid #2563eb; outline-offset:4px; }
+@media (prefers-reduced-motion:reduce) { #stitch-home *, #stitch-home *::before, #stitch-home *::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
+@media(max-width:639px) { #stitch-home header>div { gap:8px; } #stitch-home header a[data-path=signup] { font-size:11px; padding:8px; } #stitch-home header a[data-path=home] span { font-size:15px; } #stitch-home header .w-8.h-8 { display:none; } }

@@ -1,0 +1,9 @@
+#stitch-features{font-family:'Plus Jakarta Sans',sans-serif;background:white;color:#0f172a;line-height:1.5;font-feature-settings:normal}
+#stitch-features *,#stitch-features *::before,#stitch-features *::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+#stitch-features h1,#stitch-features h2,#stitch-features h3,#stitch-features h4,#stitch-features p{margin:0;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit}
+#stitch-features a{color:inherit;text-decoration:inherit}#stitch-features ul{list-style:none;margin:0;padding:0}#stitch-features img,#stitch-features svg{display:block;vertical-align:middle}#stitch-features img{max-width:100%;height:auto}#stitch-features table{border-collapse:collapse;text-indent:0;border-color:inherit}
+#stitch-features .glass-nav{background:rgba(255,255,255,.88);backdrop-filter:blur(14px)}
+#stitch-features .badge-grid-pill{background:linear-gradient(180deg,#fff 0%,#f1f5f9 100%);border:1px solid #e2e8f0}
+#stitch-features .hero-glow-bg{background:radial-gradient(circle at 50% 0%,rgba(37,99,235,.08) 0%,rgba(248,250,255,0) 70%)}
+#stitch-features section[id]{scroll-margin-top:150px}#stitch-features a:focus-visible{outline:3px solid #2563eb;outline-offset:4px}
+@media(prefers-reduced-motion:reduce){#stitch-features *,#stitch-features *::before,#stitch-features *::after{animation:none!important;transition:none!important}}
