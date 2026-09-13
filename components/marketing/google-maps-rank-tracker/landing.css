@@ -1,0 +1,120 @@
+
+#google-maps-landing {
+  color: #0b1329;
+  background: #f8faff;
+  line-height: 1.5;
+  --tw-shadow-color: initial;
+  /* The reference uses Tailwind 3 palette values; keep them local in Tailwind 4. */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+  --color-indigo-600: #4f46e5;
+  --color-indigo-700: #4338ca;
+}
+/* Neutralize the app's default paragraph leading; reference utilities still win. */
+@layer base {
+  #google-maps-landing p { --tw-leading: initial; line-height: inherit; }
+}
+html:has(#google-maps-landing) { scroll-behavior: smooth; scroll-padding-top: 84px; }
+#google-maps-landing *, #google-maps-landing *::before, #google-maps-landing *::after { box-sizing: border-box; }
+#google-maps-landing section { scroll-margin-top: 0; }
+#google-maps-landing .text-slate-400 { color: #64748b; }
+#google-maps-landing :is(.text-white, [class*="bg-slate-8"], [class*="bg-[#0"]) .text-slate-400 { color: #94a3b8; }
+#google-maps-landing .grid > *, #google-maps-landing .flex > * { min-width: 0; }
+#google-maps-landing svg { flex-shrink: 0; }
+#google-maps-landing a:focus-visible,
+#google-maps-landing button:focus-visible,
+#google-maps-landing summary:focus-visible { outline: 3px solid #60a5fa; outline-offset: 4px; }
+#google-maps-landing .shadow-card { box-shadow: 0 1px 3px #0000000d, 0 10px 25px -5px #0000000a; }
+#google-maps-landing .shadow-elevated { box-shadow: 0 20px 40px -15px #0f172a14, 0 0 1px 1px #0f172a0d; }
+#google-maps-landing .shadow-glow { box-shadow: 0 0 40px -10px #2563eb38; }
+#google-maps-landing .ads-logo { display: block; flex-shrink: 0; width: 200px; }
+#google-maps-landing footer .ads-logo { width: 226px; }
+#google-maps-landing .ads-logo-image { width: 100%; height: auto; }
+#google-maps-landing header nav { display: none; }
+#google-maps-landing .ads-mobile-nav summary { list-style: none; cursor: pointer; padding: 8px; font-size: 18px; }
+#google-maps-landing .ads-mobile-nav > div { position: absolute; top: 64px; left: 16px; right: 16px; padding: 12px; background: white; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 10px 25px #0b13291a; }
+#google-maps-landing .ads-mobile-nav a { display: block; padding: 12px; font-size: 14px; }
+#google-maps-landing .ads-product-image { aspect-ratio: 1.5; object-fit: cover; }
+#google-maps-landing #competitors .ads-product-image { aspect-ratio: 1.777; }
+#google-maps-landing .ads-skip-link { position: absolute; top: -100px; left: 16px; z-index: 100; padding: 12px; background: white; color: #1d4ed8; }
+#google-maps-landing .ads-skip-link:focus { top: 12px; }
+#google-maps-landing details summary::-webkit-details-marker { display: none; }
+#google-maps-landing details[open] summary svg { transform: rotate(180deg); }
+#google-maps-landing input { min-width: 0; }
+#google-maps-landing footer > div > div { flex-wrap: wrap; }
+@media (min-width: 1200px) {
+  #google-maps-landing header nav { display: flex; }
+  #google-maps-landing .ads-mobile-nav { display: none; }
+}
+@media (max-width: 639px) {
+  #google-maps-landing header .ads-logo { width: 140px; }
+  #google-maps-landing header > div { gap: 8px; }
+  #google-maps-landing header > div > .flex { gap: 4px; }
+  #google-maps-landing header a { white-space: nowrap; }
+  #google-maps-landing header a[href="/login"] { padding: 8px 4px; font-size: 12px; }
+  #google-maps-landing header a[href="/signup"] { padding: 8px 10px; font-size: 12px; }
+  #google-maps-landing header a[href="/signup"] svg { display: none; }
+  #google-maps-landing h1 { font-size: 36px; }
+  #google-maps-landing main > section:first-child .inline-flex.rounded-full { flex-wrap: wrap; border-radius: 16px; }
+  #google-maps-landing .map-base-pattern { padding: 72px 8px 82px; min-height: 450px; }
+  #google-maps-landing .map-base-pattern > .grid { gap: 12px; padding: 12px; }
+  #google-maps-landing .map-base-pattern > .grid > div { width: 32px; height: 32px; }
+  #google-maps-landing .map-base-pattern > .absolute.bottom-4 { left: 8px; right: 8px; }
+  #google-maps-landing table { table-layout: fixed; overflow-wrap: anywhere; }
+  #google-maps-landing th, #google-maps-landing td { padding: 12px 8px; font-size: 11px; }
+  #google-maps-landing td div { font-size: 11px; }
+  #google-maps-landing td .inline-flex { flex-wrap: wrap; justify-content: center; }
+  #google-maps-landing #agencies .flex.items-center.justify-between { gap: 8px; flex-wrap: wrap; }
+  #google-maps-landing #competitors .flex.items-center.justify-between { gap: 8px; flex-wrap: wrap; }
+  #google-maps-landing .text-xs.font-mono { overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(#google-maps-landing) { scroll-behavior: auto; }
+  #google-maps-landing *, #google-maps-landing *::before, #google-maps-landing *::after { transition: none !important; animation: none !important; }
+}
+    /* Custom subtle grid background */
+    #google-maps-landing .bg-grid-subtle {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(203, 219, 245, 0.35) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(203, 219, 245, 0.35) 1px, transparent 1px);
+    }
+    #google-maps-landing .bg-grid-dark {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    }
+    /* Map simulation background */
+    #google-maps-landing .map-base-pattern {
+      background-color: #f1f5f9;
+      background-image: 
+        radial-gradient(#e2e8f0 1.5px, transparent 1.5px),
+        linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
+      background-size: 24px 24px, 48px 48px, 48px 48px;
+    }
+  

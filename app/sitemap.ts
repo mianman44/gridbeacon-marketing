@@ -5,6 +5,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
+      url: `${baseUrl}/google-maps-rank-tracker`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/`,
       changeFrequency: "weekly",
       priority: 1,
