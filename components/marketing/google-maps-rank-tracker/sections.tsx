@@ -10,7 +10,7 @@ export function AdsLandingHeader() {
 <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 
-<Link href="/" className="ads-logo" aria-label="GridBeacon home" prefetch={false}><Image src="/branding/gridbeacon-logo-tagline.png" alt="GridBeacon — Google Maps Rank Intelligence" width={1200} height={339} className="ads-logo-image" sizes="240px" /></Link>
+<Link href="/" className="ads-logo" aria-label="GridBeacon home" prefetch={false}><Image src="/branding/gridbeacon-logo-tagline.png" alt="GridBeacon — Google Maps Rank Intelligence" width={1200} height={339} className="ads-logo-image" sizes="240px" loading="eager" /></Link>
 
 <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600" aria-label="Landing page navigation">
 <a href="#features" className="hover:text-blue-600 transition">Features</a>
