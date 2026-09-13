@@ -13,7 +13,7 @@ export function MarketingFooter() {
     <div className={styles.inner}>
       <div className={styles.grid}>
         <div className={styles.brandColumn}>
-          <Link href="/" className={styles.brand} aria-label="GridBeacon home"><Image src="/features-assets/asset-3.jpg" alt="" width={32} height={32} /><span>Grid<span className={styles.blue}>Beacon</span></span></Link>
+          <Link href="/" className={styles.brand} aria-label="GridBeacon home"><Image src="/branding/gridbeacon-logo-tagline.png" alt="GridBeacon — Google Maps Rank Intelligence" width={1200} height={339} sizes="240px" /></Link>
           <p className={styles.intro}>Local search visibility, clearly mapped for businesses and SEO agencies. Precision geo-coordinates, automated matrix scans, and white-label client telemetry.</p>
           <div className={styles.status}>Status: All Global Scanners Operational (99.98%)</div>
         </div>
