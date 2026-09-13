@@ -11,5 +11,3 @@
 @media(max-width:767px){.noCard{display:none}.actions{gap:10px}}
 @media(max-width:639px){.signin{display:none}.brand{font-size:16px}.cta{font-size:11px;padding:10px 12px}.account{display:none}.inner{gap:8px}.brand img{height:28px}}
 @media(max-width:380px){.brand{font-size:14px;gap:5px}.cta{font-size:10px;padding:9px}.actions{gap:6px}}
-.brand .logoFrame{display:block;position:relative;width:160px;height:48px;overflow:hidden;flex-shrink:0}.brand .logoFrame img{position:absolute;width:160px;height:160px;max-width:none;left:0;top:-54px;object-fit:contain;background:transparent}
-@media(max-width:639px){.brand .logoFrame{width:126px;height:40px}.brand .logoFrame img{width:126px;height:126px;top:-42px}}

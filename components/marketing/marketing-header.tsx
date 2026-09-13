@@ -18,7 +18,7 @@ export function MarketingHeader() {
   return <><div className={styles.spacer} aria-hidden="true" /><header className={styles.header} onKeyDown={event => { if (event.key === "Escape") { setOpen(false); document.getElementById("marketing-menu-button")?.focus(); } }}>
     <div className={styles.inner}>
       <div className={styles.left}>
-        <Link href="/" className={styles.brand} aria-label="GridBeacon home"><span className={styles.logoFrame}><img src="/branding/gridbeacon-transparent.webp" alt="GridBeacon" width="256" height="256" /></span></Link>
+        <Link href="/" className={styles.brand} aria-label="GridBeacon home"><img src="/branding/gridbeacon-logo.png" alt="GridBeacon" width="1200" height="312" /></Link>
         <nav className={styles.navigation} aria-label="Main navigation">{navigation}</nav>
       </div>
       <div className={styles.actions}>
