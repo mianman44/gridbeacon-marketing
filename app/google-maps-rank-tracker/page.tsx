@@ -576,6 +576,8 @@ export default function GoogleMapsRankTrackerPage() {
           <TextLink href="/features">Explore all features</TextLink>
           {" · "}
           <TextLink href="/pricing">Compare plans</TextLink>
+          {" · "}
+          <TextLink href="/local-falcon-alternative">GridBeacon vs Local Falcon</TextLink>
         </InlineCta>
       </Section>
 

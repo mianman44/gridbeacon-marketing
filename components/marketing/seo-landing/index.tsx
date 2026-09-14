@@ -63,13 +63,58 @@ export function ButtonLink({
 export function TextLink({
   href,
   children,
+  rel,
 }: {
   href: string;
   children: ReactNode;
+  /* e.g. "nofollow noopener" for a source link to another company. */
+  rel?: string;
 }) {
   return leavesPage(href)
-    ? <a className={styles.textLink} href={href}>{children}</a>
+    ? <a className={styles.textLink} href={href} rel={rel}>{children}</a>
     : <Link className={styles.textLink} href={href}>{children}</Link>;
+}
+
+/* A side-by-side comparison. The first data column is GridBeacon and
+   is tinted; row labels are row headers so screen readers announce
+   them with each cell. On narrow screens the table scrolls sideways
+   inside its own frame rather than widening the page. */
+export function ComparisonTable({
+  label,
+  caption,
+  columns,
+  rows,
+}: {
+  label: string;
+  caption: ReactNode;
+  columns: [string, string, string];
+  rows: [string, ReactNode, ReactNode][];
+}) {
+  return (
+    <div className={styles.tableWrap} role="region" aria-label={label} tabIndex={0}>
+      <table className={styles.table}>
+        <caption className={styles.tableCaption}>{caption}</caption>
+        <thead>
+          <tr>
+            {columns.map((column, index) => (
+              <th key={column} scope="col" className={index === 1 ? styles.tableHighlight : undefined}>
+                {column}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([heading, ours, theirs]) => (
+            <tr key={heading}>
+              <th scope="row">{heading}</th>
+              <td className={styles.tableHighlight}>{ours}</td>
+              <td>{theirs}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export function Hero({

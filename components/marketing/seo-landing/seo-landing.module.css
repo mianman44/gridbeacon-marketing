@@ -368,6 +368,74 @@
   color: var(--blue);
 }
 
+/* ---------- comparison table ---------- */
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 24px 48px -36px rgba(15, 23, 42, 0.25);
+}
+
+.tableWrap:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.table {
+  width: 100%;
+  min-width: 660px;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.table th,
+.table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table thead th {
+  background: var(--surface);
+  font: 700 13px/1.4 var(--heading);
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.table tbody th {
+  width: 26%;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tableHighlight {
+  background: #f5f8ff;
+}
+
+.table thead .tableHighlight {
+  background: var(--blue-soft);
+  color: var(--blue-dark);
+}
+
+.tableCaption {
+  caption-side: bottom;
+  padding: 12px 18px 14px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.55;
+  text-align: left;
+  color: var(--muted);
+}
+
 /* ---------- cards and steps ---------- */
 
 .cards {

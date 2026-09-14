@@ -6,12 +6,12 @@ import styles from "./stitch-footer.module.css";
    /about, /contact, the billing policies and the Google Maps landing
    page from being orphans that only the sitemap knows about.
 
-   There are no per-competitor links. GridBeacon has no dedicated
-   comparison pages yet, and four competitor names all pointing at
-   the same generic table promised pages that do not exist. */
+   Competitor links point only at real comparison pages. Four
+   competitor names once all pointed at one generic table, promising
+   pages that did not exist; add a name here only once its page does. */
 const groups = [
   { title: "Product", links: [["Features", "/features"], ["How It Works", "/how-it-works"], ["Pricing", "/pricing"], ["Google Maps Rank Tracker", "/google-maps-rank-tracker"], ["Local SEO Glossary", "/#local-seo-glossary"]] },
-  { title: "Company", links: [["About", "/about"], ["Contact", "/contact"], ["Security", "/security"], ["Compare Rank Trackers", "/features#comparison-table"]] },
+  { title: "Company", links: [["About", "/about"], ["Contact", "/contact"], ["Security", "/security"], ["Local Falcon Alternative", "/local-falcon-alternative"]] },
   { title: "Legal", links: [["Privacy Policy", "/privacy"], ["Terms of Service", "/terms"], ["Refund Policy", "/refund-policy"], ["Cancellation Policy", "/cancellation-policy"]] },
 ];
 
