@@ -7,6 +7,7 @@ import { LOGIN_URL, SIGNUP_URL } from "@/lib/seo";
 import styles from "./stitch-header.module.css";
 
 const links = [
+  ["/google-maps-rank-tracker", "Google Maps Rank Tracker"],
   ["/features", "Features"],
   ["/how-it-works", "How it Works"],
   ["/pricing", "Pricing"],
