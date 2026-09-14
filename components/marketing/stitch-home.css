@@ -1,4 +1,4 @@
-#stitch-home { background:#f8f9ff; color:#0b1c30; font-family:Inter,Arial,sans-serif; font-size:15px; line-height:24px; font-feature-settings:normal; }
+#stitch-home { background:#f8f9ff; color:#0b1c30; font-family:var(--font-inter),Inter,Arial,sans-serif; font-size:15px; line-height:24px; font-feature-settings:normal; }
 #stitch-home *, #stitch-home *::before, #stitch-home *::after { box-sizing:border-box; border-width:0; border-style:solid; border-color:#e5e7eb; }
 #stitch-home h1, #stitch-home h2, #stitch-home h3, #stitch-home h4, #stitch-home p { margin:0; font-size:inherit; font-weight:inherit; line-height:inherit; letter-spacing:inherit; }
 #stitch-home a { color:inherit; text-decoration:inherit; }

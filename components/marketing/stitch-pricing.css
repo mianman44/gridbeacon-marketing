@@ -1,4 +1,4 @@
-#stitch-pricing { background:#f8f9ff; color:#0b1c30; font-family:Inter,Arial,sans-serif; font-size:15px; line-height:24px; font-feature-settings:normal; }
+#stitch-pricing { background:#f8f9ff; color:#0b1c30; font-family:var(--font-inter),Inter,Arial,sans-serif; font-size:15px; line-height:24px; font-feature-settings:normal; }
 #stitch-pricing *, #stitch-pricing *::before, #stitch-pricing *::after { box-sizing:border-box; border-width:0; border-style:solid; border-color:#e5e7eb; }
 #stitch-pricing h1, #stitch-pricing h2, #stitch-pricing h3, #stitch-pricing h4, #stitch-pricing p { margin:0; font-size:inherit; font-weight:inherit; line-height:inherit; letter-spacing:inherit; }
 #stitch-pricing a { color:inherit; text-decoration:inherit; }

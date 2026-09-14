@@ -56,6 +56,9 @@
   src: url(/fonts/material-symbols-outlined-subset.woff2) format('woff2');
 }
 
+/* A fixed 1em box: until the font loads, the ligature text
+   ("arrow_forward") is invisible but would still take its full width,
+   and the buttons it sits in would shrink when the icon arrives. */
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   font-weight: normal;
@@ -68,4 +71,8 @@
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  flex-shrink: 0;
 }

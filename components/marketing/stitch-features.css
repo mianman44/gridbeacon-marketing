@@ -1,4 +1,4 @@
-#stitch-features{font-family:'Plus Jakarta Sans',sans-serif;background:white;color:#0f172a;line-height:1.5;font-feature-settings:normal}
+#stitch-features{font-family:var(--font-jakarta),'Plus Jakarta Sans',sans-serif;background:white;color:#0f172a;line-height:1.5;font-feature-settings:normal}
 #stitch-features *,#stitch-features *::before,#stitch-features *::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
 #stitch-features h1,#stitch-features h2,#stitch-features h3,#stitch-features h4,#stitch-features p{margin:0;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit}
 #stitch-features a{color:inherit;text-decoration:inherit}#stitch-features ul{list-style:none;margin:0;padding:0}#stitch-features img,#stitch-features svg{display:block;vertical-align:middle}#stitch-features img{max-width:100%;height:auto}#stitch-features table{border-collapse:collapse;text-indent:0;border-color:inherit}

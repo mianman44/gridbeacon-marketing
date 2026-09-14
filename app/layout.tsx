@@ -24,6 +24,17 @@ const manrope = localFont({
   variable: "--font-manrope",
 });
 
+/* Headline face of the Stitch pages. Loaded through next/font rather
+   than a plain @font-face so it is preloaded with the page and gets a
+   size-matched fallback: the headline and CTA row no longer move when
+   it arrives. CSS reaches it through var(--font-jakarta). */
+const jakarta = localFont({
+  src: "../public/fonts/plus-jakarta-sans-latin-variable.woff2",
+  weight: "200 800",
+  display: "swap",
+  variable: "--font-jakarta",
+});
+
 /* Absolute URLs are built from this. Without it Next emits
    relative og:image and canonical values, which crawlers and
    social scrapers both ignore. */
@@ -98,10 +109,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${manrope.variable}`}
+      className={`${inter.variable} ${manrope.variable} ${jakarta.variable}`}
       suppressHydrationWarning
     >
-      <head><link rel="stylesheet" href="/features-fonts.css" /></head>
+      <head>
+        {/* The icon font is declared in plain CSS the browser only finds
+            late; fetching it up front stops the icons (and the buttons
+            they sit in) from waiting on it. */}
+        <link
+          rel="preload"
+          href="/fonts/material-symbols-outlined-subset.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link rel="stylesheet" href="/features-fonts.css" />
+      </head>
       <body className="font-sans antialiased bg-slate-50 text-slate-900">
         <Providers>
           {children}

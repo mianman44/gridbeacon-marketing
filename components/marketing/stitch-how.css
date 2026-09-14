@@ -1,4 +1,4 @@
-#stitch-how{font-family:'Plus Jakarta Sans',sans-serif;background:white;color:#0f172a;line-height:1.5;font-feature-settings:normal}
+#stitch-how{font-family:var(--font-jakarta),'Plus Jakarta Sans',sans-serif;background:white;color:#0f172a;line-height:1.5;font-feature-settings:normal}
 #stitch-how *,#stitch-how *::before,#stitch-how *::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
 #stitch-how h1,#stitch-how h2,#stitch-how h3,#stitch-how h4,#stitch-how p{margin:0;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit}
 #stitch-how a{color:inherit;text-decoration:inherit}#stitch-how ul{list-style:none;margin:0;padding:0}#stitch-how img,#stitch-how svg{display:block;vertical-align:middle}#stitch-how img{max-width:100%;height:auto}#stitch-how table{border-collapse:collapse;text-indent:0;border-color:inherit}
