@@ -8,11 +8,14 @@ import {
   LegalDocument,
 } from "@/components/marketing/legal-document";
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  path: "/terms",
   title: "Terms of Service",
   description:
     "Terms of Service for GridBeacon, operated by Hustle 24/7.",
-};
+});
 
 export default function TermsPage() {
   return (

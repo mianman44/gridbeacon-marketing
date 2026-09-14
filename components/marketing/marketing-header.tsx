@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { LOGIN_URL, SIGNUP_URL } from "@/lib/seo";
 import styles from "./stitch-header.module.css";
 
 const links = [
@@ -22,11 +23,13 @@ export function MarketingHeader() {
         <nav className={styles.navigation} aria-label="Main navigation">{navigation}</nav>
       </div>
       <div className={styles.actions}>
-        <Link className={styles.signin} href="/login">Sign in</Link>
-        <Link className={styles.cta} href="/signup"><span>Start Free — 500 Credits</span><span className={styles.noCard}>No CC required</span></Link><Link className={styles.account} href="/login" aria-label="Your account"><span className={styles.person} aria-hidden="true">person</span></Link>
+        {/* Sign-in and sign-up live on the app host. Plain anchors,
+            because they leave this site. */}
+        <a className={styles.signin} href={LOGIN_URL}>Sign in</a>
+        <a className={styles.cta} href={SIGNUP_URL}><span>Start Free — 500 Credits</span><span className={styles.noCard}>No CC required</span></a><a className={styles.account} href={LOGIN_URL} aria-label="Sign in to your account"><span className={styles.person} aria-hidden="true">person</span></a>
         <button id="marketing-menu-button" className={styles.toggle} aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="marketing-mobile-menu" onClick={() => setOpen(!open)}>{open ? "✕" : "☰"}</button>
       </div>
     </div>
-    <nav id="marketing-mobile-menu" className={styles.mobile} aria-label="Mobile navigation" hidden={!open}>{navigation}<Link href="/login">Sign In</Link></nav>
+    <nav id="marketing-mobile-menu" className={styles.mobile} aria-label="Mobile navigation" hidden={!open}>{navigation}<a href={LOGIN_URL}>Sign In</a></nav>
   </header></>;
 }

@@ -5,16 +5,20 @@ import { ArrowUpRight } from "lucide-react";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import styles from "@/components/marketing/premium.module.css";
+import { BreadcrumbStructuredData } from "@/components/marketing/structured-data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/contact",
   title: "Contact",
   description:
     "Contact GridBeacon support for help with your account, scans, subscription, billing or credits.",
-};
+});
 
 export default function ContactPage() {
   return (
     <div className={styles.site}>
+      <BreadcrumbStructuredData name="Contact" path="/contact" />
       <MarketingHeader />
 
       <main id="main-content">

@@ -1,155 +1,138 @@
 /*
- * Structured data for the home page.
+ * Structured data for the public pages.
  *
- * Three types, and deliberately not a fourth. Organization and
- * SoftwareApplication describe the company and the product;
- * FAQPage marks up questions that are already visible on the page,
- * which is the condition Google sets for using it.
+ * Only what the pages themselves show. Organization, WebSite and
+ * SoftwareApplication describe the company and the product; the
+ * offers are the plan prices printed on /pricing and move whenever
+ * those do. BreadcrumbList gives inner pages their place under the
+ * home page.
  *
- * There is no Review or AggregateRating here on purpose. A
- * business publishing machine-readable star ratings about itself
- * is self-serving markup, which Google's guidelines exclude and
- * which is ignored at best. The testimonials are rendered for
- * readers, not for crawlers.
+ * There is no Review, AggregateRating or FAQPage here on purpose.
+ * Ratings a business publishes about itself are self-serving markup
+ * that Google's guidelines exclude, and FAQ markup has to match
+ * answers a visitor can read on the same page word for word.
  */
 
-const SITE = "https://gridbeaconhq.com";
+import { SITE_URL } from "@/lib/seo";
 
-/* Kept in step with the FAQ rendered on the page. Marking up an
-   answer a visitor cannot see is exactly what the guidance
-   forbids, so these strings must match. */
-export const HOME_FAQS: Array<[string, string]> = [
-  [
-    "What is a geo-grid scan?",
-    "Google shows different results depending on where the searcher is standing. A geo-grid scan checks your ranking from a grid of points across your service area, so instead of one number you get a map: the streets where you come up first, and the ones where you do not appear at all.",
-  ],
-  [
-    "How much does a scan cost?",
-    "One credit per grid point. A 5 × 5 grid is 25 credits, a 9 × 9 is 81. You can see the exact cost before you run it, and remove any points outside your service area to bring it down.",
-  ],
-  [
-    "What do I get for free?",
-    "500 scan credits when you create an account, with no card required. That covers a 21 × 21 scan, or twenty 5 × 5 scans, or anything in between. The free plan tracks one business and three keywords.",
-  ],
-  [
-    "How large can a grid be?",
-    "From 3 × 3 up to 21 × 21, at any radius from a tenth of a mile to a hundred miles. Larger grids show more detail near the edges of your service area; smaller ones cost less and scan faster.",
-  ],
-  [
-    "Can I see what competitors rank for?",
-    "Yes. Every scan already records the whole local pack at each point, so competitor grids come from the scan you have already run. Opening one costs nothing extra.",
-  ],
-  [
-    "Do you work outside the United States?",
-    "Yes. Scans are run against Google Maps results for the coordinates you choose, so any location Google covers will work.",
-  ],
-];
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 
-export function StructuredData() {
-  const graph = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": `${SITE}/#organization`,
-        name: "GridBeacon",
-        url: SITE,
-        logo: `${SITE}/branding/gridbeacon-mark.png`,
-        description:
-          "GridBeacon is a local search rank tracking platform that maps Google Business Profile rankings across geographic grids.",
-        parentOrganization: {
-          "@type": "Organization",
-          name: "Hustle 24/7",
-        },
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Pasrur, Sialkot",
-          addressRegion: "Punjab",
-          addressCountry: "PK",
-        },
-        contactPoint: {
-          "@type": "ContactPoint",
-          contactType: "customer support",
-          email: "support@gridbeaconhq.com",
-          url: `${SITE}/contact`,
-        },
-      },
-      {
-        "@type": "WebSite",
-        "@id": `${SITE}/#website`,
-        url: SITE,
-        name: "GridBeacon",
-        publisher: { "@id": `${SITE}/#organization` },
-        inLanguage: "en",
-      },
-      {
-        "@type": "SoftwareApplication",
-        "@id": `${SITE}/#software`,
-        name: "GridBeacon",
-        applicationCategory: "BusinessApplication",
-        applicationSubCategory: "Local SEO rank tracking",
-        operatingSystem: "Web browser",
-        url: SITE,
-        publisher: { "@id": `${SITE}/#organization` },
-        description:
-          "Geo-grid rank tracking for Google Business Profiles. GridBeacon checks local search position at every point across a service area and reports the result as a heatmap, with competitor grids, scan history and client-ready reports.",
-        featureList: [
-          "Geo-grid rank tracking up to 21 x 21",
-          "Interactive ranking heatmaps",
-          "Competitor grid comparison",
-          "Scan history and trend tracking",
-          "AI ranking intelligence reports",
-          "Automated scheduled scans",
-        ],
-        /* Prices are the ones on /pricing. A stale offer here is
-           worse than none, so these move whenever plans do. */
-        offers: [
-          {
-            "@type": "Offer",
-            name: "Starter",
-            price: "19.99",
-            priceCurrency: "USD",
-            url: `${SITE}/pricing`,
-          },
-          {
-            "@type": "Offer",
-            name: "Professional",
-            price: "34.99",
-            priceCurrency: "USD",
-            url: `${SITE}/pricing`,
-          },
-          {
-            "@type": "Offer",
-            name: "Agency",
-            price: "69.99",
-            priceCurrency: "USD",
-            url: `${SITE}/pricing`,
-          },
-        ],
-      },
-      {
-        "@type": "FAQPage",
-        "@id": `${SITE}/#faq`,
-        mainEntity: HOME_FAQS.map(([question, answer]) => ({
-          "@type": "Question",
-          name: question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: answer,
-          },
-        })),
-      },
-    ],
-  };
-
+function JsonLd({ data }: { data: object }) {
   return (
     <script
       type="application/ld+json"
-      // Serialised rather than templated: JSON.stringify escapes
-      // anything in the copy that would otherwise break out of
-      // the script tag.
+      // Serialised rather than templated, and "<" escaped, so
+      // nothing in the copy can close the script tag early.
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(graph),
+        __html: JSON.stringify(data).replace(/</g, "\\u003c"),
+      }}
+    />
+  );
+}
+
+export function HomeStructuredData() {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": ORGANIZATION_ID,
+            name: "GridBeacon",
+            url: SITE_URL,
+            logo: `${SITE_URL}/branding/gridbeacon-mark.png`,
+            description:
+              "GridBeacon is a Google Maps geo-grid rank tracking platform for Google Business Profiles.",
+            parentOrganization: {
+              "@type": "Organization",
+              name: "Hustle 24/7",
+            },
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Pasrur, Sialkot",
+              addressRegion: "Punjab",
+              addressCountry: "PK",
+            },
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "customer support",
+              email: "support@gridbeaconhq.com",
+              url: `${SITE_URL}/contact`,
+            },
+          },
+          {
+            "@type": "WebSite",
+            "@id": `${SITE_URL}/#website`,
+            url: SITE_URL,
+            name: "GridBeacon",
+            publisher: { "@id": ORGANIZATION_ID },
+            inLanguage: "en",
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": `${SITE_URL}/#software`,
+            name: "GridBeacon",
+            applicationCategory: "BusinessApplication",
+            applicationSubCategory: "Local SEO rank tracking",
+            operatingSystem: "Web browser",
+            url: SITE_URL,
+            publisher: { "@id": ORGANIZATION_ID },
+            description:
+              "Geo-grid rank tracking for Google Business Profiles. GridBeacon checks Google Maps positions at every point of a grid across a service area and shows the result as a heatmap, with competitor grids and scan history.",
+            featureList: [
+              "Geo-grid scans from 3 x 3 up to 21 x 21",
+              "Google Maps ranking heatmaps",
+              "Competitor grids from the same scan",
+              "Scan history",
+              "Scheduled scans on paid plans",
+              "AI Ranking Intelligence reports on paid plans",
+            ],
+            offers: [
+              ["Free", "0"],
+              ["Starter", "19.99"],
+              ["Professional", "34.99"],
+              ["Agency", "69.99"],
+            ].map(([name, price]) => ({
+              "@type": "Offer",
+              name,
+              price,
+              priceCurrency: "USD",
+              url: `${SITE_URL}/pricing`,
+            })),
+          },
+        ],
+      }}
+    />
+  );
+}
+
+export function BreadcrumbStructuredData({
+  name,
+  path,
+}: {
+  name: string;
+  path: string;
+}) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name,
+            item: `${SITE_URL}${path}`,
+          },
+        ],
       }}
     />
   );

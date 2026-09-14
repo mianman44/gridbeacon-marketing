@@ -8,11 +8,14 @@ import {
   LegalDocument,
 } from "@/components/marketing/legal-document";
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  path: "/refund-policy",
   title: "Refund Policy",
   description:
     "GridBeacon refund policy for subscriptions and credit purchases.",
-};
+});
 
 export default function RefundPolicyPage() {
   return (

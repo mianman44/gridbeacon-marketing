@@ -6,12 +6,15 @@ import { ArrowUpRight } from "lucide-react";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import styles from "@/components/marketing/premium.module.css";
+import { BreadcrumbStructuredData } from "@/components/marketing/structured-data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/about",
   title: "About",
   description:
     "GridBeacon is a local search visibility platform for monitoring Google Business Profile rankings across geographic grids. Operated by Hustle 24/7.",
-};
+});
 
 const principles = [
   ["01", "Geographic insight", "Ranking performance changes across a local market. Measuring one point hides that; measuring many shows it."],
@@ -22,6 +25,7 @@ const principles = [
 export default function AboutPage() {
   return (
     <div className={styles.site}>
+      <BreadcrumbStructuredData name="About" path="/about" />
       <MarketingHeader />
 
       <main id="main-content">

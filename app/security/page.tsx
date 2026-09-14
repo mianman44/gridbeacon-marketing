@@ -11,12 +11,15 @@ import {
 import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import styles from "@/components/marketing/premium.module.css";
+import { BreadcrumbStructuredData } from "@/components/marketing/structured-data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/security",
   title: "Security",
   description:
     "How GridBeacon protects customer accounts, application data and billing workflows, and how to report a security concern.",
-};
+});
 
 /* Deliberately describes controls that exist rather than claiming
    certifications. A security page that overstates is worse than a
@@ -31,6 +34,7 @@ const controls = [
 export default function SecurityPage() {
   return (
     <div className={styles.site}>
+      <BreadcrumbStructuredData name="Security" path="/security" />
       <MarketingHeader />
 
       <main id="main-content">

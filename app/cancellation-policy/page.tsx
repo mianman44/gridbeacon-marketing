@@ -6,11 +6,14 @@ import {
   LegalDocument,
 } from "@/components/marketing/legal-document";
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  path: "/cancellation-policy",
   title: "Cancellation Policy",
   description:
     "GridBeacon subscription cancellation policy.",
-};
+});
 
 export default function CancellationPolicyPage() {
   return (

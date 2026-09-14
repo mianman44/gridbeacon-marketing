@@ -7,6 +7,8 @@ import Providers from "./providers";
 
 import localFont from "next/font/local";
 
+import { SITE_URL } from "@/lib/seo";
+
 const inter = localFont({
   src: "../public/fonts/inter-latin-variable.woff2",
   weight: "100 900",
@@ -35,24 +37,24 @@ const jakarta = localFont({
   variable: "--font-jakarta",
 });
 
-/* Absolute URLs are built from this. Without it Next emits
-   relative og:image and canonical values, which crawlers and
-   social scrapers both ignore. */
-const SITE_URL = "https://gridbeaconhq.com";
-
+/* No canonical and no og:url here. Next merges metadata shallowly,
+   so anything set at this level is inherited whole by every page
+   that does not replace it: a canonical of "/" here made /about,
+   /contact and the legal pages all name the home page as their
+   canonical URL. Each page sets its own through pageMetadata(). */
 export const metadata: Metadata = {
+  /* Absolute URLs are built from this. Without it Next emits
+     relative og:image and canonical values, which crawlers and
+     social scrapers both ignore. */
   metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: "/",
-  },
   title: {
     default:
-      "GridBeacon | Local Search Rank Tracking",
+      "GridBeacon | Google Maps Geo-Grid Rank Tracker",
     template:
       "%s | GridBeacon",
   },
   description:
-    "GridBeacon is a local search rank tracking platform that maps Google Business Profile rankings across geographic grids, helping businesses and SEO agencies monitor local visibility.",
+    "Geo-grid rank tracking for Google Business Profiles: see your Google Maps rank at every point of your service area, compare competitors and track history.",
   applicationName:
     "GridBeacon",
   keywords: [
@@ -66,8 +68,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "GridBeacon",
-    url: SITE_URL,
-    title: "GridBeacon | Local Search Rank Tracking",
+    title: "GridBeacon | Google Maps Geo-Grid Rank Tracker",
     description:
       "See your Google Maps ranking at every point across your service area. Geo-grid scans, competitor grids and client-ready reports.",
     images: [
@@ -84,7 +85,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "GridBeacon | Local Search Rank Tracking",
+    title: "GridBeacon | Google Maps Geo-Grid Rank Tracker",
     description:
       "See your Google Maps ranking at every point across your service area.",
     images: ["/artwork/local-advantage-city.png"],
