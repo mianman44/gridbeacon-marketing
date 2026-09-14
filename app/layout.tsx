@@ -123,7 +123,6 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link rel="stylesheet" href="/features-fonts.css" />
       </head>
       <body className="font-sans antialiased bg-slate-50 text-slate-900">
         <Providers>

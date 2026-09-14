@@ -1,19 +1,13 @@
 /*
  * Fonts for the Stitch-exported pages (home, pricing).
  *
- * These were full TrueType files, up to 970 KB each and 1.15 MB per
- * visit. Each family is now one variable latin woff2 covering every
- * weight the pages use (25-50 KB), and fetched only if something on
- * the page uses it.
+ * Inter and Plus Jakarta Sans are deliberately NOT declared here: they
+ * come from next/font in app/layout.tsx, and every stack reads
+ * var(--font-inter) / var(--font-jakarta) first. A second @font-face
+ * under the plain family name got downloaded as well on Android and in
+ * Lighthouse, where next/font's Arial-based fallback does not exist and
+ * the browser moves on to the next family in the stack.
  */
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url(/fonts/inter-latin-variable.woff2) format('woff2');
-}
 
 @font-face {
   font-family: 'JetBrains Mono';
@@ -21,14 +15,6 @@
   font-weight: 500 700;
   font-display: swap;
   src: url(/fonts/jetbrains-mono-latin-variable.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 200 800;
-  font-display: swap;
-  src: url(/fonts/plus-jakarta-sans-latin-variable.woff2) format('woff2');
 }
 
 /*
