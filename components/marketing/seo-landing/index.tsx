@@ -26,13 +26,32 @@ export interface LinkTarget {
 const leavesPage = (href: string) =>
   /^(https?:|mailto:)/.test(href) || href.startsWith("#");
 
-export function SeoLandingPage({ children }: { children: ReactNode }) {
+/* The design tokens and page frame without the site chrome. Paid
+   landing pages pass their own minimal header and footer; SEO pages
+   use SeoLandingPage, which wraps the full site navigation. */
+export function LandingShell({
+  header,
+  footer,
+  children,
+}: {
+  header: ReactNode;
+  footer: ReactNode;
+  children: ReactNode;
+}) {
   return (
     <div className={styles.page}>
-      <MarketingHeader />
+      {header}
       <main id="main-content">{children}</main>
-      <MarketingFooter />
+      {footer}
     </div>
+  );
+}
+
+export function SeoLandingPage({ children }: { children: ReactNode }) {
+  return (
+    <LandingShell header={<MarketingHeader />} footer={<MarketingFooter />}>
+      {children}
+    </LandingShell>
   );
 }
 
