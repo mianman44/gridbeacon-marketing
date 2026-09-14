@@ -1,3 +1,7 @@
+// One-off import of the Stitch export. Do NOT re-run as is: it rewrites
+// public/stitch-fonts.css and the homepage markup with full TrueType fonts
+// and PNG images, undoing the woff2 fonts (public/fonts/) and WebP images
+// that brought the page weight down on 2026-09-14.
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');

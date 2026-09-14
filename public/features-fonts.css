@@ -1,42 +1,12 @@
+/*
+ * Plus Jakarta Sans for every marketing page (loaded by app/layout.tsx).
+ * One variable latin woff2 covering weights 200-800, in place of six
+ * TrueType files.
+ */
 @font-face {
   font-family: 'Plus Jakarta Sans';
   font-style: normal;
-  font-weight: 300;
+  font-weight: 200 800;
   font-display: swap;
-  src: url(/features-assets/font-0.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/features-assets/font-1.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(/features-assets/font-2.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(/features-assets/font-3.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(/features-assets/font-4.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url(/features-assets/font-5.ttf) format('truetype');
+  src: url(/fonts/plus-jakarta-sans-latin-variable.woff2) format('woff2');
 }

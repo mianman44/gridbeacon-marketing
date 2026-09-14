@@ -8,14 +8,11 @@ import {
 } from "@/components/marketing/google-maps-rank-tracker/sections";
 import "@/components/marketing/google-maps-rank-tracker/landing.css";
 
+// One variable latin woff2 (200-800) in place of five TrueType weights.
 const jakarta = localFont({
-  src: [
-    { path: "../../public/features-assets/font-1.ttf", weight: "400", style: "normal" },
-    { path: "../../public/features-assets/font-2.ttf", weight: "500", style: "normal" },
-    { path: "../../public/features-assets/font-3.ttf", weight: "600", style: "normal" },
-    { path: "../../public/features-assets/font-4.ttf", weight: "700", style: "normal" },
-    { path: "../../public/features-assets/font-5.ttf", weight: "800", style: "normal" },
-  ],
+  src: "../../public/fonts/plus-jakarta-sans-latin-variable.woff2",
+  weight: "200 800",
+  style: "normal",
   display: "swap",
   preload: true,
 });
