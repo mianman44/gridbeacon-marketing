@@ -11,7 +11,14 @@ export const APP_URL = "https://app.gridbeaconhq.com";
 export const LOGIN_URL = `${APP_URL}/login`;
 export const SIGNUP_URL = `${APP_URL}/signup`;
 
-const SOCIAL_IMAGE = {
+export interface SocialImage {
+  url: string;
+  width: number;
+  height: number;
+  alt: string;
+}
+
+const SOCIAL_IMAGE: SocialImage = {
   url: "/artwork/local-advantage-city.png",
   // The asset's true size. Social scrapers crop to their own ratio;
   // declaring a size it is not makes them crop the wrong region.
@@ -27,6 +34,8 @@ interface PageMetadataInput {
   /* Set for a title that already carries the brand, so the
      layout's "%s | GridBeacon" template is not applied twice. */
   absoluteTitle?: boolean;
+  /* A page-specific share image; the site artwork otherwise. */
+  image?: SocialImage;
 }
 
 /* Metadata for one public page.
@@ -41,6 +50,7 @@ export function pageMetadata({
   title,
   description,
   absoluteTitle = false,
+  image = SOCIAL_IMAGE,
 }: PageMetadataInput): Metadata {
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
   const fullTitle = absoluteTitle ? title : `${title} | GridBeacon`;
@@ -55,13 +65,13 @@ export function pageMetadata({
       url,
       title: fullTitle,
       description,
-      images: [SOCIAL_IMAGE],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [SOCIAL_IMAGE.url],
+      images: [image.url],
     },
   };
 }

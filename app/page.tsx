@@ -8,7 +8,9 @@ import "@/components/marketing/stitch-home.css";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
-  title: "GridBeacon | Google Maps Geo-Grid Rank Tracker",
+  // Broader than the Google Maps rank tracker page, which owns that
+  // keyword, so the two do not compete for the same search.
+  title: "GridBeacon | Geo-Grid Local Rank Tracking Software",
   description:
     "Geo-grid rank tracking for Google Business Profiles: see your Google Maps rank at every point of your service area, compare competitors and track history.",
   absoluteTitle: true,

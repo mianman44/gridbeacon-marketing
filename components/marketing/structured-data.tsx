@@ -1,16 +1,18 @@
 /*
  * Structured data for the public pages.
  *
- * Only what the pages themselves show. Organization, WebSite and
- * SoftwareApplication describe the company and the product; the
- * offers are the plan prices printed on /pricing and move whenever
- * those do. BreadcrumbList gives inner pages their place under the
- * home page.
+ * Only what the pages themselves show. Organization and WebSite
+ * describe the company and live on the home page; SoftwareApplication
+ * describes the product and is shared, with the same @id, by the
+ * home page and the product landing pages, so search engines see one
+ * product rather than several. Its offers are the plan prices
+ * printed on /pricing and move whenever those do. BreadcrumbList
+ * gives inner pages their place under the home page.
  *
  * There is no Review, AggregateRating or FAQPage here on purpose.
  * Ratings a business publishes about itself are self-serving markup
- * that Google's guidelines exclude, and FAQ markup has to match
- * answers a visitor can read on the same page word for word.
+ * that Google's guidelines exclude, and FAQ rich results are no
+ * longer shown for sites like this one.
  */
 
 import { SITE_URL } from "@/lib/seo";
@@ -28,6 +30,66 @@ function JsonLd({ data }: { data: object }) {
       }}
     />
   );
+}
+
+function softwareApplication() {
+  return {
+    "@type": "SoftwareApplication",
+    "@id": `${SITE_URL}/#software`,
+    name: "GridBeacon",
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: "Local SEO rank tracking",
+    operatingSystem: "Web browser",
+    url: SITE_URL,
+    publisher: {
+      "@type": "Organization",
+      "@id": ORGANIZATION_ID,
+      name: "GridBeacon",
+      url: SITE_URL,
+    },
+    description:
+      "Geo-grid rank tracking for Google Business Profiles. GridBeacon checks Google Maps positions at every point of a grid across a service area and shows the result as a heatmap, with competitor grids and scan history.",
+    featureList: [
+      "Geo-grid scans from 3 x 3 up to 21 x 21",
+      "Google Maps ranking heatmaps",
+      "Competitor grids from the same scan",
+      "Scan history",
+      "Scheduled scans on paid plans",
+      "AI Ranking Intelligence reports on paid plans",
+    ],
+    offers: [
+      ["Free", "0"],
+      ["Starter", "19.99"],
+      ["Professional", "34.99"],
+      ["Agency", "69.99"],
+    ].map(([name, price]) => ({
+      "@type": "Offer",
+      name,
+      price,
+      priceCurrency: "USD",
+      url: `${SITE_URL}/pricing`,
+    })),
+  };
+}
+
+function breadcrumb(name: string, path: string) {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name,
+        item: `${SITE_URL}${path}`,
+      },
+    ],
+  };
 }
 
 export function HomeStructuredData() {
@@ -69,39 +131,27 @@ export function HomeStructuredData() {
             publisher: { "@id": ORGANIZATION_ID },
             inLanguage: "en",
           },
-          {
-            "@type": "SoftwareApplication",
-            "@id": `${SITE_URL}/#software`,
-            name: "GridBeacon",
-            applicationCategory: "BusinessApplication",
-            applicationSubCategory: "Local SEO rank tracking",
-            operatingSystem: "Web browser",
-            url: SITE_URL,
-            publisher: { "@id": ORGANIZATION_ID },
-            description:
-              "Geo-grid rank tracking for Google Business Profiles. GridBeacon checks Google Maps positions at every point of a grid across a service area and shows the result as a heatmap, with competitor grids and scan history.",
-            featureList: [
-              "Geo-grid scans from 3 x 3 up to 21 x 21",
-              "Google Maps ranking heatmaps",
-              "Competitor grids from the same scan",
-              "Scan history",
-              "Scheduled scans on paid plans",
-              "AI Ranking Intelligence reports on paid plans",
-            ],
-            offers: [
-              ["Free", "0"],
-              ["Starter", "19.99"],
-              ["Professional", "34.99"],
-              ["Agency", "69.99"],
-            ].map(([name, price]) => ({
-              "@type": "Offer",
-              name,
-              price,
-              priceCurrency: "USD",
-              url: `${SITE_URL}/pricing`,
-            })),
-          },
+          softwareApplication(),
         ],
+      }}
+    />
+  );
+}
+
+/* A commercial landing page for the product: the shared
+   SoftwareApplication node plus its breadcrumb. */
+export function ProductPageStructuredData({
+  name,
+  path,
+}: {
+  name: string;
+  path: string;
+}) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@graph": [softwareApplication(), breadcrumb(name, path)],
       }}
     />
   );
@@ -118,21 +168,7 @@ export function BreadcrumbStructuredData({
     <JsonLd
       data={{
         "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: SITE_URL,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name,
-            item: `${SITE_URL}${path}`,
-          },
-        ],
+        ...breadcrumb(name, path),
       }}
     />
   );
