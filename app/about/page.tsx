@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { ArrowUpRight } from "lucide-react";
 
@@ -7,7 +6,7 @@ import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import styles from "@/components/marketing/premium.module.css";
 import { BreadcrumbStructuredData } from "@/components/marketing/structured-data";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about",
@@ -147,12 +146,12 @@ export default function AboutPage() {
                 <br />
                 actually stand.
               </h2>
-              <Link href="/signup" className={styles.splitButton}>
+              <a href={SIGNUP_URL} className={styles.splitButton}>
                 Create an account
                 <span>
                   <ArrowUpRight size={25} aria-hidden="true" />
                 </span>
-              </Link>
+              </a>
             </div>
           </div>
         </section>
