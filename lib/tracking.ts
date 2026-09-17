@@ -1,11 +1,13 @@
 /*
- * Client-side tracking for paid landing pages.
+ * Client-side tracking for paid landing pages (/reddit, /google-ads).
  *
  * - Analytics reuses the SaaS app's GA4 property (the same ID the app
  *   loads in frontend/app/layout.tsx), so a visit and the signup that
  *   follows land in one place.
- * - The Reddit Pixel loads only when NEXT_PUBLIC_REDDIT_PIXEL_ID is set
- *   at build time; without it nothing is loaded and nothing breaks.
+ * - The Reddit Pixel and the Google Ads tag load only when their IDs
+ *   are set at build time (NEXT_PUBLIC_REDDIT_PIXEL_ID,
+ *   NEXT_PUBLIC_GOOGLE_ADS_ID); without them nothing is loaded and
+ *   nothing breaks.
  * - Third-party scripts load only on the production host, so local and
  *   preview builds never send test traffic to real analytics. Events
  *   are still recorded on window.__gridbeaconEvents everywhere, which
@@ -25,8 +27,12 @@ const FORWARDED_PARAMS = [
   "utm_campaign",
   "utm_content",
   "utm_term",
-  // Reddit's click ID, kept for a later server-side conversion.
+  // Ad click IDs, kept so a signup can still be credited to the click
+  // after the hop from the marketing domain to the app.
   "rdt_cid",
+  "gclid",
+  "gbraid",
+  "wbraid",
 ] as const;
 
 type Command = (...args: unknown[]) => void;
@@ -108,6 +114,21 @@ export function loadGoogleAnalytics(id: string) {
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
   document.head.appendChild(script);
+}
+
+/* The Google Ads tag shares gtag.js with GA4: one more config target
+   (an "AW-..." ID) once loadGoogleAnalytics has run. */
+export function loadGoogleAdsTag(id: string) {
+  window.gtag?.("config", id);
+}
+
+/* A Google Ads conversion, sent to "AW-.../label". */
+export function trackAdsConversion(sendTo: string) {
+  try {
+    window.gtag?.("event", "conversion", { send_to: sendTo });
+  } catch {
+    // As above: never block the click.
+  }
 }
 
 /* Reddit's published base code, written out rather than pasted as a
