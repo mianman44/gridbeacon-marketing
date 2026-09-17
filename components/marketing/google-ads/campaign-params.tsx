@@ -31,8 +31,13 @@ let viewTracked = false;
  * - appends the ad's allow-listed parameters (utm_*, gclid, gbraid,
  *   wbraid) to every signup link inside the page, so the app can still
  *   credit the click;
- * - records google_ads_landing_view and CTA clicks, plus a Google Ads
- *   conversion on signup clicks when a conversion label is set.
+ * - records google_ads_landing_view once per page load, start_signup
+ *   once per signup click (with the section it came from), and in-page
+ *   jumps as google_ads_secondary_cta_click; plus a Google Ads conversion
+ *   on signup clicks when a conversion label is set.
+ *
+ * sign_up, first_scan_started and first_scan_completed are sent by the
+ * app itself (frontend/lib/analytics.ts) to the same GA4 property.
  */
 export function CampaignParams({ rootId }: { rootId: string }) {
   useEffect(() => {
@@ -67,12 +72,11 @@ export function CampaignParams({ rootId }: { rootId: string }) {
       };
 
       if (link.href.startsWith(SIGNUP_URL)) {
-        trackEvent("google_ads_primary_cta_click", detail);
-        trackEvent("google_ads_signup_click", detail);
+        trackEvent("start_signup", { ...detail, landing_page: "google-ads" });
         if (GOOGLE_ADS_ID && SIGNUP_CONVERSION_LABEL) {
           trackAdsConversion(`${GOOGLE_ADS_ID}/${SIGNUP_CONVERSION_LABEL}`);
         }
-      } else if (link.getAttribute("href")?.startsWith("#")) {
+      } else if (link.getAttribute("href")?.startsWith("#") && !link.classList.contains("ads-skip-link")) {
         trackEvent("google_ads_secondary_cta_click", { ...detail, target: link.getAttribute("href") || "" });
       }
     }

@@ -3,10 +3,19 @@ import localFont from "next/font/local";
 
 import { CampaignParams } from "@/components/marketing/google-ads/campaign-params";
 import {
-  AdsLandingHeader, HeroSection, ValueStrip, ProximitySection,
-  HeatmapSection, CompetitorSection, AISection, HistorySection,
-  AgencySection, WorkflowSection, AudienceSection, ComparisonSection,
-  FAQSection, FinalCTASection, AdsLandingFooter,
+  AdsLandingFooter,
+  AdsLandingHeader,
+  BenefitsSection,
+  ComparisonSection,
+  FAQSection,
+  FinalCTASection,
+  HeatmapSection,
+  HeroSection,
+  OfferSection,
+  ProximitySection,
+  SignupOfferSection,
+  TrustSection,
+  WorkflowSection,
 } from "@/components/marketing/google-ads/sections";
 import { pageMetadata } from "@/lib/seo";
 import "@/components/marketing/google-ads/landing.css";
@@ -14,12 +23,14 @@ import "@/components/marketing/google-ads/landing.css";
 /*
  * /google-ads -- the Google Ads landing page.
  *
- * The original ads page from /google-maps-rank-tracker (commit
- * 00674e9), restored here when that URL became the SEO page. Same
- * sections and design; the two product images are now real GridBeacon
- * captures and sign-in/sign-up go straight to the app. Paid traffic
- * only: noindex, not in the sitemap or any site navigation, and no
- * structured data (the SEO page carries that).
+ * Paid traffic only: noindex, not in the sitemap or any site navigation,
+ * and no structured data. The organic page for the same topic is
+ * /google-maps-rank-tracker; keeping this one out of the index avoids
+ * two near-identical pages competing in search.
+ *
+ * Flow: hero + free offer -> product heatmap -> why one number misleads
+ * -> three benefits -> comparison -> how it works -> trust -> signup
+ * offer -> FAQ -> final call to action.
  */
 
 // One variable latin woff2 (200-800) in place of five TrueType weights.
@@ -36,9 +47,9 @@ const ROOT_ID = "google-maps-landing";
 export const metadata: Metadata = {
   ...pageMetadata({
     path: "/google-ads",
-    title: "Google Maps Rank Tracker & Geo-Grid Tool | GridBeacon",
+    title: "Google Maps Rank Tracker | Geo-Grid Rank Tracking | GridBeacon",
     description:
-      "See where you rank on Google Maps with GridBeacon's geo-grid rank tracker. Compare competitors, track ranking history and start with 500 free scan credits.",
+      "Track Google Maps rankings across your service area with geo-grid heatmaps, competitor insights and AI analysis. Start GridBeacon free with 500 scan credits.",
     absoluteTitle: true,
     image: {
       url: "/marketing/google-maps-rank-tracker/og-google-maps-rank-tracker.jpg",
@@ -58,16 +69,14 @@ export default function GoogleAdsLandingPage() {
       <AdsLandingHeader />
       <main id="landing-content">
         <HeroSection />
-        <ValueStrip />
-        <ProximitySection />
+        <OfferSection />
         <HeatmapSection />
-        <CompetitorSection />
-        <AISection />
-        <HistorySection />
-        <AgencySection />
-        <WorkflowSection />
-        <AudienceSection />
+        <ProximitySection />
+        <BenefitsSection />
         <ComparisonSection />
+        <WorkflowSection />
+        <TrustSection />
+        <SignupOfferSection />
         <FAQSection />
         <FinalCTASection />
       </main>

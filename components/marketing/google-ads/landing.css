@@ -53,24 +53,16 @@ html:has(#google-maps-landing) { scroll-behavior: smooth; scroll-padding-top: 84
 #google-maps-landing .ads-logo { display: block; flex-shrink: 0; width: 200px; }
 #google-maps-landing footer .ads-logo { width: 226px; }
 #google-maps-landing .ads-logo-image { width: 100%; height: auto; }
-#google-maps-landing header nav { display: none; }
-#google-maps-landing .ads-mobile-nav summary { list-style: none; cursor: pointer; padding: 8px; font-size: 18px; }
-#google-maps-landing .ads-mobile-nav > div { position: absolute; top: 64px; left: 16px; right: 16px; padding: 12px; background: white; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 10px 25px #0b13291a; }
-#google-maps-landing .ads-mobile-nav a { display: block; padding: 12px; font-size: 14px; }
 /* The screenshots' own proportions, so object-fit never crops away
    the stats panel or the competitor list. */
 #google-maps-landing .ads-product-image { aspect-ratio: 1600 / 780; object-fit: cover; }
-#google-maps-landing #competitors .ads-product-image { aspect-ratio: 1600 / 772; }
+#google-maps-landing .ads-competitor-image { aspect-ratio: 1600 / 772; }
 #google-maps-landing .ads-skip-link { position: absolute; top: -100px; left: 16px; z-index: 100; padding: 12px; background: white; color: #1d4ed8; }
 #google-maps-landing .ads-skip-link:focus { top: 12px; }
 #google-maps-landing details summary::-webkit-details-marker { display: none; }
 #google-maps-landing details[open] summary svg { transform: rotate(180deg); }
 #google-maps-landing input { min-width: 0; }
 #google-maps-landing footer > div > div { flex-wrap: wrap; }
-@media (min-width: 1200px) {
-  #google-maps-landing header nav { display: flex; }
-  #google-maps-landing .ads-mobile-nav { display: none; }
-}
 @media (max-width: 639px) {
   #google-maps-landing header .ads-logo { width: 140px; }
   #google-maps-landing header > div { gap: 8px; }
@@ -81,18 +73,14 @@ html:has(#google-maps-landing) { scroll-behavior: smooth; scroll-padding-top: 84
   #google-maps-landing header a[href^="https://app.gridbeaconhq.com/login"] { padding: 8px 4px; font-size: 12px; }
   #google-maps-landing header a[href^="https://app.gridbeaconhq.com/signup"] { padding: 8px 10px; font-size: 12px; }
   #google-maps-landing header a[href^="https://app.gridbeaconhq.com/signup"] svg { display: none; }
-  #google-maps-landing h1 { font-size: 36px; }
+  #google-maps-landing h1 { font-size: 31px; line-height: 1.15; }
   #google-maps-landing main > section:first-child .inline-flex.rounded-full { flex-wrap: wrap; border-radius: 16px; }
-  #google-maps-landing .map-base-pattern { padding: 72px 8px 82px; min-height: 450px; }
+  #google-maps-landing .map-base-pattern { padding: 20px 8px; }
   #google-maps-landing .map-base-pattern > .grid { gap: 12px; padding: 12px; }
   #google-maps-landing .map-base-pattern > .grid > div { width: 32px; height: 32px; }
-  #google-maps-landing .map-base-pattern > .absolute.bottom-4 { left: 8px; right: 8px; }
   #google-maps-landing table { table-layout: fixed; overflow-wrap: anywhere; }
   #google-maps-landing th, #google-maps-landing td { padding: 12px 8px; font-size: 11px; }
   #google-maps-landing td div { font-size: 11px; }
-  #google-maps-landing td .inline-flex { flex-wrap: wrap; justify-content: center; }
-  #google-maps-landing #agencies .flex.items-center.justify-between { gap: 8px; flex-wrap: wrap; }
-  #google-maps-landing #competitors .flex.items-center.justify-between { gap: 8px; flex-wrap: wrap; }
   #google-maps-landing .text-xs.font-mono { overflow-wrap: anywhere; }
 }
 @media (prefers-reduced-motion: reduce) {
