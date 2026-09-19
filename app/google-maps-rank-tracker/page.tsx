@@ -158,7 +158,7 @@ export default function GoogleMapsRankTrackerPage() {
         facts={["3 × 3 to 21 × 21 grids", "0.1 to 100 mile radius", "1 credit per grid point"]}
         media={
           <Screenshot
-            src={`${IMAGES}/geo-grid-scan-dallas.webp`}
+            src={`${IMAGES}/geo-grid-scan-dallas-20260919.webp`}
             width={1600}
             height={780}
             eager
@@ -260,7 +260,7 @@ export default function GoogleMapsRankTrackerPage() {
           reverse
           media={
             <Screenshot
-              src={`${IMAGES}/grid-point-competitors.webp`}
+              src={`${IMAGES}/grid-point-competitors-20260919.webp`}
               width={1600}
               height={772}
               alt="GridBeacon heatmap with one grid point selected, listing the businesses Google Maps ranked at that location"
@@ -326,7 +326,7 @@ export default function GoogleMapsRankTrackerPage() {
         <Split
           media={
             <Screenshot
-              src={`${IMAGES}/rank-movement-heatmap.webp`}
+              src={`${IMAGES}/rank-movement-heatmap-20260919.webp`}
               width={1600}
               height={813}
               alt="GridBeacon heatmap with trend arrows showing where Google Maps rankings rose or fell since an earlier scan"
@@ -376,7 +376,7 @@ export default function GoogleMapsRankTrackerPage() {
           media={
             <ScreenshotPair>
               <Screenshot
-                src={`${IMAGES}/ai-report-summary.webp`}
+                src={`${IMAGES}/ai-report-summary-20260919.webp`}
                 width={778}
                 height={1000}
                 sizes="(min-width: 1024px) 320px, (min-width: 768px) 45vw, 100vw"

@@ -499,7 +499,7 @@ export function BenefitsSection() {
 
         <div className="mt-10 max-w-5xl mx-auto bg-white p-3 rounded-2xl border border-slate-200 shadow-xl">
           <div className="relative rounded-xl overflow-hidden border border-slate-200">
-            <Image src="/marketing/google-ads/grid-point-competitors.webp" alt="GridBeacon heatmap with one grid point selected, listing the businesses Google Maps ranked at that location" className="w-full h-auto object-cover ads-product-image ads-competitor-image" width={1600} height={772} sizes="(max-width: 1023px) 100vw, 960px" loading="lazy" />
+            <Image src="/marketing/google-ads/grid-point-competitors-20260919.webp" alt="GridBeacon heatmap with one grid point selected, listing the businesses Google Maps ranked at that location" className="w-full h-auto object-cover ads-product-image ads-competitor-image" width={1600} height={772} sizes="(max-width: 1023px) 100vw, 960px" loading="lazy" />
           </div>
           <p className="px-2 pt-3 pb-1 text-xs text-slate-500">Product screenshot: select any point to see every business Google Maps showed there, in order.</p>
         </div>

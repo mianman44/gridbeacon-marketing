@@ -137,7 +137,7 @@ export default function LocalFalconAlternativePage() {
         facts={["500 free credits", "Plans from $19.99/month", "1 credit per grid point"]}
         media={
           <Screenshot
-            src={`${IMAGES}/grid-point-competitors.webp`}
+            src={`${IMAGES}/grid-point-competitors-20260919.webp`}
             width={1600}
             height={772}
             eager
@@ -277,7 +277,7 @@ export default function LocalFalconAlternativePage() {
           reverse
           media={
             <Screenshot
-              src={`${IMAGES}/rank-movement-heatmap.webp`}
+              src={`${IMAGES}/rank-movement-heatmap-20260919.webp`}
               width={1600}
               height={813}
               alt="GridBeacon heatmap with trend arrows showing where Google Maps rankings rose or fell since an earlier scan"
