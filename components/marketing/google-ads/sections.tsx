@@ -122,7 +122,8 @@ const SAMPLE_TOP3 = SAMPLE_RANKED.filter((rank) => rank <= 3).length;
 function rankDot(rank: number | null) {
   if (rank === null) return "bg-rose-600 text-white";
   if (rank <= 3) return "bg-emerald-600 text-white";
-  if (rank <= 10) return "bg-amber-500 text-[#060c1c]";
+  if (rank <= 10) return "bg-blue-600 text-white";
+  if (rank <= 20) return "bg-amber-500 text-[#060c1c]";
   return "bg-rose-600 text-white";
 }
 
@@ -180,9 +181,9 @@ function HeroHeatmap() {
             </span>
           </div>
           <div className="bg-[#0b1329]/95 rounded-xl px-3 py-2 border border-slate-700 shadow-xl text-white flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-amber-400" />
+            <span className="w-2 h-2 rounded-full bg-rose-400" />
             <span>
-              <span className="block font-semibold text-amber-400 text-[11px]">Outer-edge gaps</span>
+              <span className="block font-semibold text-rose-400 text-[11px]">Outer-edge gaps</span>
               <span className="block text-[11px] text-slate-300">Outside the top 20 in two corners</span>
             </span>
           </div>
@@ -355,15 +356,15 @@ export function HeatmapSection() {
               Every dot is a Google Maps search from a different location.
             </h2>
             <p className="text-slate-600 leading-relaxed text-base">
-              GridBeacon searches your keyword from each point in the grid and records where your business appears. Green is the top 3, amber is 4–10, and red is where customers struggle to find you.
+              GridBeacon searches your keyword from each point in the grid and records where your business appears. Green is the top 3, blue is 4–10, and amber and red are where customers struggle to find you.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {[
                 ["bg-emerald-600", "1 – 3", "Google 3-pack"],
-                ["bg-amber-500", "4 – 10", "Close to the top"],
-                ["bg-orange-500", "11 – 20", "Hard to find"],
-                ["bg-rose-600", "20+", "Not visible"],
+                ["bg-blue-600", "4 – 10", "Close to the top"],
+                ["bg-amber-500", "11 – 20", "Hard to find"],
+                ["bg-rose-600", "21+", "Not visible"],
               ].map(([color, band, label]) => (
                 <div key={band} className="p-3 rounded-xl border border-slate-200 bg-white flex items-center gap-2.5">
                   <span className={`w-3.5 h-3.5 rounded-full flex-shrink-0 ${color}`} />
@@ -385,10 +386,10 @@ export function HeatmapSection() {
                   <span className="w-2 h-2 rounded-full bg-emerald-500" />
                   <span className="text-slate-300 font-mono text-[11px] ml-2">GridBeacon heatmap · product screenshot</span>
                 </div>
-                <span className="px-2 py-0.5 bg-slate-800 text-slate-300 rounded font-mono text-[11px]">5×5 · 5.0 mi</span>
+                <span className="px-2 py-0.5 bg-slate-800 text-slate-300 rounded font-mono text-[11px]">5×5 · 3.0 mi</span>
               </div>
               <div className="relative rounded-xl overflow-hidden border border-slate-700/80 mt-2">
-                <Image src="/marketing/reddit/heatmap-hero.webp" alt="GridBeacon heatmap of a real 5 by 5 Google Maps scan in Dallas: each dot is the business's rank at that point; business name blurred" className="w-full h-auto object-cover rounded-lg ads-product-image" width={1600} height={780} sizes="(max-width: 1023px) 100vw, 720px" loading="lazy" />
+                <Image src="/marketing/google-ads/heatmap-5x5.webp" alt="GridBeacon heatmap of a 5 by 5 Google Maps scan across the Dallas suburbs: each pin is the business's rank at that point" className="w-full h-auto object-cover rounded-lg ads-product-image" width={1600} height={780} sizes="(max-width: 1023px) 100vw, 720px" loading="lazy" />
               </div>
             </div>
           </div>
@@ -431,7 +432,7 @@ export function ProximitySection() {
               <div className="grid grid-cols-5 gap-2 text-center text-xs font-bold">
                 {["20+", "16", "9", "5", "18", "7", "2", "1", "3", "8", "6", "1", "1", "2", "12"].map((rank, index) => {
                   const value = rank === "20+" ? 21 : Number(rank);
-                  const color = value <= 3 ? "bg-emerald-600 text-white" : value <= 10 ? "bg-amber-500 text-[#060c1c]" : "bg-rose-600 text-white";
+                  const color = value <= 3 ? "bg-emerald-600 text-white" : value <= 10 ? "bg-blue-600 text-white" : value <= 20 ? "bg-amber-500 text-[#060c1c]" : "bg-rose-600 text-white";
                   return <div key={index} className={`p-1.5 rounded ${color}`}>{rank}</div>;
                 })}
               </div>
