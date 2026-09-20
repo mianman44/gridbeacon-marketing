@@ -33,6 +33,9 @@ const FORWARDED_PARAMS = [
   "gclid",
   "gbraid",
   "wbraid",
+  // Turns on GA4 DebugView for a test journey; it has to travel with
+  // the click because sessionStorage is not shared across subdomains.
+  "ga_debug",
 ] as const;
 
 type Command = (...args: unknown[]) => void;
@@ -48,6 +51,7 @@ declare global {
     gtag?: Command;
     rdt?: RedditPixel;
     __gridbeaconEvents?: { name: string; params: Record<string, string> }[];
+    __gridbeaconTracking?: () => ReturnType<typeof trackingDiagnostics>;
   }
 }
 
@@ -86,6 +90,93 @@ export function withTrackingParams(href: string, search: string): string {
   return url.toString();
 }
 
+/* The campaign that brought this visit, kept for the whole visit so a
+   reader who lands on one page and signs up from another still hands
+   the click ids to the app. Last click wins, as Google Ads does. */
+export const VISIT_PARAMS_KEY = "gridbeacon_campaign";
+
+function visitStore(): Storage | null {
+  try {
+    return typeof window === "undefined" ? null : window.sessionStorage;
+  } catch {
+    return null;
+  }
+}
+
+export function rememberTrackingParams(search: string): Record<string, string> {
+  const store = visitStore();
+  const remembered = rememberedTrackingParams();
+  const merged = { ...remembered, ...trackingParams(search) };
+
+  try {
+    if (Object.keys(merged).length) {
+      store?.setItem(VISIT_PARAMS_KEY, JSON.stringify(merged));
+    }
+  } catch {
+    // A visit without storage still works; it just forwards less.
+  }
+
+  return merged;
+}
+
+export function rememberedTrackingParams(): Record<string, string> {
+  try {
+    const raw = visitStore()?.getItem(VISIT_PARAMS_KEY);
+    const parsed = raw ? (JSON.parse(raw) as Record<string, string>) : {};
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+/* An app link with this visit's campaign parameters added. */
+export function withVisitParams(href: string): string {
+  const params = rememberedTrackingParams();
+
+  if (!Object.keys(params).length || !/^https?:\/\//.test(href)) return href;
+
+  const url = new URL(href);
+
+  for (const [key, value] of Object.entries(params)) {
+    if (!url.searchParams.has(key)) url.searchParams.set(key, value);
+  }
+
+  return url.toString();
+}
+
+/* GA4 DebugView for a test journey: ?ga_debug=1 anywhere in the flow. */
+export function debugEnabled(): boolean {
+  return rememberedTrackingParams().ga_debug === "1";
+}
+
+/* What GA4 is doing right now, for checking a test journey by hand:
+   the client id and session id both domains should share, and the
+   campaign this visit is carrying. Exposed as
+   window.__gridbeaconTracking() by SiteAnalytics. */
+export function trackingDiagnostics(measurementId = GA_MEASUREMENT_ID) {
+  const cookie = (name: string) =>
+    document.cookie
+      .split("; ")
+      .find((entry) => entry.startsWith(name + "="))
+      ?.slice(name.length + 1) || null;
+
+  const ga = cookie("_ga");
+  const session = cookie("_ga_" + measurementId.replace("G-", ""));
+
+  return {
+    host: window.location.hostname,
+    measurementId,
+    // GA1.1.<client id>
+    clientId: ga ? ga.split(".").slice(2).join(".") : null,
+    // GS2.1.s<session id>$o<session count>...
+    sessionId: session?.match(/s(\d+)/)?.[1] || null,
+    sessionCount: session?.match(/\$o(\d+)/)?.[1] || null,
+    campaign: rememberedTrackingParams(),
+    debugMode: debugEnabled(),
+    gtagLoaded: typeof window.gtag === "function",
+  };
+}
+
 export function trackEvent(name: string, params: Record<string, string> = {}) {
   if (typeof window === "undefined") return;
 
@@ -98,7 +189,7 @@ export function trackEvent(name: string, params: Record<string, string> = {}) {
   }
 }
 
-export function loadGoogleAnalytics(id: string) {
+export function loadGoogleAnalytics(id: string, options: { debug?: boolean } = {}) {
   if (window.gtag) return;
 
   window.dataLayer = window.dataLayer || [];
@@ -108,7 +199,13 @@ export function loadGoogleAnalytics(id: string) {
     window.dataLayer!.push(arguments);
   };
   window.gtag("js", new Date());
-  window.gtag("config", id);
+  window.gtag(
+    "config",
+    id,
+    // Same property and cookie domain as the app, so a visit here and
+    // the signup that follows stay in one GA4 session.
+    options.debug ? { debug_mode: true } : {},
+  );
 
   const script = document.createElement("script");
   script.async = true;

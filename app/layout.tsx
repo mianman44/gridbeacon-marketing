@@ -4,6 +4,7 @@ import type {
 
 import "./globals.css";
 import Providers from "./providers";
+import { SiteAnalytics } from "@/components/marketing/site-analytics";
 
 import localFont from "next/font/local";
 
@@ -126,6 +127,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased bg-slate-50 text-slate-900">
+        <SiteAnalytics />
         <Providers>
           {children}
         </Providers>

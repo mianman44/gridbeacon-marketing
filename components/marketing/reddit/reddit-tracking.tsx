@@ -4,8 +4,10 @@ import { useEffect } from "react";
 
 import {
   GA_MEASUREMENT_ID,
+  debugEnabled,
   isProductionHost,
   loadGoogleAnalytics,
+  rememberTrackingParams,
   loadRedditPixel,
   trackEvent,
   trackingParams,
@@ -21,8 +23,10 @@ let viewTracked = false;
    of the first paint, and records the landing view. */
 export function RedditTracking() {
   useEffect(() => {
+    rememberTrackingParams(window.location.search);
+
     if (isProductionHost()) {
-      loadGoogleAnalytics(GA_MEASUREMENT_ID);
+      loadGoogleAnalytics(GA_MEASUREMENT_ID, { debug: debugEnabled() });
       if (REDDIT_PIXEL_ID) loadRedditPixel(REDDIT_PIXEL_ID);
     }
 

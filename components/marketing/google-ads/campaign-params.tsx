@@ -5,11 +5,13 @@ import { useEffect } from "react";
 import { SIGNUP_URL } from "@/lib/seo";
 import {
   GA_MEASUREMENT_ID,
+  debugEnabled,
   isProductionHost,
   loadGoogleAdsTag,
   loadGoogleAnalytics,
   trackAdsConversion,
   trackEvent,
+  rememberTrackingParams,
   trackingParams,
   withTrackingParams,
 } from "@/lib/tracking";
@@ -44,8 +46,12 @@ export function CampaignParams({ rootId }: { rootId: string }) {
     const root = document.getElementById(rootId);
     if (!root) return;
 
+    // The layout's SiteAnalytics remembers these too, but a child's
+    // effect runs first, so do it here before the tag loads.
+    rememberTrackingParams(window.location.search);
+
     if (isProductionHost()) {
-      loadGoogleAnalytics(GA_MEASUREMENT_ID);
+      loadGoogleAnalytics(GA_MEASUREMENT_ID, { debug: debugEnabled() });
       if (GOOGLE_ADS_ID) loadGoogleAdsTag(GOOGLE_ADS_ID);
     }
 
