@@ -10,7 +10,7 @@ import styles from "./stitch-footer.module.css";
    competitor names once all pointed at one generic table, promising
    pages that did not exist; add a name here only once its page does. */
 const groups = [
-  { title: "Product", links: [["Features", "/features"], ["How It Works", "/how-it-works"], ["Pricing", "/pricing"], ["Google Maps Rank Tracker", "/google-maps-rank-tracker"], ["Local SEO Glossary", "/#local-seo-glossary"]] },
+  { title: "Product", links: [["Features", "/features"], ["How It Works", "/how-it-works"], ["Pricing", "/pricing"], ["Google Maps Rank Tracker", "/google-maps-rank-tracker"], ["Free Google Maps Rank Checker", "/google-maps-rank-checker"], ["Local SEO Glossary", "/#local-seo-glossary"]] },
   { title: "Company", links: [["About", "/about"], ["Contact", "/contact"], ["Security", "/security"], ["Local Falcon Alternative", "/local-falcon-alternative"]] },
   { title: "Legal", links: [["Privacy Policy", "/privacy"], ["Terms of Service", "/terms"], ["Refund Policy", "/refund-policy"], ["Cancellation Policy", "/cancellation-policy"]] },
 ];
