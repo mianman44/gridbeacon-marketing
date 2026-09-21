@@ -18,7 +18,7 @@ printf 'Previous image: %s\nNew commit: %s\n' "$previous" "$commit"
 set -a
 . /opt/gmb-tracker/.env
 set +a
-docker build --build-arg "NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}" --build-arg "NEXT_PUBLIC_PADDLE_CLIENT_TOKEN=${PADDLE_CLIENT_TOKEN}" --build-arg "NEXT_PUBLIC_PADDLE_ENVIRONMENT=${PADDLE_ENVIRONMENT}" --build-arg "NEXT_PUBLIC_REDDIT_PIXEL_ID=${REDDIT_PIXEL_ID:-}" --build-arg "NEXT_PUBLIC_GOOGLE_ADS_ID=${GOOGLE_ADS_ID:-}" --build-arg "NEXT_PUBLIC_GOOGLE_ADS_SIGNUP_LABEL=${GOOGLE_ADS_SIGNUP_LABEL:-}" -t "$image" "$staging"
+docker build --build-arg "NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}" --build-arg "NEXT_PUBLIC_PADDLE_CLIENT_TOKEN=${PADDLE_CLIENT_TOKEN}" --build-arg "NEXT_PUBLIC_PADDLE_ENVIRONMENT=${PADDLE_ENVIRONMENT}" --build-arg "NEXT_PUBLIC_REDDIT_PIXEL_ID=${REDDIT_PIXEL_ID:-}" --build-arg "NEXT_PUBLIC_GOOGLE_ADS_ID=${GOOGLE_ADS_ID:-}" --build-arg "NEXT_PUBLIC_GOOGLE_ADS_SIGNUP_LABEL=${GOOGLE_ADS_SIGNUP_LABEL:-}" --build-arg "NEXT_PUBLIC_TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY:-}" -t "$image" "$staging"
 docker run -d --name "$candidate" -p 127.0.0.1:3014:3000 "$image"
 cleanup_candidate() { docker rm -f "$candidate" >/dev/null 2>&1 || true; }
 trap cleanup_candidate EXIT
