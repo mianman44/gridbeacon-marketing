@@ -30,7 +30,7 @@ export default function CancellationPolicyPage() {
               You may cancel an eligible recurring
               GridBeacon subscription using the available
               billing controls in your account or by
-              contacting support@gridbeaconhq.com if you
+              contacting founder@gridbeaconhq.com if you
               need assistance.
             </p>
           ),
@@ -104,7 +104,7 @@ export default function CancellationPolicyPage() {
               If you cannot cancel through your account or
               have a question about the effective
               cancellation date, contact
-              support@gridbeaconhq.com.
+              founder@gridbeaconhq.com.
             </p>
           ),
         },

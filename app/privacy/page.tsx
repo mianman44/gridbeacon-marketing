@@ -30,7 +30,7 @@ export default function PrivacyPage() {
               GridBeacon is operated by Hustle 24/7,
               Pasrur, Sialkot, Punjab, Pakistan. For
               privacy questions, contact
-              support@gridbeaconhq.com.
+              founder@gridbeaconhq.com.
             </p>
           ),
         },
@@ -176,7 +176,7 @@ export default function PrivacyPage() {
               law, you may have rights relating to access,
               correction, deletion or other processing of
               personal information. You may contact
-              support@gridbeaconhq.com to submit a privacy
+              founder@gridbeaconhq.com to submit a privacy
               request. We may need to verify your identity
               before fulfilling certain requests.
             </p>
@@ -225,7 +225,7 @@ export default function PrivacyPage() {
           content: (
             <p>
               Privacy questions or requests may be sent to
-              support@gridbeaconhq.com.
+              founder@gridbeaconhq.com.
             </p>
           ),
         },

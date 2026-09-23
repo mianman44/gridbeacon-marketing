@@ -379,10 +379,10 @@ export default function TermsPage() {
             <p>
               Questions about these Terms may be sent to{" "}
               <a
-                href="mailto:support@gridbeaconhq.com"
+                href="mailto:founder@gridbeaconhq.com"
                 className="font-bold text-indigo-600"
               >
-                support@gridbeaconhq.com
+                founder@gridbeaconhq.com
               </a>
               .
             </p>

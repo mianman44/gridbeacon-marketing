@@ -95,7 +95,7 @@ export default function SecurityPage() {
               </p>
 
               <a
-                href="mailto:support@gridbeaconhq.com"
+                href="mailto:founder@gridbeaconhq.com"
                 className={styles.splitButton}
                 style={{ marginTop: "30px" }}
               >
@@ -115,8 +115,8 @@ export default function SecurityPage() {
 
               <dt>Where to send it</dt>
               <dd>
-                <a href="mailto:support@gridbeaconhq.com">
-                  support@gridbeaconhq.com
+                <a href="mailto:founder@gridbeaconhq.com">
+                  founder@gridbeaconhq.com
                 </a>
               </dd>
             </dl>

@@ -222,8 +222,8 @@ export default function AboutPage() {
                 <div>
                   <dt>Support</dt>
                   <dd>
-                    <a href="mailto:support@gridbeaconhq.com">
-                      support@gridbeaconhq.com
+                    <a href="mailto:founder@gridbeaconhq.com">
+                      founder@gridbeaconhq.com
                     </a>
                   </dd>
                 </div>

@@ -26,7 +26,7 @@ export const metadata: Metadata = pageMetadata({
     "Contact GridBeacon support for help with your account, scans, subscription, billing or credits.",
 });
 
-const SUPPORT_EMAIL = "support@gridbeaconhq.com";
+const SUPPORT_EMAIL = "founder@gridbeaconhq.com";
 
 const resources = [
   {

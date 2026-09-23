@@ -81,10 +81,10 @@ export function LegalDocument({
             </p>
 
             <a
-              href="mailto:support@gridbeaconhq.com"
+              href="mailto:founder@gridbeaconhq.com"
               className="mt-3 inline-block text-sm font-bold text-indigo-600 hover:text-indigo-700"
             >
-              support@gridbeaconhq.com
+              founder@gridbeaconhq.com
             </a>
           </div>
         </section>

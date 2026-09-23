@@ -119,7 +119,7 @@ export function HomeStructuredData() {
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "customer support",
-              email: "support@gridbeaconhq.com",
+              email: "founder@gridbeaconhq.com",
               url: `${SITE_URL}/contact`,
             },
           },

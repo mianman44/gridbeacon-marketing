@@ -32,7 +32,7 @@ export default function RefundPolicyPage() {
               If you believe a GridBeacon charge was made
               in error or you have another legitimate
               reason to request a refund, contact
-              support@gridbeaconhq.com as soon as possible
+              founder@gridbeaconhq.com as soon as possible
               and include the email address associated
               with your account and relevant transaction
               information.
