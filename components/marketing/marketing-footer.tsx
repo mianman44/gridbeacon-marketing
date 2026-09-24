@@ -20,10 +20,10 @@ export function MarketingFooter() {
     <div className={styles.inner}>
       <div className={styles.grid}>
         <div className={styles.brandColumn}>
-          <Link href="/" className={styles.brand} aria-label="GridBeacon home"><Image src="/branding/gridbeacon-logo-tagline.png" alt="GridBeacon — Google Maps Rank Intelligence" width={1200} height={339} sizes="240px" /></Link>
+          <Link href="/" className={styles.brand} aria-label="GridBeacon home"><Image src="/branding/gridbeacon-logo-tagline.png" alt="GridBeacon — Google Maps Rank Intelligence" width={1200} height={339} sizes="(max-width: 768px) 200px, 400px" /></Link>
           <p className={styles.intro}>Local search visibility, clearly mapped for businesses and SEO agencies. Geo-grid scans, competitor grids and client-ready reports for Google Business Profiles.</p>
         </div>
-        {groups.map(group => <div key={group.title}><h2 className={styles.title}>{group.title}</h2><nav className={styles.links} aria-label={`${group.title} footer links`}>{group.links.map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</nav></div>)}
+        {groups.map(group => <div key={group.title}><p className={styles.title}>{group.title}</p><nav className={styles.links} aria-label={`${group.title} footer links`}>{group.links.map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</nav></div>)}
       </div>
       <div className={styles.bottom}><p>© {new Date().getFullYear()} GridBeacon. All rights reserved.</p><nav aria-label="Footer utility links"><Link href="/contact">Contact</Link><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></nav></div>
     </div>

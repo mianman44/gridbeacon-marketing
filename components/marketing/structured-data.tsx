@@ -9,15 +9,26 @@
  * printed on /pricing and move whenever those do. BreadcrumbList
  * gives inner pages their place under the home page.
  *
- * There is no Review, AggregateRating or FAQPage here on purpose.
- * Ratings a business publishes about itself are self-serving markup
- * that Google's guidelines exclude, and FAQ rich results are no
- * longer shown for sites like this one.
+ * There is no Review or AggregateRating here on purpose: ratings a
+ * business publishes about itself are self-serving markup that
+ * Google's guidelines exclude. The home page carries a FAQPage built
+ * from the same list as its visible FAQ (home-faqs.ts). Google only
+ * shows FAQ rich results for a few authoritative sites now, but the
+ * markup is valid and other engines still read it.
  */
 
 import { SITE_URL } from "@/lib/seo";
+import { homeFaqSchema } from "@/components/marketing/home-faqs";
 
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+
+/* The company's official profiles, for Organization.sameAs. Add real
+   URLs only -- each must be a profile GridBeacon actually controls. */
+const SOCIAL_PROFILES: string[] = [
+  // "https://www.linkedin.com/company/<gridbeacon>",
+  // "https://x.com/<gridbeacon>",
+  // "https://www.youtube.com/@<gridbeacon>",
+];
 
 function JsonLd({ data }: { data: object }) {
   return (
@@ -122,6 +133,7 @@ export function HomeStructuredData() {
               email: "founder@gridbeaconhq.com",
               url: `${SITE_URL}/contact`,
             },
+            sameAs: SOCIAL_PROFILES,
           },
           {
             "@type": "WebSite",
@@ -132,6 +144,10 @@ export function HomeStructuredData() {
             inLanguage: "en",
           },
           softwareApplication(),
+          {
+            ...homeFaqSchema(),
+            "@id": `${SITE_URL}/#faq`,
+          },
         ],
       }}
     />

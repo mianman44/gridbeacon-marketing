@@ -7,6 +7,7 @@ import Providers from "./providers";
 import { SiteAnalytics } from "@/components/marketing/site-analytics";
 
 import localFont from "next/font/local";
+import { preload } from "react-dom";
 
 import { SITE_URL } from "@/lib/seo";
 
@@ -25,6 +26,10 @@ const manrope = localFont({
   weight: "400 800",
   display: "swap",
   variable: "--font-manrope",
+  // Only the screenshot gallery and testimonials use it; the Stitch
+  // pages do not. Keeps the home page to two preloaded families
+  // (Inter, Plus Jakarta Sans).
+  preload: false,
 });
 
 /* Headline face of the Stitch pages. Loaded through next/font rather
@@ -108,24 +113,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  /* The icon font is declared in plain CSS the browser only finds
+     late; fetching it up front stops the icons (and the buttons
+     they sit in) from waiting on it. preload() rather than a <link>
+     in <head>: React dedupes it, where the hand-written tag was
+     emitted twice. */
+  preload("/fonts/material-symbols-outlined-subset.woff2", {
+    as: "font",
+    type: "font/woff2",
+    crossOrigin: "anonymous",
+  });
+
   return (
     <html
       lang="en"
       className={`${inter.variable} ${manrope.variable} ${jakarta.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        {/* The icon font is declared in plain CSS the browser only finds
-            late; fetching it up front stops the icons (and the buttons
-            they sit in) from waiting on it. */}
-        <link
-          rel="preload"
-          href="/fonts/material-symbols-outlined-subset.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body className="font-sans antialiased bg-slate-50 text-slate-900">
         <SiteAnalytics />
         <Providers>

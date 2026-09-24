@@ -112,7 +112,7 @@ export default function AboutPage() {
                 <span>app.gridbeacon.com/heatmap-explorer</span>
               </div>
               <Image
-                src="/stitch/asset-1.webp"
+                src="/stitch/google-maps-rank-heatmap-dashboard.webp"
                 alt="GridBeacon heatmap showing the Google Maps rank at every point of a grid, with the business card and competitor list open"
                 width={1600}
                 height={900}
