@@ -76,8 +76,7 @@ export function LegalDocument({
             </p>
 
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              GridBeacon is operated by Hustle 24/7,
-              Pasrur, Sialkot, Punjab, Pakistan.
+              GridBeacon is operated by Hustle 24/7.
             </p>
 
             <a

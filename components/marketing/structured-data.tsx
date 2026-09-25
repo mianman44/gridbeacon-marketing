@@ -121,12 +121,6 @@ export function HomeStructuredData() {
               "@type": "Organization",
               name: "Hustle 24/7",
             },
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Pasrur, Sialkot",
-              addressRegion: "Punjab",
-              addressCountry: "PK",
-            },
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "customer support",

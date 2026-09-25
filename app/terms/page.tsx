@@ -31,8 +31,7 @@ export default function TermsPage() {
             <>
               <p>
                 GridBeacon is a software-as-a-service
-                product operated by Hustle 24/7, Pasrur,
-                Sialkot, Punjab, Pakistan. GridBeacon
+                product operated by Hustle 24/7. GridBeacon
                 provides local search ranking tools,
                 geographic grid scans, ranking history,
                 visibility information and related

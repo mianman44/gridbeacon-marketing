@@ -27,8 +27,7 @@ export default function PrivacyPage() {
           title: "1. Who operates GridBeacon",
           content: (
             <p>
-              GridBeacon is operated by Hustle 24/7,
-              Pasrur, Sialkot, Punjab, Pakistan. For
+              GridBeacon is operated by Hustle 24/7. For
               privacy questions, contact
               founder@gridbeaconhq.com.
             </p>
