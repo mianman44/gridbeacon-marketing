@@ -13,3 +13,12 @@
 @media(max-width:767px){.noCard{display:none}.actions{gap:10px}}
 @media(max-width:639px){.signin{display:none}.brand{font-size:16px}.cta{font-size:11px;padding:10px 12px}.account{display:none}.inner{gap:8px}.brand img{height:44px}}
 @media(max-width:380px){.brand{font-size:14px;gap:5px}.cta{font-size:10px;padding:9px}.actions{gap:6px}}
+/* Upgrade promotion bar (lib/upgrade-offer), inside the fixed header. */
+.spacerWithOffer{height:114px}
+.offerBar{position:relative;display:block;height:34px;line-height:34px;overflow:hidden;padding:0 16px;text-align:center;white-space:nowrap;text-overflow:ellipsis;background:linear-gradient(90deg,#f59e0b,#f97316);color:#fff!important;font-size:13px;font-weight:500;text-decoration:none!important}
+.offerBar strong{font-weight:700}
+.offerCta{text-decoration:underline;text-underline-offset:3px}
+.offerBar::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.4) 50%,transparent 65%);transform:translateX(-100%);animation:gb-offer-bar-shine 3.6s ease-in-out infinite;pointer-events:none}
+@keyframes gb-offer-bar-shine{55%,100%{transform:translateX(100%)}}
+@media(prefers-reduced-motion:reduce){.offerBar::after{animation:none;display:none}}
+@media(max-width:639px){.offerLong{display:none}.offerBar{font-size:12px}}

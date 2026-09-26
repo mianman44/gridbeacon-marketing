@@ -1,6 +1,61 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { pricingMarkup } from "./stitch-pricing-markup";
+import { UPGRADE_OFFER, offerEndLabel, offerPrice, upgradeOfferIsLive } from "@/lib/upgrade-offer";
+
+/*
+ * The upgrade promotion on the plan cards, added over the Stitch markup
+ * rather than edited into it (the markup string must stay byte-for-byte
+ * what the importer produced). Monthly prices show the discounted amount
+ * with the regular one struck through, a badge and the price after the
+ * two months; the annual view is untouched. A banner goes above the
+ * cards. Nothing is added once the promotion has ended.
+ */
+function addUpgradeOffer(container: HTMLElement) {
+  // Once per page: the effect can run twice (React strict mode), and a
+  // second pass would discount the discounted price again.
+  if (container.dataset.upgradeOffer === "applied") return;
+  container.dataset.upgradeOffer = "applied";
+
+  const prices = [...container.querySelectorAll<HTMLElement>(".price-val")]
+    .filter(el => (el.dataset.monthly ?? "").startsWith("$") && el.dataset.monthly !== "$0");
+  if (!prices.length) return;
+
+  for (const el of prices) {
+    const regular = el.dataset.monthly!;
+    const discounted = offerPrice(regular);
+    el.dataset.monthly = discounted;
+    el.textContent = discounted;
+
+    const struck = document.createElement("s");
+    struck.dataset.offer = "monthly";
+    struck.textContent = regular;
+    struck.style.cssText = "margin-left:8px;font-size:15px;font-weight:600;opacity:.55";
+    el.after(struck);
+
+    const note = document.createElement("div");
+    note.dataset.offer = "monthly";
+    note.textContent = `−${UPGRADE_OFFER.percentOff}% · first ${UPGRADE_OFFER.months} months, then ${regular}/mo`;
+    note.style.cssText = "margin-top:6px;display:inline-block;padding:2px 8px;border-radius:999px;background:#fef3c7;color:#92400e;font-size:12px;font-weight:600";
+    (el.parentElement ?? el).after(note);
+  }
+
+  const cards = prices[0].closest(".grid") ?? prices[0].parentElement?.parentElement;
+  if (cards?.parentElement) {
+    const banner = document.createElement("div");
+    banner.style.cssText = "max-width:880px;margin:0 auto 20px;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:16px;border:1px solid #fde68a;background:linear-gradient(90deg,#fff7ed,#fef3c7);color:#78350f;font-size:14px;line-height:1.5;text-align:left";
+    banner.innerHTML = `<span style="font-size:18px">🎁</span><span><strong>${UPGRADE_OFFER.percentOff}% off your first ${UPGRADE_OFFER.months} months</strong> <span data-offer-text>on any monthly plan. Start free, and it's applied automatically when you upgrade.</span> <span style="color:#b45309">Ends ${offerEndLabel()}.</span></span>`;
+    cards.parentElement.insertBefore(banner, cards);
+  }
+}
+
+function showUpgradeOffer(container: HTMLElement, annual: boolean) {
+  container.querySelectorAll<HTMLElement>("[data-offer]").forEach(el => { el.style.display = annual ? "none" : ""; });
+  const text = container.querySelector<HTMLElement>("[data-offer-text]");
+  if (text) text.textContent = annual
+    ? "on monthly plans only. Switch to Monthly to see it."
+    : "on any monthly plan. Start free, and it's applied automatically when you upgrade.";
+}
 
 export function StitchPricing() {
   const root = useRef<HTMLDivElement>(null);
@@ -56,6 +111,7 @@ export function StitchPricing() {
         }
         container.querySelectorAll<HTMLElement>(".price-val").forEach(el => { el.textContent = (annual ? el.dataset.annual : el.dataset.monthly) || ""; });
         container.querySelectorAll<HTMLElement>(".billing-note").forEach(el => { el.textContent = annual ? "Billed annually • Save 20%" : "Billed monthly • Cancel anytime"; });
+        showUpgradeOffer(container, annual);
       }
       calculate();
     };
@@ -65,6 +121,7 @@ export function StitchPricing() {
     };
     selected(".grid-btn", container.querySelector<HTMLElement>('[data-grid="81"]')!);
     selected(".freq-btn", container.querySelector<HTMLElement>('[data-frequency="4.33"]')!);
+    if (upgradeOfferIsLive()) addUpgradeOffer(container);
     find("btn-monthly").setAttribute("aria-pressed", "true");
     find("btn-annual").setAttribute("aria-pressed", "false");
     calculate();
