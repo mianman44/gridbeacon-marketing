@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { pricingMarkup } from "./stitch-pricing-markup";
-import { UPGRADE_OFFER, offerEndLabel, offerPrice, upgradeOfferIsLive } from "@/lib/upgrade-offer";
+import { UPGRADE_OFFER, offerPrice, offerTimeLeft, upgradeOfferIsLive } from "@/lib/upgrade-offer";
 
 /*
  * The upgrade promotion on the plan cards, added over the Stitch markup
@@ -44,8 +44,17 @@ function addUpgradeOffer(container: HTMLElement) {
   if (cards?.parentElement) {
     const banner = document.createElement("div");
     banner.style.cssText = "max-width:880px;margin:0 auto 20px;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:16px;border:1px solid #fde68a;background:linear-gradient(90deg,#fff7ed,#fef3c7);color:#78350f;font-size:14px;line-height:1.5;text-align:left";
-    banner.innerHTML = `<span style="font-size:18px">🎁</span><span><strong>${UPGRADE_OFFER.percentOff}% off your first ${UPGRADE_OFFER.months} months</strong> <span data-offer-text>on any monthly plan. Start free, and it's applied automatically when you upgrade.</span> <span style="color:#b45309">Ends ${offerEndLabel()}.</span></span>`;
+    banner.innerHTML = `<span style="font-size:18px">🎁</span><span><strong>${UPGRADE_OFFER.percentOff}% off your first ${UPGRADE_OFFER.months} months</strong> <span data-offer-text>on any monthly plan. Start free, and it's applied automatically when you upgrade.</span> <span style="color:#b45309;font-weight:600;font-variant-numeric:tabular-nums">Ends in <span data-offer-timer>${offerTimeLeft().text}</span>.</span></span>`;
     cards.parentElement.insertBefore(banner, cards);
+
+    const timer = banner.querySelector<HTMLElement>("[data-offer-timer]");
+    const tick = () => {
+      const left = offerTimeLeft();
+      if (left.ms <= 0) { banner.remove(); return; }
+      if (timer) timer.textContent = left.text;
+      window.setTimeout(tick, left.ms <= 3_600_000 ? 1000 : 60_000);
+    };
+    window.setTimeout(tick, 60_000);
   }
 }
 

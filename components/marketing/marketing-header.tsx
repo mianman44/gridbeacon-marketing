@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LOGIN_URL, SIGNUP_URL } from "@/lib/seo";
 import { trackEvent } from "@/lib/tracking";
-import { UPGRADE_OFFER, offerEndLabel, upgradeOfferIsLive } from "@/lib/upgrade-offer";
+import { UPGRADE_OFFER, offerTimeLeft } from "@/lib/upgrade-offer";
 import styles from "./stitch-header.module.css";
 
 const links = [
@@ -23,14 +23,28 @@ export function MarketingHeader() {
      the browser takes it away the moment it has ended, even before the
      site is next rebuilt. */
   const [offerLive, setOfferLive] = useState(true);
-  useEffect(() => { if (!upgradeOfferIsLive()) setOfferLive(false); }, []);
+  /* Filled after mount so server and client first renders agree; ticks
+     each minute, each second in the last hour, and hides the bar at 0. */
+  const [offerLeft, setOfferLeft] = useState<string | null>(null);
+  useEffect(() => {
+    let timer = 0;
+    const tick = () => {
+      const left = offerTimeLeft();
+      if (left.ms <= 0) { setOfferLive(false); return; }
+      setOfferLeft(left.text);
+      timer = window.setTimeout(tick, left.ms <= 3_600_000 ? 1000 : 60_000);
+    };
+    tick();
+    return () => window.clearTimeout(timer);
+  }, []);
   const navigation = links.map(([href, label]) => <Link key={href} href={href} className={pathname === href ? styles.active : undefined} aria-current={pathname === href ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>);
   return <><div className={offerLive ? `${styles.spacer} ${styles.spacerWithOffer}` : styles.spacer} aria-hidden="true" /><header className={styles.header} onKeyDown={event => { if (event.key === "Escape") { setOpen(false); document.getElementById("marketing-menu-button")?.focus(); } }}>
     {offerLive && (
       <a className={styles.offerBar} href={SIGNUP_URL} onClick={() => trackEvent("offer_bar_click", { placement: "marketing_header" })}>
         <span aria-hidden="true">🎁</span>{" "}
         <strong>{UPGRADE_OFFER.percentOff}% off your first {UPGRADE_OFFER.months} months</strong>
-        <span className={styles.offerLong}> on any monthly plan · ends {offerEndLabel()}</span>
+        <span className={styles.offerLong}> on any monthly plan</span>
+        {offerLeft && <>{" · ends in "}<span className={styles.offerTimer}>{offerLeft}</span></>}
         {" · "}<span className={styles.offerCta}>Start free →</span>
       </a>
     )}

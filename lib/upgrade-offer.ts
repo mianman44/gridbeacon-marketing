@@ -3,7 +3,7 @@
  *
  * Same Paddle discount as the app (frontend/lib/upgrade-offer.ts):
  * O7Z805R85Z, 20% off for 2 billing periods on the three MONTHLY plan
- * prices, ending Nov 26 2026 23:59 UTC. A visitor signs up free and the
+ * prices, ending Sep 30 2026 23:59 UTC (the Paddle expiry must match). A visitor signs up free and the
  * app applies the code at checkout, so this site only tells them.
  * Keep the two files in step.
  */
@@ -11,11 +11,24 @@
 export const UPGRADE_OFFER = {
   percentOff: 20,
   months: 2,
-  endsAt: "2026-11-26T23:59:00Z",
+  /* One deadline for everyone; the header bar counts down to it. */
+  endsAt: "2026-09-30T23:59:00Z",
 } as const;
 
 export function upgradeOfferIsLive(now: number = Date.now()): boolean {
   return now < Date.parse(UPGRADE_OFFER.endsAt);
+}
+
+/* "3d 4h 12m", then "7h 42m", then "42m 10s" in the last hour. */
+export function offerTimeLeft(now: number = Date.now()): { ms: number; text: string } {
+  const ms = Math.max(0, Date.parse(UPGRADE_OFFER.endsAt) - now);
+  const total = Math.floor(ms / 1000);
+  const d = Math.floor(total / 86400);
+  const h = Math.floor((total % 86400) / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = total % 60;
+  const text = d > 0 ? `${d}d ${h}h ${m}m` : h > 0 ? `${h}h ${m}m` : `${m}m ${String(s).padStart(2, "0")}s`;
+  return { ms, text };
 }
 
 /* "$19.99" -> "$15.99". */
