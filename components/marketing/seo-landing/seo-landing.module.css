@@ -911,3 +911,7 @@
     grid-template-columns: 1fr;
   }
 }
+
+.split + .cards {
+  margin-top: 48px;
+}

@@ -134,7 +134,7 @@ export function HomeStructuredData() {
             "@id": `${SITE_URL}/#website`,
             url: SITE_URL,
             name: "GridBeacon",
-            publisher: { "@id": ORGANIZATION_ID },
+            publisher: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "GridBeacon", url: SITE_URL },
             inLanguage: "en",
           },
           softwareApplication(),
@@ -154,14 +154,32 @@ export function ProductPageStructuredData({
   name,
   path,
   faqs,
+  article,
 }: {
   name: string;
   path: string;
+  /* For explainer pages: an Article node naming GridBeacon as author
+     and publisher. dateModified should move with real edits only. */
+  article?: { headline: string; description: string; dateModified: string };
   /* The page's visible FAQ, question and plain-text answer, word for
      word -- FAQPage markup must match what the reader sees. */
   faqs?: [string, string][];
 }) {
   const graph: object[] = [softwareApplication(), breadcrumb(name, path)];
+  if (article) {
+    graph.push({
+      "@type": "Article",
+      "@id": `${SITE_URL}${path}#article`,
+      headline: article.headline,
+      description: article.description,
+      dateModified: article.dateModified,
+      mainEntityOfPage: `${SITE_URL}${path}`,
+      inLanguage: "en",
+      author: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "GridBeacon", url: SITE_URL },
+      publisher: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "GridBeacon", url: SITE_URL },
+      about: { "@id": `${SITE_URL}/#software` },
+    });
+  }
   if (faqs?.length) {
     graph.push({
       "@type": "FAQPage",

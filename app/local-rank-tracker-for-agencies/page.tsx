@@ -215,6 +215,13 @@ export default function AgencyPage() {
             },
           ]}
         />
+        <InlineCta>
+          <TextLink href="/local-seo-competitor-analysis">Competitor analysis</TextLink>
+          {" · "}
+          <TextLink href="/local-seo-report">Client reports</TextLink>
+          {" · "}
+          <TextLink href="/service-area-business-rank-tracking">Service-area businesses</TextLink>
+        </InlineCta>
       </Section>
 
       <Section
