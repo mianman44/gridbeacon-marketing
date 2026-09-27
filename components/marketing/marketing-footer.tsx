@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { INDUSTRIES, isPublished } from "@/lib/industries";
 import styles from "./stitch-footer.module.css";
 
 /* Every public page is reachable from here, which is what keeps
@@ -10,7 +11,7 @@ import styles from "./stitch-footer.module.css";
    competitor names once all pointed at one generic table, promising
    pages that did not exist; add a name here only once its page does. */
 const groups = [
-  { title: "Product", links: [["Features", "/features"], ["How It Works", "/how-it-works"], ["Pricing", "/pricing"], ["Google Maps Rank Tracker", "/google-maps-rank-tracker"], ["Free Google Maps Rank Checker", "/google-maps-rank-checker"], ["Competitor Analysis", "/local-seo-competitor-analysis"], ["Local SEO Reports", "/local-seo-report"], ["Service-Area Businesses", "/service-area-business-rank-tracking"], ["For Agencies", "/local-rank-tracker-for-agencies"], ["What Is a Geo-Grid?", "/what-is-a-geo-grid"], ["Local SEO Glossary", "/#local-seo-glossary"]] },
+  { title: "Product", links: [["Features", "/features"], ["How It Works", "/how-it-works"], ["Pricing", "/pricing"], ["Google Maps Rank Tracker", "/google-maps-rank-tracker"], ["Free Google Maps Rank Checker", "/google-maps-rank-checker"], ["Competitor Analysis", "/local-seo-competitor-analysis"], ["Local SEO Reports", "/local-seo-report"], ["Service-Area Businesses", "/service-area-business-rank-tracking"], ["For Agencies", "/local-rank-tracker-for-agencies"], ...(INDUSTRIES.some(isPublished) ? [["By Industry", "/local-rank-tracking-by-industry"]] : []), ["What Is a Geo-Grid?", "/what-is-a-geo-grid"], ["Local SEO Glossary", "/#local-seo-glossary"]] },
   { title: "Compare", links: [["Best Local Rank Trackers", "/best-local-rank-trackers"], ["Local Falcon Alternative", "/local-falcon-alternative"], ["BrightLocal Alternative", "/brightlocal-alternative"], ["Whitespark Alternative", "/whitespark-alternative"], ["Local Viking Alternative", "/local-viking-alternative"]] },
   { title: "Company", links: [["About", "/about"], ["Contact", "/contact"], ["Security", "/security"]] },
   { title: "Legal", links: [["Privacy Policy", "/privacy"], ["Terms of Service", "/terms"], ["Refund Policy", "/refund-policy"], ["Cancellation Policy", "/cancellation-policy"]] },
