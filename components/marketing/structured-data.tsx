@@ -153,15 +153,32 @@ export function HomeStructuredData() {
 export function ProductPageStructuredData({
   name,
   path,
+  faqs,
 }: {
   name: string;
   path: string;
+  /* The page's visible FAQ, question and plain-text answer, word for
+     word -- FAQPage markup must match what the reader sees. */
+  faqs?: [string, string][];
 }) {
+  const graph: object[] = [softwareApplication(), breadcrumb(name, path)];
+  if (faqs?.length) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}${path}#faq`,
+      mainEntity: faqs.map(([question, answer]) => ({
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer },
+      })),
+    });
+  }
+
   return (
     <JsonLd
       data={{
         "@context": "https://schema.org",
-        "@graph": [softwareApplication(), breadcrumb(name, path)],
+        "@graph": graph,
       }}
     />
   );

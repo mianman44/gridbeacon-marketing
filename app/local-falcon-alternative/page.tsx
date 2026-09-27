@@ -9,6 +9,7 @@ import {
   Hero,
   InlineCta,
   Note,
+  RelatedComparisons,
   Screenshot,
   Section,
   SeoLandingPage,
@@ -50,74 +51,41 @@ export const metadata: Metadata = pageMetadata({
   },
 });
 
-const FAQS: [string, React.ReactNode][] = [
+const FAQS: [string, string][] = [
   [
     "Is GridBeacon a good Local Falcon alternative?",
-    <p key="a">
-      For Google Maps rank tracking, yes: both run geo-grid scans with the
-      same grid sizes and radius range, and both charge one credit per grid
-      point. GridBeacon costs less per credit and includes competitor grids
-      from every scan. If you also need Apple Maps or AI search tracking,
-      white-label reports or an API, Local Falcon covers more.
-    </p>,
+    "For Google Maps rank tracking, yes: both run geo-grid scans with the same grid sizes and radius range, and both charge one credit per grid point. GridBeacon costs less per credit and includes competitor grids from every scan. If you also need Apple Maps or AI search tracking, white-label reports or an API, Local Falcon covers more.",
   ],
   [
     "Is GridBeacon cheaper than Local Falcon?",
-    <p key="a">
-      On the plans that are closest in size, yes. GridBeacon&apos;s plans
-      work out roughly 25–32% cheaper per included credit, and its top-up
-      packs cost a fraction of Local Falcon&apos;s pay-as-you-go rate.
-      Local Falcon&apos;s AI analysis is cheaper per report (25 credits
-      against 100), and it offers larger plans than GridBeacon.
-    </p>,
+    "On the plans that are closest in size, yes. GridBeacon's plans work out roughly 25–32% cheaper per included credit, and its top-up packs cost a fraction of Local Falcon's pay-as-you-go rate. Local Falcon's AI analysis is cheaper per report (25 credits against 100), and it offers larger plans than GridBeacon.",
   ],
   [
     "Do the two tools count credits the same way?",
-    <p key="a">
-      Yes. Both use one credit per grid point, so a 9 × 9 scan uses 81
-      credits in either tool. In both, a plan&apos;s monthly credits
-      don&apos;t carry over to the next billing cycle; credits bought
-      separately do.
-    </p>,
+    "Yes. Both use one credit per grid point, so a 9 × 9 scan uses 81 credits in either tool. In both, a plan's monthly credits don't carry over to the next billing cycle; credits bought separately do.",
   ],
   [
     "Can GridBeacon track Apple Maps, ChatGPT or Google AI Overviews?",
-    <p key="a">
-      No. GridBeacon tracks Google Maps rankings. Local Falcon also tracks
-      Apple Maps and AI answer engines, so it is the better fit if you
-      report on those.
-    </p>,
+    "No. GridBeacon tracks Google Maps rankings. Local Falcon also tracks Apple Maps and AI answer engines, so it is the better fit if you report on those.",
   ],
   [
     "Does GridBeacon offer white-label reports?",
-    <p key="a">
-      Not today. GridBeacon&apos;s AI Ranking Intelligence reports are
-      PDFs you can share with clients, but they carry GridBeacon&apos;s
-      branding.
-    </p>,
+    "Not today. GridBeacon's AI Ranking Intelligence reports are PDFs you can share with clients, but they carry GridBeacon's branding.",
   ],
   [
     "Can I import my Local Falcon scan history?",
-    <p key="a">
-      No. GridBeacon starts a new history from your first scan. Running the
-      same keywords with the same grid and radius gives you a like-for-like
-      starting point to compare with your last Local Falcon report.
-    </p>,
+    "No. GridBeacon starts a new history from your first scan. Running the same keywords with the same grid and radius gives you a like-for-like starting point to compare with your last Local Falcon report.",
   ],
   [
     "Is GridBeacon affiliated with Local Falcon?",
-    <p key="a">
-      No. Local Falcon is a separate company and its names and marks belong
-      to its owner. This page compares the two products using Local
-      Falcon&apos;s public website, checked in {LOCAL_FALCON_CHECKED}.
-    </p>,
+    `No. Local Falcon is a separate company and its names and marks belong to its owner. This page compares the two products using Local Falcon's public website, checked in ${LOCAL_FALCON_CHECKED}.`,
   ],
 ];
 
 export default function LocalFalconAlternativePage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Local Falcon Alternative" path={PATH} />
+      <ProductPageStructuredData name="Local Falcon Alternative" path={PATH} faqs={FAQS} />
 
       <Hero
         eyebrow="Local Falcon alternative"
@@ -342,6 +310,7 @@ export default function LocalFalconAlternativePage() {
           {" · "}
           <TextLink href="/pricing">Compare plans</TextLink>
         </InlineCta>
+        <RelatedComparisons current={PATH} />
       </Section>
 
       <Section
@@ -350,7 +319,7 @@ export default function LocalFalconAlternativePage() {
         eyebrow="FAQ"
         title="GridBeacon vs Local Falcon Questions"
       >
-        <Faq items={FAQS} />
+        <Faq items={FAQS.map(([question, answer]) => [question, <p key="a">{answer}</p>])} />
       </Section>
 
       <CtaBand

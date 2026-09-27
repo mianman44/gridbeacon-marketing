@@ -97,7 +97,8 @@ export function TextLink({
 /* A side-by-side comparison. The first data column is GridBeacon and
    is tinted; row labels are row headers so screen readers announce
    them with each cell. On narrow screens the table scrolls sideways
-   inside its own frame rather than widening the page. */
+   inside its own frame rather than widening the page. Two-product
+   pages pass three columns; the roundup passes one per tool. */
 export function ComparisonTable({
   label,
   caption,
@@ -106,33 +107,131 @@ export function ComparisonTable({
 }: {
   label: string;
   caption: ReactNode;
-  columns: [string, string, string];
-  rows: [string, ReactNode, ReactNode][];
+  columns: string[];
+  rows: [string, ...ReactNode[]][];
 }) {
   return (
     <div className={styles.tableWrap} role="region" aria-label={label} tabIndex={0}>
-      <table className={styles.table}>
+      <table className={`${styles.table} ${columns.length > 3 ? styles.tableWide : ""}`}>
         <caption className={styles.tableCaption}>{caption}</caption>
         <thead>
           <tr>
             {columns.map((column, index) => (
-              <th key={column} scope="col" className={index === 1 ? styles.tableHighlight : undefined}>
+              <th key={`${index}-${column}`} scope="col" className={index === 1 ? styles.tableHighlight : undefined}>
                 {column}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {rows.map(([heading, ours, theirs]) => (
+          {rows.map(([heading, ...cells]) => (
             <tr key={heading}>
               <th scope="row">{heading}</th>
-              <td className={styles.tableHighlight}>{ours}</td>
-              <td>{theirs}</td>
+              {cells.map((cell, index) => (
+                <td key={index} className={index === 0 ? styles.tableHighlight : undefined}>{cell}</td>
+              ))}
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+  );
+}
+
+/* "On this page" links for the long comparison pages. Plain anchors
+   to the section ids, so they work without JavaScript and give
+   search engines the page's outline. */
+export function Toc({ items }: { items: [string, string][] }) {
+  return (
+    <nav className={styles.toc} aria-label="On this page">
+      <p className={styles.tocTitle}>On this page</p>
+      <ol>
+        {items.map(([label, id]) => (
+          <li key={id}><a href={`#${id}`}>{label}</a></li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+
+/* One tool in a roundup: what it is best for, its price, and a plain
+   strengths / limits split. Rendered as an H3 under the section H2. */
+export function ToolReview({
+  id,
+  rank,
+  name,
+  bestFor,
+  price,
+  summary,
+  pros,
+  cons,
+  source,
+  highlight = false,
+}: {
+  id: string;
+  rank: number;
+  name: string;
+  bestFor: string;
+  price: string;
+  summary: ReactNode;
+  pros: ReactNode[];
+  cons: ReactNode[];
+  source?: ReactNode;
+  highlight?: boolean;
+}) {
+  return (
+    <article id={id} className={`${styles.tool} ${highlight ? styles.toolHighlight : ""}`} aria-labelledby={`${id}-title`}>
+      <header className={styles.toolHead}>
+        <span className={styles.toolRank} aria-hidden="true">{rank}</span>
+        <div>
+          <h3 id={`${id}-title`} className={styles.toolName}>{name}</h3>
+          <p className={styles.toolMeta}>
+            <span><strong>Best for:</strong> {bestFor}</span>
+            <span><strong>Price:</strong> {price}</span>
+          </p>
+        </div>
+      </header>
+      <div className={styles.prose}>{summary}</div>
+      <div className={styles.toolLists}>
+        <div>
+          <p className={styles.toolListTitle}>Strengths</p>
+          <ul className={styles.checklist}>
+            {pros.map((item, index) => <li key={index}>{item}</li>)}
+          </ul>
+        </div>
+        <div>
+          <p className={styles.toolListTitle}>Limits</p>
+          <ul className={styles.crossList}>
+            {cons.map((item, index) => <li key={index}>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+      {source && <p className={styles.toolSource}>{source}</p>}
+    </article>
+  );
+}
+
+/* The comparison pages link to each other, so a reader weighing one
+   competitor can reach the others, and none is an orphan. */
+const COMPARISONS: [string, string][] = [
+  ["Best local rank trackers compared", "/best-local-rank-trackers"],
+  ["GridBeacon vs Local Falcon", "/local-falcon-alternative"],
+  ["GridBeacon vs BrightLocal", "/brightlocal-alternative"],
+  ["GridBeacon vs Whitespark", "/whitespark-alternative"],
+  ["GridBeacon vs Local Viking", "/local-viking-alternative"],
+  ["GridBeacon for agencies", "/local-rank-tracker-for-agencies"],
+];
+
+export function RelatedComparisons({ current }: { current: string }) {
+  return (
+    <nav className={styles.related} aria-label="More comparisons">
+      <p className={styles.tocTitle}>More comparisons</p>
+      <ul>
+        {COMPARISONS.filter(([, href]) => href !== current).map(([label, href]) => (
+          <li key={href}><Link href={href}>{label}</Link></li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
@@ -144,6 +243,7 @@ export function Hero({
   primaryNote,
   secondary,
   facts,
+  updated,
   media,
 }: {
   eyebrow: string;
@@ -153,6 +253,8 @@ export function Hero({
   primaryNote?: string;
   secondary?: LinkTarget;
   facts?: string[];
+  /* e.g. "September 2026": when the competitor facts were checked. */
+  updated?: string;
   media: ReactNode;
 }) {
   return (
@@ -176,6 +278,7 @@ export function Hero({
               {facts.map((fact) => <li key={fact}>{fact}</li>)}
             </ul>
           )}
+          {updated && <p className={styles.updated}>Updated {updated}</p>}
         </div>
         <div>{media}</div>
       </div>
@@ -286,9 +389,17 @@ export function ScreenshotPair({ children }: { children: ReactNode }) {
   return <div className={styles.shotPair}>{children}</div>;
 }
 
-export function Checklist({ items }: { items: ReactNode[] }) {
+/* "cross" marks things a product does not do, so a list of gaps
+   never reads as a list of features. */
+export function Checklist({
+  items,
+  variant = "check",
+}: {
+  items: ReactNode[];
+  variant?: "check" | "cross";
+}) {
   return (
-    <ul className={styles.checklist}>
+    <ul className={variant === "cross" ? styles.crossList : styles.checklist}>
       {items.map((item, index) => <li key={index}>{item}</li>)}
     </ul>
   );
@@ -449,4 +560,8 @@ export function CtaBand({
       </div>
     </section>
   );
+}
+
+export function Tools({ children }: { children: ReactNode }) {
+  return <div className={styles.tools}>{children}</div>;
 }
