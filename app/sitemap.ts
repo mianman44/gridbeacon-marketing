@@ -1,22 +1,18 @@
 import type { MetadataRoute } from "next";
 
-import { INDUSTRIES, isPublished } from "@/lib/industries";
+import { INDUSTRIES } from "@/lib/industries";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://gridbeaconhq.com";
 
-  /* Industry pages appear only once they have a real scan. */
-  const industries = INDUSTRIES.filter(isPublished);
-  const industryEntries: MetadataRoute.Sitemap = industries.length
-    ? [
-        { url: `${baseUrl}/local-rank-tracking-by-industry`, changeFrequency: "monthly", priority: 0.7 },
-        ...industries.map((industry) => ({
-          url: `${baseUrl}${industry.path}`,
-          changeFrequency: "monthly" as const,
-          priority: 0.7,
-        })),
-      ]
-    : [];
+  const industryEntries: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/local-rank-tracking-by-industry`, changeFrequency: "monthly", priority: 0.7 },
+    ...INDUSTRIES.map((industry) => ({
+      url: `${baseUrl}${industry.path}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
 
   return [
     ...industryEntries,

@@ -6,13 +6,11 @@
  * how customers search, how the trade is set up on Google, who it
  * competes with, what usually goes wrong -- is written per trade, and a
  * trade can add a section of its own (seasons, practice areas, spam).
- * An industry is only published with a real scan of a business in
- * that trade: without one, its page 404s and it stays out of the
- * sitemap and the hub (see isPublished).
+ * A trade without its own scan shows the shared example scan, labelled
+ * as one (see exampleScan in lib/industries.ts).
  */
 
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 import {
   Cards,
@@ -31,7 +29,7 @@ import {
   Toc,
 } from "@/components/marketing/seo-landing";
 import { ProductPageStructuredData } from "@/components/marketing/structured-data";
-import { INDUSTRIES, isPublished, type Industry } from "@/lib/industries";
+import { exampleScan, INDUSTRIES, type Industry } from "@/lib/industries";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
 const MODEL_LABEL: Record<Industry["model"], string> = {
@@ -41,11 +39,10 @@ const MODEL_LABEL: Record<Industry["model"], string> = {
 };
 
 export function IndustryPage({ industry }: { industry: Industry }) {
-  if (!isPublished(industry)) notFound();
-  const { scan } = industry;
+  const scan = exampleScan(industry);
   const related = industry.related
     .map((slug) => INDUSTRIES.find((other) => other.slug === slug))
-    .filter((other): other is Industry => !!other && isPublished(other));
+    .filter((other): other is Industry => !!other);
 
   return (
     <SeoLandingPage>
@@ -57,7 +54,7 @@ export function IndustryPage({ industry }: { industry: Industry }) {
         lede={industry.lede}
         primary={{ label: "Start Free", href: SIGNUP_URL }}
         primaryNote="No credit card required. New accounts get 500 free scan credits."
-        secondary={{ label: "See a Real Scan", href: "#example" }}
+        secondary={{ label: scan.ownScan ? "See a Real Scan" : "See an Example Scan", href: "#example" }}
         facts={[MODEL_LABEL[industry.model], ...industry.facts]}
         media={
           <Screenshot
@@ -87,7 +84,7 @@ export function IndustryPage({ industry }: { industry: Industry }) {
         <Toc
           items={[
             ["Setting up tracking", "setup"],
-            ["A real scan", "example"],
+            [scan.ownScan ? "A real scan" : "Example scan", "example"],
             [industry.landscape.toc, "competition"],
             ...(industry.extra ? [[industry.extra.toc, industry.extra.id] as [string, string]] : []),
             ["Common ranking problems", "problems"],
@@ -109,7 +106,7 @@ export function IndustryPage({ industry }: { industry: Industry }) {
 
       <Section
         id="example"
-        eyebrow="A real scan"
+        eyebrow={scan.ownScan ? "A real scan" : "Example scan"}
         title={scan.title}
         intro={<p>{scan.intro}</p>}
       >
@@ -213,7 +210,7 @@ export function IndustryPage({ industry }: { industry: Industry }) {
 export function IndustryList() {
   return (
     <Cards
-      items={INDUSTRIES.filter(isPublished).map((industry) => ({
+      items={INDUSTRIES.map((industry) => ({
         tag: MODEL_LABEL[industry.model],
         title: industry.titleNoun,
         body: (

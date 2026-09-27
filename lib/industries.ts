@@ -10,9 +10,10 @@ import type { ReactNode } from "react";
  * credits, features) match the backend.
  *
  * `scan` is a real GridBeacon scan of a business in that trade, with
- * names and addresses blurred. A trade without one is not published:
- * its page 404s and it is left out of the sitemap and the hub. Scan
- * captures are listed with their source in SCREENSHOT-SOURCES.md.
+ * names and addresses blurred; record each capture's source in
+ * SCREENSHOT-SOURCES.md. Until a trade has its own, exampleScan() shows
+ * the shared Dallas garage door scan and SAYS so -- the section is then
+ * an "example scan", never presented as that trade's own.
  */
 
 export interface ScanImage {
@@ -92,8 +93,48 @@ export interface Industry {
   scan?: IndustryScan;
 }
 
-export const isPublished = (industry: Industry): industry is Industry & { scan: IndustryScan } =>
-  !!industry.scan;
+const IMAGES = "/marketing/google-maps-rank-tracker";
+
+/* The scan a trade's page shows: its own when it has one, otherwise
+   the shared example, labelled as a garage door scan from Dallas.
+   `ownScan` tells the page which wording to use. */
+export function exampleScan(industry: Industry): IndustryScan & { ownScan: boolean } {
+  if (industry.scan) return { ...industry.scan, ownScan: true };
+  const garageDoor = industry.slug === "garage-door";
+  return {
+    ownScan: false,
+    heatmap: {
+      src: `${IMAGES}/geo-grid-scan-dallas-20260919.webp`,
+      width: 1600,
+      height: 780,
+      alt: "GridBeacon geo-grid heatmap of a garage door repair company's Google Maps rankings at 25 points across Dallas",
+    },
+    caption: garageDoor
+      ? "A real 5 × 5 GridBeacon scan for \u201cgarage door repair\u201d in Dallas."
+      : "Example: a real 5 × 5 GridBeacon scan for \u201cgarage door repair\u201d in Dallas.",
+    detail: {
+      src: `${IMAGES}/grid-point-competitors-20260919.webp`,
+      width: 1600,
+      height: 772,
+      alt: "GridBeacon heatmap with one grid point selected and the businesses Google Maps ranked there listed in order",
+    },
+    detailCaption: "A real GridBeacon scan with one point selected: every business ranked there, in order.",
+    title: garageDoor
+      ? "What a Garage Door Scan Shows"
+      : `Reading a Geo-Grid Scan: What ${industry.titleNoun} Should Look For`,
+    intro: garageDoor
+      ? "The screenshots are real GridBeacon scans. Here is what to look for when you scan your own garage door business:"
+      : "The screenshots are real GridBeacon scans of other businesses, shown as examples. When you scan your own business, look for these:",
+    findings: [
+      "Where the green stops: the edge of the area where customers see you in the top three.",
+      "Which direction fades fastest: often where a strong competitor is based.",
+      "Who holds the points you lose: select a point to see every business ranked there.",
+      "Whether each keyword tells the same story: run the searches in the table above separately.",
+    ],
+    takeaway:
+      "Run the same scan again in a week or a month, with the same centre, grid and radius, and the trend arrows show what moved.",
+  };
+}
 
 /* Credits a month for a keyword set scanned weekly (4.33 scans). */
 const weekly = (keywords: number, points: number) =>

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 import { IndustryList } from "@/components/marketing/industry-page";
 import {
@@ -13,13 +12,11 @@ import {
   TextLink,
 } from "@/components/marketing/seo-landing";
 import { BreadcrumbStructuredData } from "@/components/marketing/structured-data";
-import { INDUSTRIES, isPublished } from "@/lib/industries";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
 /*
  * The industries hub: links every published industry page so none is
- * an orphan, and explains why the set-up differs by trade. Lists only
- * trades with a real scan, and 404s while there are none.
+ * an orphan, and explains why the set-up differs by trade.
  */
 
 const PATH = "/local-rank-tracking-by-industry";
@@ -40,8 +37,6 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function IndustriesHubPage() {
-  if (!INDUSTRIES.some(isPublished)) notFound();
-
   return (
     <SeoLandingPage>
       <BreadcrumbStructuredData name="Local Rank Tracking by Industry" path={PATH} />
@@ -55,7 +50,7 @@ export default function IndustriesHubPage() {
             customers search differently, travel different distances and
             choose from different competitors. Each guide below covers the
             searches worth tracking, the grid to use and who you&apos;re up
-            against, with a real scan from that trade.
+            against.
           </>
         }
         primary={{ label: "Start Free", href: SIGNUP_URL }}

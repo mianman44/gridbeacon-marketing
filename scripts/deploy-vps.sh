@@ -28,7 +28,7 @@ for attempt in $(seq 1 40); do
   sleep 2
 done
 [[ "$ready" == true ]]
-for path in / /features /how-it-works /pricing /about /contact /security /privacy /terms /refund-policy /cancellation-policy /google-ads /reddit /google-maps-rank-tracker /google-maps-rank-checker /local-falcon-alternative /brightlocal-alternative /whitespark-alternative /local-viking-alternative /best-local-rank-trackers /local-rank-tracker-for-agencies /local-seo-competitor-analysis /local-seo-report /service-area-business-rank-tracking /what-is-a-geo-grid /branding/gridbeacon-transparent.webp /stitch-utilities.css /features-utilities.css /pricing-utilities.css /how-utilities.css; do
+for path in / /features /how-it-works /pricing /about /contact /security /privacy /terms /refund-policy /cancellation-policy /google-ads /reddit /google-maps-rank-tracker /google-maps-rank-checker /local-falcon-alternative /brightlocal-alternative /whitespark-alternative /local-viking-alternative /best-local-rank-trackers /local-rank-tracker-for-agencies /local-seo-competitor-analysis /local-seo-report /service-area-business-rank-tracking /what-is-a-geo-grid /local-rank-tracking-by-industry /local-rank-tracking-for-plumbers /local-rank-tracking-for-hvac /local-rank-tracking-for-dentists /local-rank-tracking-for-lawyers /local-rank-tracking-for-roofers /local-rank-tracking-for-garage-door-companies /local-rank-tracking-for-electricians /local-rank-tracking-for-pest-control /local-rank-tracking-for-med-spas /local-rank-tracking-for-chiropractors /branding/gridbeacon-transparent.webp /stitch-utilities.css /features-utilities.css /pricing-utilities.css /how-utilities.css; do
   curl -fsS "http://127.0.0.1:3014${path}" -o /dev/null
 done
 cleanup_candidate
