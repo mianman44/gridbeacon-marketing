@@ -243,7 +243,7 @@ export default function BestLocalRankTrackersPage() {
               "Lowest price per credit of the credit-based tools here: 32,000 credits for $69.99.",
               "Grids from 3 × 3 to 21 × 21 and a radius up to 100 miles, with excluded points.",
               "Unlimited businesses, keywords and team members on paid plans.",
-              "AI Ranking Intelligence reports, Review Intelligence and Keyword Explorer included.",
+              "AI Ranking Intelligence reports, Review Intelligence, Keyword Explorer and a Citation Audit included.",
               "Free plan with 500 credits and no time limit.",
             ]}
             cons={[

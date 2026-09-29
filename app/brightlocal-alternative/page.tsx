@@ -53,7 +53,7 @@ export const metadata: Metadata = pageMetadata({
 const FAQS: [string, string][] = [
   [
     "Is GridBeacon a good BrightLocal alternative?",
-    "For geo-grid rank tracking on Google Maps, yes. GridBeacon runs larger grids over a wider area and lets you scan as many keywords as your credits cover, where BrightLocal's Local Search Grid covers up to five keywords per location on its standard plans. GridBeacon does not replace BrightLocal's citation building, listings sync, review management or organic rank tracking.",
+    "For geo-grid rank tracking on Google Maps, yes. GridBeacon runs larger grids over a wider area and lets you scan as many keywords as your credits cover, where BrightLocal's Local Search Grid covers up to five keywords per location on its standard plans. GridBeacon includes a Citation Audit that checks your listings for errors, but it does not replace BrightLocal's citation building, listings sync, review management or organic rank tracking.",
   ],
   [
     "How much does BrightLocal cost compared with GridBeacon?",
@@ -69,7 +69,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Can I use GridBeacon and BrightLocal together?",
-    "Yes, and many teams do. BrightLocal handles citations, listings and reviews; GridBeacon handles detailed Google Maps grids. You add a business to GridBeacon by finding it on Google Maps, so nothing needs to be connected or migrated.",
+    "Yes, and many teams do. BrightLocal handles citation building, listings and reviews; GridBeacon handles detailed Google Maps grids and can audit whether your listings are accurate. You add a business to GridBeacon by finding it on Google Maps, so nothing needs to be connected or migrated.",
   ],
   [
     "Does GridBeacon offer white-label reports like BrightLocal?",
@@ -125,10 +125,10 @@ export default function BrightLocalAlternativePage() {
         <Split
           media={
             <Note>
-              BrightLocal and GridBeacon overlap in one place: the geo-grid.
-              Everything else BrightLocal does (citations, listings sync,
-              review campaigns, organic rank tracking) GridBeacon does not
-              try to do.
+              BrightLocal and GridBeacon overlap in two places: the geo-grid,
+              and checking citations for errors. Everything else BrightLocal
+              does (citation building, listings sync, review campaigns,
+              organic rank tracking) GridBeacon does not try to do.
             </Note>
           }
         >
@@ -141,7 +141,7 @@ export default function BrightLocalAlternativePage() {
           </p>
           <p>
             <strong>Stay with BrightLocal</strong> if you use it mainly for
-            citations, listings management, review generation or white-label
+            citation building, listings management, review generation or white-label
             client reporting. GridBeacon does not replace those.
           </p>
           <p>
@@ -192,7 +192,7 @@ export default function BrightLocalAlternativePage() {
             ["Scheduled scans", "Daily, weekly, biweekly or monthly, with email alerts", "Recurring reports"],
             ["AI analysis", "AI Ranking Intelligence PDF and AI Action Plan (paid plans)", "AI Insights (Manage and Grow)"],
             ["Organic rank tracking", "Not available: Google Maps only", "Local Rank Tracker, up to 100 keywords"],
-            ["Citations and listings", "Not available", "Citation Tracker, listings sync, Citation Builder (pay per citation)"],
+            ["Citations and listings", "Citation Audit on paid plans (60+ directories, 300 credits); no citation building or listings sync", "Citation Tracker, listings sync, Citation Builder (pay per citation)"],
             ["Review management", "Review Intelligence: analysis of up to 500 reviews", "Monitoring, replies, review campaigns and widgets (Grow)"],
             ["White-label reports", "Not available", "Available"],
             ["API", "Not available", "Custom-priced API"],

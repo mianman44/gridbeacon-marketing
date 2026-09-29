@@ -190,7 +190,7 @@ export default function LocalFalconAlternativePage() {
             },
             {
               title: "More built into paid plans",
-              body: "Review Intelligence, GBP Activity monitoring, AI Action Plans, Keyword Explorer and scheduled scans with email alerts.",
+              body: "Review Intelligence, GBP Activity monitoring, AI Action Plans, Keyword Explorer, a Citation Audit and scheduled scans with email alerts.",
             },
             {
               title: "Focused on Google Maps",

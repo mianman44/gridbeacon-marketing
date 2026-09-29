@@ -42,6 +42,7 @@ export const PLAN_FEATURE_GROUPS: FeatureGroup[] = [
       "Current rank, best rank and visibility",
       "Full scan history archive",
       "Local keyword discovery",
+      "Citation Audit across 60+ directories",
     ],
   },
   {

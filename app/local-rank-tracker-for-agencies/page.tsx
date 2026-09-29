@@ -210,6 +210,10 @@ export default function AgencyPage() {
               body: "Find the local keywords worth tracking for a new client, with search volume for their city (paid plans).",
             },
             {
+              title: "Citation Audit",
+              body: "Check a client's listings on 60+ directories for wrong details and duplicates, with a health score to report on (paid plans, 300 credits).",
+            },
+            {
               title: "No profile access needed",
               body: "Add a business from Google Maps. Clients don't have to grant access, and nothing on their profile changes.",
             },

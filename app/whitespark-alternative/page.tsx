@@ -212,6 +212,7 @@ export default function WhitesparkAlternativePage() {
             ["AI analysis", "AI Ranking Intelligence PDF and AI Action Plan (paid plans)", "Not listed"],
             ["Reviews", "Review Intelligence: analysis of up to 500 reviews", "Separate product (Reputation Builder, $79/location/mo)"],
             ["Keyword research", "Keyword Explorer with local search volume (paid plans)", "Not included"],
+            ["Citations", "Citation Audit: listing accuracy on 60+ directories (paid plans)", "Separate product (Local Citation Finder)"],
             ["Organic and Bing tracking", "Not available", "Separate product (Local Rank Tracker, from $14/mo)"],
             ["Client sharing", "Team invites, PDF reports and CSV exports", "Live white-label share links, CSV and PDF export"],
           ]}
@@ -249,7 +250,7 @@ export default function WhitesparkAlternativePage() {
             },
             {
               title: "More included in one plan",
-              body: "Review Intelligence, GBP Activity monitoring, Keyword Explorer and AI reports come with paid plans instead of being separate subscriptions.",
+              body: "Review Intelligence, GBP Activity monitoring, Keyword Explorer, the Citation Audit and AI reports come with paid plans instead of being separate subscriptions.",
             },
             {
               title: "See who wins each point",
@@ -290,7 +291,7 @@ export default function WhitesparkAlternativePage() {
               "Rank tracking in organic results and on Bing, not just Google Maps.",
               "A very small monthly budget: Whitespark's $10 plan (2,000 credits) is below GridBeacon's cheapest paid plan.",
               "More than 32,000 credits a month on a single plan.",
-              "Citation research and building, or review generation, from the same vendor.",
+              "Citation building, or review generation, from the same vendor.",
               "Competitor tracking that follows review velocity and Google Business Profile edits.",
             ]}
           />
