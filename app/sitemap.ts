@@ -16,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...industryEntries,
+    ...[
+      "/google-review-analysis",
+      "/google-business-profile-monitoring",
+      "/multi-location-rank-tracking",
+      "/automated-google-maps-rank-tracking",
+    ].map((path) => ({ url: `${baseUrl}${path}`, changeFrequency: "monthly" as const, priority: 0.8 })),
     {
       url: `${baseUrl}/google-maps-rank-checker`,
       changeFrequency: "monthly",

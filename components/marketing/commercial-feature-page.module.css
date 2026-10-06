@@ -1,0 +1,11 @@
+.preview { margin: 0; padding: clamp(22px, 4vw, 38px); border: 1px solid #dbe5f4; border-radius: 24px; background: #fff; box-shadow: 0 24px 64px -32px #173b7140; }
+.previewTop { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 28px; }
+.brand { color: #0f172a; font-size: 19px; font-weight: 800; }
+.badge { background: #eff6ff; color: #1d4ed8; border-radius: 20px; padding: 5px 11px; font-size: 11px; font-weight: 700; }
+.preview h2 { margin: 0 0 24px; color: #0f172a; font-size: clamp(22px, 3vw, 30px); line-height: 1.25; }
+.preview dl { margin: 0; }
+.preview dl > div { padding: 18px 0; border-top: 1px solid #e2e8f0; }
+.preview dt { display: flex; gap: 10px; align-items: center; color: #0f172a; font-weight: 700; }
+.number { display: inline-flex; justify-content: center; align-items: center; flex: 0 0 26px; height: 26px; border-radius: 8px; background: #eff6ff; color: #2563eb; font-size: 12px; }
+.preview dd { margin: 6px 0 0 36px; color: #475569; font-size: 14px; line-height: 1.6; }
+.preview figcaption { border-top: 1px solid #e2e8f0; padding-top: 18px; margin-top: 8px; color: #64748b; font-size: 12px; line-height: 1.6; }
