@@ -158,13 +158,13 @@ export default function GoogleMapsRankTrackerPage() {
         facts={["3 × 3 to 21 × 21 grids", "0.1 to 100 mile radius", "1 credit per grid point"]}
         media={
           <Screenshot
-            src={`${IMAGES}/geo-grid-scan-dallas-20260919.webp`}
-            width={1600}
-            height={780}
+            src={`${IMAGES}/geo-grid-scan-austin-20261006.png`}
+            width={1503}
+            height={1046}
             eager
             sizes="(min-width: 1240px) 700px, (min-width: 1024px) 56vw, 100vw"
-            alt="GridBeacon Google Maps geo-grid rank tracker showing a business's rankings at 25 points across Dallas"
-            caption="A real 5 × 5 GridBeacon scan for “garage door repair” in Dallas. Each dot is the business's Google Maps position at that point."
+            alt="GridBeacon scan for attic insulation austin showing 61 rank markers across Austin, with 100% top-three coverage and an average rank of 1.3"
+            caption="A real GridBeacon scan for “attic insulation austin”: 61 points across a 7-mile radius, with an average rank of 1.3. Each marker shows the business's Google Maps position at that point."
           />
         }
       />
@@ -260,11 +260,11 @@ export default function GoogleMapsRankTrackerPage() {
           reverse
           media={
             <Screenshot
-              src={`${IMAGES}/grid-point-competitors-20260919.webp`}
-              width={1600}
-              height={772}
-              alt="GridBeacon heatmap with one grid point selected, listing the businesses Google Maps ranked at that location"
-              caption="Selecting a grid point lists the businesses Google Maps returned there, in order, with ratings and review counts."
+              src={`${IMAGES}/ac-repair-grid-daphne-20261006.png`}
+              width={1498}
+              height={1050}
+              alt="GridBeacon ac repair scan across Daphne, Alabama, showing 61 rank markers with an average rank of 6.3; company name hidden"
+              caption="A real “ac repair” scan around Daphne, Alabama: 61 points across a 5-mile radius, with rankings from 1 to 15. Select a point in the app to explore the competitors ranking there."
             />
           }
         >
@@ -326,11 +326,11 @@ export default function GoogleMapsRankTrackerPage() {
         <Split
           media={
             <Screenshot
-              src={`${IMAGES}/rank-movement-heatmap-20260919.webp`}
-              width={1600}
-              height={813}
-              alt="GridBeacon heatmap with trend arrows showing where Google Maps rankings rose or fell since an earlier scan"
-              caption="Trend arrows show which points moved since an earlier scan. Selecting a point spells the change out, e.g. “On Aug 31 you were #8, now you're #10”."
+              src={`${IMAGES}/jeweler-grid-new-york-20261006.png`}
+              width={1498}
+              height={1050}
+              alt="GridBeacon jeweler new york scan showing 61 ranking points across New York, with an average rank of 21.1; company name hidden"
+              caption="A saved “jeweler new york” scan across a 7-mile radius, with an average rank of 21.1. Repeat the same keyword and scan settings to compare coverage over time."
             />
           }
         >
@@ -504,14 +504,14 @@ export default function GoogleMapsRankTrackerPage() {
         <Cards
           columns={4}
           items={[
-            { title: "Garage door companies", body: "Check you appear across the suburbs you drive to, not just near the shop." },
-            { title: "Locksmiths", body: "Emergency searches favour whoever is closest. Find where you drop out." },
-            { title: "HVAC companies", body: "See how far your visibility reaches during busy seasons." },
-            { title: "Roofers", body: "Compare your coverage with the crews competing for the same jobs." },
-            { title: "Plumbers", body: "Spot the neighbourhoods where “plumber near me” sends people elsewhere." },
-            { title: "Dentists", body: "Understand which parts of town see your practice first." },
-            { title: "Law firms", body: "Check visibility for practice-area searches across the city." },
-            { title: "Other local services", body: "Cleaners, electricians, movers and more: anyone customers search for nearby." },
+            { title: "Garage door companies", body: "Check you appear across the suburbs you drive to, not just near the shop.", href: "/local-rank-tracking-for-garage-door-companies" },
+            { title: "Locksmiths", body: "Emergency searches favour whoever is closest. Find where you drop out.", href: "/service-area-business-rank-tracking", linkLabel: "Explore service-area tracking" },
+            { title: "HVAC companies", body: "See how far your visibility reaches during busy seasons.", href: "/local-rank-tracking-for-hvac" },
+            { title: "Roofers", body: "Compare your coverage with the crews competing for the same jobs.", href: "/local-rank-tracking-for-roofers" },
+            { title: "Plumbers", body: "Spot the neighbourhoods where “plumber near me” sends people elsewhere.", href: "/local-rank-tracking-for-plumbers" },
+            { title: "Dentists", body: "Understand which parts of town see your practice first.", href: "/local-rank-tracking-for-dentists" },
+            { title: "Law firms", body: "Check visibility for practice-area searches across the city.", href: "/local-rank-tracking-for-lawyers" },
+            { title: "Other local services", body: "Cleaners, electricians, movers and more: anyone customers search for nearby.", href: "/local-rank-tracking-by-industry", linkLabel: "Browse all industries" },
           ]}
         />
       </Section>
@@ -565,8 +565,15 @@ export default function GoogleMapsRankTrackerPage() {
             { title: "Competitor grids", body: "The full local results at every point, with no extra credits." },
             { title: "Gap view", body: "Your grid against a competitor's, point by point." },
             { title: "Rank history", body: "Compare scans and follow movement over 7 to 60 days." },
+            { title: "Custom scan areas", body: "Exclude grid points outside the area you want to measure and check the credit cost before scanning." },
+            { title: "PDF reports and CSV exports", body: "Download standard scan reports as PDFs and export grid points and rank history to CSV." },
+            { title: "Keyword Explorer", tag: "Paid plans", body: "Discover local keyword ideas to help choose the searches you track." },
+            { title: "Citation Audit", tag: "Paid plans", body: "Check US business listings across 60+ directories for inconsistent details, possible duplicates and listing opportunities." },
+            { title: "AI Action Plan", tag: "Paid plans", body: "Turn your business's local SEO findings into prioritised actions you can review and work through." },
+            { title: "Multiple businesses and keywords", tag: "Paid plans", body: "Add unlimited business profiles and tracked keywords, with scans drawing from one workspace credit pool." },
+            { title: "Team access", tag: "Paid plans", body: "Invite unlimited team members with admin or member roles to work in the same workspace." },
             { title: "AI Ranking Intelligence reports", tag: "Paid plans", body: "Plain-language PDF reports built from a scan." },
-            { title: "Scheduled scans and alerts", tag: "Paid plans", body: "Daily to monthly scans, with email alerts when rankings move." },
+            { title: "Scheduled scans and alerts", tag: "Paid plans", body: "Daily, weekly, biweekly or monthly scans, with configurable ranking-change email alerts." },
             { title: "GBP Activity monitoring", tag: "Paid plans", body: "Keep track of activity on a Google Business Profile over time." },
             { title: "Review Intelligence", tag: "Paid plans", body: "Analyse up to 500 Google reviews for a business." },
             { title: "Credit-based scanning", body: "One credit per grid point, 500 free credits to start and top-ups when you need them." },
@@ -576,6 +583,8 @@ export default function GoogleMapsRankTrackerPage() {
           <TextLink href="/features">Explore all features</TextLink>
           {" · "}
           <TextLink href="/pricing">Compare plans</TextLink>
+          {" · "}
+          <TextLink href="/citation-audit">Explore Citation Audit</TextLink>
           {" · "}
           <TextLink href="/local-falcon-alternative">GridBeacon vs Local Falcon</TextLink>
         </InlineCta>

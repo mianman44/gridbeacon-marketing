@@ -436,7 +436,7 @@ export function Cards({
   items,
   columns = 3,
 }: {
-  items: { title: string; body: ReactNode; tag?: string }[];
+  items: { title: string; body: ReactNode; tag?: string; href?: string; linkLabel?: string }[];
   columns?: 2 | 3 | 4;
 }) {
   const grid = columns === 2 ? styles.cols2 : columns === 4 ? styles.cols4 : styles.cols3;
@@ -448,6 +448,7 @@ export function Cards({
           {item.tag && <span className={styles.tag}>{item.tag}</span>}
           <h3 className={styles.cardTitle}>{item.title}</h3>
           <p className={styles.cardBody}>{item.body}</p>
+          {item.href && <TextLink href={item.href}>{item.linkLabel ?? `Rank tracking for ${item.title.toLowerCase()}`} →</TextLink>}
         </div>
       ))}
     </div>
