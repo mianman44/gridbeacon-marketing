@@ -10,6 +10,7 @@ import localFont from "next/font/local";
 import { preload } from "react-dom";
 
 import { SITE_URL } from "@/lib/seo";
+import { UPGRADE_OFFER } from "@/lib/upgrade-offer";
 
 const inter = localFont({
   src: "../public/fonts/inter-latin-variable.woff2",
@@ -130,6 +131,17 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable} ${jakarta.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Pages are built ahead of time, so the header renders the
+            upgrade-offer bar whenever the build ran before endsAt. This
+            runs before first paint and lets the CSS hide it once the
+            offer has ended, instead of it flashing until hydration. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(Date.now()>=${Date.parse(UPGRADE_OFFER.endsAt)})document.documentElement.setAttribute("data-offer-ended","")`,
+          }}
+        />
+      </head>
       <body className="font-sans antialiased bg-slate-50 text-slate-900">
         <SiteAnalytics />
         <Providers>
