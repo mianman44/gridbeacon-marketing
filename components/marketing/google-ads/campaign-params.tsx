@@ -6,7 +6,7 @@ import { SIGNUP_URL } from "@/lib/seo";
 import {
   GA_MEASUREMENT_ID,
   debugEnabled,
-  isProductionHost,
+  trackingAllowed,
   loadGoogleAdsTag,
   loadGoogleAnalytics,
   trackAdsConversion,
@@ -50,7 +50,7 @@ export function CampaignParams({ rootId }: { rootId: string }) {
     // effect runs first, so do it here before the tag loads.
     rememberTrackingParams(window.location.search);
 
-    if (isProductionHost()) {
+    if (trackingAllowed()) {
       loadGoogleAnalytics(GA_MEASUREMENT_ID, { debug: debugEnabled() });
       if (GOOGLE_ADS_ID) loadGoogleAdsTag(GOOGLE_ADS_ID);
     }

@@ -8,10 +8,13 @@
  *   are set at build time (NEXT_PUBLIC_REDDIT_PIXEL_ID,
  *   NEXT_PUBLIC_GOOGLE_ADS_ID); without them nothing is loaded and
  *   nothing breaks.
- * - Third-party scripts load only on the production host, so local and
- *   preview builds never send test traffic to real analytics. Events
- *   are still recorded on window.__gridbeaconEvents everywhere, which
- *   is how they are checked locally.
+ * - Third-party scripts load only when trackingAllowed(): the build
+ *   flag NEXT_PUBLIC_ANALYTICS_ENABLED=true, the production host, and
+ *   a browser not marked internal (the gb_internal cookie the app sets
+ *   for platform admins on .gridbeaconhq.com, or ?gb_internal=1). Local,
+ *   preview and staff visits never send anything. Events are still
+ *   recorded on window.__gridbeaconEvents everywhere, which is how they
+ *   are checked locally.
  * - Only an allow-list of campaign parameters is forwarded to the app.
  *   The signup page acts on `next` (where to go after signup), so
  *   forwarding arbitrary parameters would let anyone craft an ad URL
@@ -55,8 +58,55 @@ declare global {
   }
 }
 
-export function isProductionHost() {
-  return typeof window !== "undefined" && window.location.hostname === PRODUCTION_HOST;
+export const INTERNAL_COOKIE = "gb_internal";
+const INTERNAL_MAX_AGE_S = 400 * 24 * 60 * 60; // browsers cap at 400 days
+
+export function isInternalBrowser(cookieString: string): boolean {
+  return cookieString.split(/;\s*/).some((entry) => entry === `${INTERNAL_COOKIE}=1`);
+}
+
+/* ?gb_internal=1 marks a staff browser (shared with the app through the
+   parent domain), ?gb_internal=0 unmarks it. A measurement opt-out
+   only: it is never sent anywhere. */
+export function applyInternalParam(search: string, hostname: string): void {
+  const value = new URLSearchParams(search).get(INTERNAL_COOKIE);
+  if (value !== "1" && value !== "0") return;
+
+  const onSite = hostname === PRODUCTION_HOST || hostname.endsWith(`.${PRODUCTION_HOST}`);
+  const domain = onSite ? `; domain=.${PRODUCTION_HOST}` : "";
+  const secure = window.location.protocol === "https:" ? "; Secure" : "";
+
+  document.cookie =
+    value === "1"
+      ? `${INTERNAL_COOKIE}=1; path=/; max-age=${INTERNAL_MAX_AGE_S}; SameSite=Lax${secure}${domain}`
+      : `${INTERNAL_COOKIE}=; path=/; max-age=0; SameSite=Lax${domain}`;
+}
+
+/* The build flag and the host, both required; the flag is inlined at
+   build time and unset means off. */
+export function analyticsEnvironmentEnabled(flag: string | undefined, hostname: string): boolean {
+  return flag?.trim().toLowerCase() === "true" && hostname === PRODUCTION_HOST;
+}
+
+let internalParamApplied = false;
+
+/* Whether GA4, the Google Ads tag and the Reddit Pixel may load here. */
+export function trackingAllowed(): boolean {
+  if (typeof window === "undefined") return false;
+
+  if (!internalParamApplied) {
+    internalParamApplied = true;
+    try {
+      applyInternalParam(window.location.search, window.location.hostname);
+    } catch {
+      // no cookies: nothing to remember
+    }
+  }
+
+  return (
+    analyticsEnvironmentEnabled(process.env.NEXT_PUBLIC_ANALYTICS_ENABLED, window.location.hostname) &&
+    !isInternalBrowser(document.cookie)
+  );
 }
 
 /* The allow-listed campaign parameters present in a query string. */
@@ -189,8 +239,64 @@ export function trackEvent(name: string, params: Record<string, string> = {}) {
   }
 }
 
+/* GA4's session cookie: GS2.1.s<session id>$o<count>... Read, never written. */
+export function gaSessionId(cookieString: string, measurementId = GA_MEASUREMENT_ID): string | null {
+  const name = `_ga_${measurementId.replace("G-", "")}=`;
+  const value = cookieString
+    .split(/;\s*/)
+    .find((entry) => entry.startsWith(name))
+    ?.slice(name.length);
+
+  return value?.match(/^GS\d\.\d\.s?(\d+)/)?.[1] ?? null;
+}
+
+/*
+ * acquisition_entry: "this GA4 session began on the marketing site".
+ *
+ * GA4's landing page is session-scoped but has no hostname, and the
+ * hostname dimension belongs to each event, so neither can tell a
+ * session that started on gridbeaconhq.com from one that started in
+ * the app -- which is how /admin ended up in the organic landing
+ * report. This event marks the first kind, once per GA4 session, with
+ * GA4's own session semantics: the session id the tag reports after
+ * this page's hit is compared with the one in its cookie before it
+ * (or after the previous page). A different id means GA4 has just
+ * started a session here. Nothing is stored by us -- no permanent
+ * flag, no per-tab copy.
+ *
+ * Report: sessions that include acquisition_entry, by Session source /
+ * medium and Landing page, with sign_up and first_scan_completed as
+ * the outcomes (see frontend/ANALYTICS.md in the app repo).
+ */
+let lastSessionId: string | null | undefined;
+
+function noteSession(measurementId: string, before: string | null): void {
+  window.gtag?.("get", measurementId, "session_id", (sessionId: unknown) => {
+    const current = sessionId === undefined || sessionId === null ? null : String(sessionId);
+    lastSessionId = current;
+
+    if (current && current !== before) {
+      trackEvent("acquisition_entry", {
+        entry_surface: "marketing",
+        landing_path: window.location.pathname,
+      });
+    }
+  });
+}
+
+/* After a client-side navigation: Enhanced Measurement has queued its
+   page view for the new page, so a session that timed out while the
+   tab sat idle restarts here and is marked like a fresh landing. */
+export function noteSessionAfterNavigation(measurementId = GA_MEASUREMENT_ID): void {
+  if (lastSessionId === undefined || typeof window.gtag !== "function") return;
+  noteSession(measurementId, lastSessionId);
+}
+
 export function loadGoogleAnalytics(id: string, options: { debug?: boolean } = {}) {
   if (window.gtag) return;
+
+  // Before the tag touches the cookie.
+  const sessionBefore = gaSessionId(document.cookie, id);
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag() {
@@ -206,6 +312,7 @@ export function loadGoogleAnalytics(id: string, options: { debug?: boolean } = {
     // the signup that follows stay in one GA4 session.
     options.debug ? { debug_mode: true } : {},
   );
+  noteSession(id, sessionBefore);
 
   const script = document.createElement("script");
   script.async = true;

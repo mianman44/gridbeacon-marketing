@@ -7,10 +7,11 @@ import { APP_URL } from "@/lib/seo";
 import {
   GA_MEASUREMENT_ID,
   debugEnabled,
-  isProductionHost,
   loadGoogleAdsTag,
   loadGoogleAnalytics,
+  noteSessionAfterNavigation,
   rememberTrackingParams,
+  trackingAllowed,
   trackingDiagnostics,
   withVisitParams,
 } from "@/lib/tracking";
@@ -37,13 +38,21 @@ const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID?.trim() || "";
  *  - every link to the app carries the visit's campaign parameters, so
  *    even a session that GA4 never saw here arrives with the gclid.
  *
- * It sends no events of its own: sign_up still comes from the app
- * (frontend/lib/analytics.ts), and the paid landing pages keep their
- * own extra events.
+ * The only event it adds is acquisition_entry, once per GA4 session
+ * that starts on this site (lib/tracking.ts). sign_up still comes from
+ * the app (frontend/lib/analytics.ts), and the paid landing pages keep
+ * their own extra events.
+ *
+ * Page views are GA4's: the first from the tag's config, the rest from
+ * Enhanced Measurement's browser-history page views, which are on for
+ * this stream (checked in the served tag config, 2026-10-26). This
+ * component used to send its own page_view on every client-side
+ * navigation as well, so each one was counted twice.
  */
 export function SiteAnalytics() {
   const pathname = usePathname();
   const firstPath = useRef(true);
+  const allowed = useRef<boolean | null>(null);
 
   useEffect(() => {
     rememberTrackingParams(window.location.search);
@@ -52,21 +61,19 @@ export function SiteAnalytics() {
        console prints the client id, session id and campaign. */
     window.__gridbeaconTracking = () => trackingDiagnostics();
 
-    if (isProductionHost()) {
+    allowed.current ??= trackingAllowed();
+
+    if (allowed.current) {
       loadGoogleAnalytics(GA_MEASUREMENT_ID, { debug: debugEnabled() });
       if (GOOGLE_ADS_ID) loadGoogleAdsTag(GOOGLE_ADS_ID);
     }
 
-    /* The first page view comes from the tag itself. Moving between
-       pages here is a client-side navigation, which the tag cannot
-       see, so record those. Same session, so the campaign is kept. */
+    /* No page_view here (see above). After a client-side move, only
+       check whether GA4 started a new session with it. */
     if (firstPath.current) {
       firstPath.current = false;
-    } else {
-      window.gtag?.("event", "page_view", {
-        page_location: window.location.href,
-        page_title: document.title,
-      });
+    } else if (allowed.current) {
+      noteSessionAfterNavigation();
     }
 
     /* Links present now: also covers opening one in a new tab, where

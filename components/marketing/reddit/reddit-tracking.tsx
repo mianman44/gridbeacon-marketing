@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import {
   GA_MEASUREMENT_ID,
   debugEnabled,
-  isProductionHost,
+  trackingAllowed,
   loadGoogleAnalytics,
   rememberTrackingParams,
   loadRedditPixel,
@@ -25,7 +25,7 @@ export function RedditTracking() {
   useEffect(() => {
     rememberTrackingParams(window.location.search);
 
-    if (isProductionHost()) {
+    if (trackingAllowed()) {
       loadGoogleAnalytics(GA_MEASUREMENT_ID, { debug: debugEnabled() });
       if (REDDIT_PIXEL_ID) loadRedditPixel(REDDIT_PIXEL_ID);
     }
