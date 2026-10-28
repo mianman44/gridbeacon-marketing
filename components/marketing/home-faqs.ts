@@ -25,7 +25,7 @@ export const homeFaqs: HomeFaq[] = [
   {
     question: "What do I get for free?",
     answer:
-      "500 scan credits when you create an account, with no credit card required. That covers a huge 21 × 21 scan, or twenty 5 × 5 scans, or anything in between. The free plan tracks one business and three keywords.",
+      "500 scan credits when you create an account, with no credit card required. That covers twenty full 5 × 5 scans. Grid size and radius are subject to your plan limits. The free plan tracks one business and three keywords.",
   },
   {
     question: "Can I see what competitors rank for?",

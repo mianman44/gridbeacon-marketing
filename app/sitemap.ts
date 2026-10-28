@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+import { BLOG_POSTS } from "@/lib/blog";
+
 import { INDUSTRIES } from "@/lib/industries";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -15,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return [
+    { url: `${baseUrl}/blog`, changeFrequency: "weekly", priority: 0.7 },
+    ...BLOG_POSTS.map(post => ({ url: `${baseUrl}/blog/${post.slug}`, lastModified: post.date, changeFrequency: "monthly" as const, priority: 0.7 })),
     ...industryEntries,
     ...[
       "/google-review-analysis",

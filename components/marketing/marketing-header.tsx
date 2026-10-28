@@ -13,6 +13,7 @@ const links = [
   ["/features", "Features"],
   ["/how-it-works", "How it Works"],
   ["/pricing", "Pricing"],
+  ["/blog", "Blog"],
 ] as const;
 
 export function MarketingHeader() {
