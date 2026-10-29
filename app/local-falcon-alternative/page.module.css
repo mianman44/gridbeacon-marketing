@@ -1,0 +1,19 @@
+.productPreview {
+  display: grid;
+  gap: 16px;
+}
+
+.comparisonGroups {
+  display: grid;
+  gap: 20px;
+}
+
+.comparisonGroups h3 {
+  margin: 20px 0 0;
+  color: #0f172a;
+  font: 700 22px/1.35 var(--heading);
+}
+
+.comparisonGroups h3:first-child {
+  margin-top: 0;
+}

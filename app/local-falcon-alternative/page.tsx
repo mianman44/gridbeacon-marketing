@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import {
+  ButtonLink,
   Cards,
   Checklist,
   ComparisonTable,
@@ -17,6 +18,7 @@ import {
   Steps,
   TextLink,
 } from "@/components/marketing/seo-landing";
+import styles from "./page.module.css";
 import { ProductPageStructuredData } from "@/components/marketing/structured-data";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
@@ -54,7 +56,7 @@ export const metadata: Metadata = pageMetadata({
 const FAQS: [string, string][] = [
   [
     "Is GridBeacon a good Local Falcon alternative?",
-    "For Google Maps rank tracking, yes: both run geo-grid scans with the same grid sizes and radius range, and both charge one credit per grid point. GridBeacon costs less per credit and includes competitor grids from every scan. If you also need Apple Maps or AI search tracking, white-label reports or an API, Local Falcon covers more.",
+    "For Google Maps rank tracking, GridBeacon offers lower credit costs and competitor grids from each scan. Paid plans support grids up to 21×21 and a 100-mile radius; the free plan supports up to 5×5 and 5 miles. If you also need Apple Maps or AI search tracking, white-label reports or an API, Local Falcon covers more.",
   ],
   [
     "Is GridBeacon cheaper than Local Falcon?",
@@ -74,7 +76,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Can I import my Local Falcon scan history?",
-    "No. GridBeacon starts a new history from your first scan. Running the same keywords with the same grid and radius gives you a like-for-like starting point to compare with your last Local Falcon report.",
+    "No. Keep your existing reports: GridBeacon starts a new history from your first scan. For a useful comparison, match the business, keyword, coordinates, grid shape, spacing, radius and language, and scan close together in time. Results can still differ between tools.",
   ],
   [
     "Is GridBeacon affiliated with Local Falcon?",
@@ -89,21 +91,20 @@ export default function LocalFalconAlternativePage() {
 
       <Hero
         eyebrow="Local Falcon alternative"
-        title="A Local Falcon Alternative for Google Maps Rank Tracking"
+        title="Google Maps tracking. Lower scan costs."
         lede={
           <>
-            GridBeacon is a geo-grid rank tracker built around Google Maps. If
-            what you need is to see where a business ranks across its service
-            area, who beats it and how that changes, GridBeacon does it for
-            less per credit. Here is an honest comparison, including where
-            Local Falcon is the better choice.
+            A Local Falcon alternative for tracking rankings across your
+            service area, comparing competitors, and following changes over
+            time. Paid plans start at $19.99/month.
           </>
         }
-        primary={{ label: "Start Free", href: SIGNUP_URL }}
-        primaryNote="No credit card required. New accounts get 500 free scan credits."
+        primary={{ label: "Start Free — 500 Credits", href: SIGNUP_URL }}
+        primaryNote="No credit card required. Free plan: grids up to 5×5, within a 5-mile radius."
         secondary={{ label: "See the Comparison", href: "#comparison" }}
-        facts={["500 free credits", "Plans from $19.99/month", "1 credit per grid point"]}
+        facts={["20 free 5×5 scans", "Competitor grids included", "1 credit per grid point"]}
         media={
+          <div className={styles.productPreview}>
           <Screenshot
             src={`${IMAGES}/grid-point-competitors-20260919.webp`}
             width={1600}
@@ -111,10 +112,25 @@ export default function LocalFalconAlternativePage() {
             eager
             sizes="(min-width: 1240px) 700px, (min-width: 1024px) 56vw, 100vw"
             alt="GridBeacon geo-grid heatmap with one point selected, listing the competitors Google Maps ranked at that location"
-            caption="A real GridBeacon scan. Selecting a grid point lists every business Google Maps returned there."
+            caption="Product example: select a map point to inspect the businesses ranked there. Larger grids require a paid plan."
           />
+          <TextLink href={`${IMAGES}/grid-point-competitors-20260919.webp`}>View the full-size product screenshot</TextLink>
+          </div>
         }
       />
+
+      <Section id="scan-costs" eyebrow="What your budget buys" title="$5 less per month. More scans included."
+        intro={<p>Compare the standard monthly entry plans using a full 9×9 grid: one keyword, one business, 81 credits per scan.</p>}>
+        <ComparisonTable label="Monthly entry-plan scan capacity" columns={["Entry plan", "GridBeacon", "Local Falcon"]}
+          rows={[
+            ["Monthly price", "$19.99", "$24.99"],
+            ["Included credits", "8,000", "7,500"],
+            ["Complete 9×9 scans", "98", "92"],
+          ]}
+          caption={<>USD, standard monthly prices excluding promotions. Scan counts are rounded down and assume all credits go to scans; AI reports and other credit-consuming tools reduce this allowance. Prices checked October 29, 2026: <TextLink href="/pricing">GridBeacon pricing</TextLink> and <TextLink href={LOCAL_FALCON_PRICING} rel="nofollow noopener">Local Falcon pricing</TextLink>.</>}
+        />
+        <InlineCta><TextLink href="/pricing">Estimate your usage and compare plans</TextLink></InlineCta>
+      </Section>
 
       <Section
         id="comparison"
@@ -122,30 +138,44 @@ export default function LocalFalconAlternativePage() {
         title="GridBeacon vs Local Falcon at a Glance"
         intro={
           <p>
-            The two tools scan the same way: a grid of points around a
-            business, one Google Maps search per point, one credit per point.
-            They differ on price, on what comes with each scan and on how
-            much sits around the core rank tracking.
+            Choose GridBeacon for lower-cost Google Maps scans and competitor
+            grids. Consider Local Falcon if you need additional search platforms,
+            white-label reports, or integrations. Availability can depend on the plan.
           </p>
         }
       >
+        <div className={styles.comparisonGroups}>
+        <h3>Cost and scan allowance</h3>
         <ComparisonTable
           label="GridBeacon compared with Local Falcon"
           columns={["", "GridBeacon", "Local Falcon"]}
           rows={[
             ["Free credits on signup", "500", "100"],
             ["What a credit buys", "One grid point", "One grid point (“map pin”)"],
-            ["Grid sizes", "3 × 3 to 21 × 21", "3 × 3 to 21 × 21"],
-            ["Scan radius", "0.1 to 100 miles", "0.1 to 100 miles"],
+            ["Free-plan limits", "1 business, 3 keywords; up to 5×5 and 5 miles", "100 signup credits; check current trial terms"],
+            ["Paid grid sizes", "3 × 3 to 21 × 21", "3 × 3 to 21 × 21"],
+            ["Paid scan radius", "0.1 to 100 miles", "0.1 to 100 miles"],
             ["Entry plan", "$19.99/mo · 8,000 credits", "$24.99/mo · 7,500 credits"],
             ["Mid-size plan", "$34.99/mo · 15,000 credits", "$49.99/mo · 15,150 credits"],
             ["Larger plan", "$69.99/mo · 32,000 credits", "$99.99/mo · 31,250 credits"],
             ["Largest self-serve plan", "$69.99/mo · 32,000 credits", "$199.99/mo · 63,150 credits"],
             ["Extra credits", "Top-up packs from $9.99 for 2,000 (about $0.0035–$0.005 each)", "Pay-as-you-go at $0.05 per credit"],
             ["Unused plan credits", "Refresh each billing cycle", "Expire at the end of each month or year"],
-            ["AI scan analysis", "AI Ranking Intelligence report, 100 credits (paid plans)", "Falcon AI analysis, 25 credits"],
+          ]}
+          caption={<>Standard monthly prices in USD, excluding promotions. Pricing checked October 29, 2026 against <TextLink href="/pricing">GridBeacon pricing</TextLink> and <TextLink href={LOCAL_FALCON_PRICING} rel="nofollow noopener">Local Falcon pricing</TextLink>.</>}
+        />
+        <h3>Rank tracking and competitor analysis</h3>
+        <ComparisonTable label="Rank tracking capabilities" columns={["Capability", "GridBeacon", "Local Falcon"]}
+          rows={[
             ["Maps and search platforms", "Google Maps", "Google Maps, Apple Maps and AI answer engines (ChatGPT, Gemini, Google AI Overviews and AI Mode, Grok)"],
             ["Competitor data", "Competitor grids and a Gap view from every scan, no extra credits", "Competitor Report"],
+          ]}
+          caption={<>Platform and feature comparison based on public product information checked in {LOCAL_FALCON_CHECKED}. See <TextLink href="/features">GridBeacon features</TextLink> and <TextLink href={LOCAL_FALCON_PRICING} rel="nofollow noopener">Local Falcon plan details</TextLink>.</>}
+        />
+        <h3>Reports, automation and integrations</h3>
+        <ComparisonTable label="Reporting and automation capabilities" columns={["Capability", "GridBeacon", "Local Falcon"]}
+          rows={[
+            ["AI scan analysis", "AI Ranking Intelligence report, 100 credits (paid plans)", "Falcon AI analysis, 25 credits"],
             ["Scheduled scans", "Daily to monthly, paid plans", "Yes (Campaigns)"],
             ["White-label reports", "Not available", "Available"],
             ["API and integrations", "Not available", "API, MCP, Looker Studio, Slack, Zapier, n8n"],
@@ -162,6 +192,9 @@ export default function LocalFalconAlternativePage() {
             </>
           }
         />
+        <InlineCta><ButtonLink href={SIGNUP_URL}>Try your first Google Maps scan</ButtonLink></InlineCta>
+        <Note>500 one-time free credits. Free grids are up to 5×5; paid plans unlock larger grids and scheduled scans.</Note>
+        </div>
       </Section>
 
       <Section
@@ -182,7 +215,7 @@ export default function LocalFalconAlternativePage() {
             },
             {
               title: "Five times the free credits",
-              body: "500 credits at signup covers a full 21 × 21 scan (441 credits). 100 credits covers a 9 × 9 (81).",
+              body: "500 one-time signup credits cover 20 full 5×5 scans at 25 credits each. The free plan supports one business, three keywords and a radius up to 5 miles.",
             },
             {
               title: "Competitor grids from every scan",
@@ -214,10 +247,9 @@ export default function LocalFalconAlternativePage() {
         <Split
           media={
             <Note>
-              Most local businesses and many agencies only report on Google
-              Maps rankings. If that is you, the features on the left
-              won&apos;t change your results, and GridBeacon&apos;s lower
-              credit prices will.
+              If Google Maps is your priority, test GridBeacon with your own
+              business and keywords. Compare the workflow and reports before
+              choosing a plan.
             </Note>
           }
         >
@@ -233,13 +265,14 @@ export default function LocalFalconAlternativePage() {
             ]}
           />
         </Split>
+        <InlineCta><ButtonLink href={SIGNUP_URL}>Try your first Google Maps scan</ButtonLink></InlineCta>
       </Section>
 
       <Section
         id="what-you-get"
         tone="tint"
         eyebrow="What GridBeacon does"
-        title="Google Maps Rank Tracking Without the Extras"
+        title="See what you can learn from a scan"
       >
         <Split
           reverse
@@ -249,7 +282,7 @@ export default function LocalFalconAlternativePage() {
               width={1600}
               height={813}
               alt="GridBeacon heatmap with trend arrows showing where Google Maps rankings rose or fell since an earlier scan"
-              caption="Trend arrows on a real scan show which points moved since the previous one."
+            caption="Product example: trend arrows show which sampled locations moved since an earlier scan. Historical results are not a promise of future rankings."
             />
           }
         >
@@ -270,8 +303,11 @@ export default function LocalFalconAlternativePage() {
             <TextLink href="/google-maps-rank-tracker">
               See the full Google Maps rank tracker
             </TextLink>
+            {" · "}
+            <TextLink href="/reports/garage-door-20260908/report.pdf">Open a historical sample report (PDF)</TextLink>
           </p>
         </Split>
+        <Note>Each point represents a search from a sampled location. Rankings can differ with coordinates, keyword, language and scan time. Compare matching settings over time; a heatmap measures rankings, not calls or revenue. The sample report illustrates the paid reporting feature and carries GridBeacon branding.</Note>
       </Section>
 
       <Section
@@ -280,8 +316,9 @@ export default function LocalFalconAlternativePage() {
         title="Moving From Local Falcon to GridBeacon"
         intro={
           <p>
-            There is nothing to migrate and no card to enter. You can run
-            both side by side until you are sure.
+            Start a new ranking history while keeping your existing reports.
+            Local Falcon scan history cannot be imported. Run both tools side
+            by side before deciding whether to switch.
           </p>
         }
       >
@@ -289,19 +326,19 @@ export default function LocalFalconAlternativePage() {
           items={[
             {
               title: "Create a free account",
-              body: "You get 500 scan credits straight away, enough for a full 21 × 21 scan.",
+              body: "Get 500 one-time credits without a credit card. Start with up to 20 full 5×5 scans within the free plan's 5-mile radius.",
             },
             {
               title: "Add the same business and keywords",
               body: "Find the business on Google Maps by name and add the keywords you track today.",
             },
             {
-              title: "Match your grid and radius",
-              body: "The grid sizes and radius range are the same as Local Falcon's, so your scans line up.",
+              title: "Match the scan settings",
+              body: "Use the same business, exact keyword, centre coordinates, grid shape, spacing, radius and language. Choose settings within your plan's limits.",
             },
             {
               title: "Compare the results",
-              body: "Put the first GridBeacon heatmap next to your last Local Falcon report, then decide.",
+              body: "Run both scans close together in time, then compare coverage, competitors and reporting. Results can still differ; matching settings does not guarantee identical rankings.",
             },
           ]}
         />
@@ -324,7 +361,7 @@ export default function LocalFalconAlternativePage() {
 
       <CtaBand
         title="Try GridBeacon Next to Local Falcon"
-        body="Run the same keyword with the same grid on 500 free credits and compare the heatmaps yourself."
+        body="Get 500 one-time free credits and explore your rankings with up to 20 full 5×5 scans. Free accounts support one business, three keywords and a 5-mile radius."
         primary={{ label: "Start Free", href: SIGNUP_URL }}
         note="No credit card required. Local Falcon is a trademark of its owner; GridBeacon is not affiliated with it."
         secondary={{ label: "View Pricing", href: "/pricing" }}
