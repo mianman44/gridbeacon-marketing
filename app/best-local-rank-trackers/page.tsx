@@ -164,7 +164,7 @@ export default function BestLocalRankTrackersPage() {
             ["Unlimited businesses", "Yes, paid plans", "Not listed", "No", "Not listed", "No (1–70 listings)", "No", "No (up to 120 on Pro)"],
             ["Competitor grids", "Yes, from every scan", "Competitor Report", "Side-by-side grid", "Up to 100 competitors", "Yes", "Yes", "Pro plan"],
             ["Beyond Google Maps", "No", "Apple Maps, AI engines", "Organic, AI visibility", "Separate products", "Organic keywords", "Full Semrush suite", "No"],
-            ["White label", "No", "Yes", "Yes", "Share links", "Pro and up", "Not listed", "Pro plan"],
+            ["White label", "Agency plan (reports and PDFs)", "Yes", "Yes", "Share links", "Pro and up", "Not listed", "Pro plan"],
           ]}
           caption={
             <>
@@ -248,7 +248,7 @@ export default function BestLocalRankTrackersPage() {
             ]}
             cons={[
               "Google Maps only: no organic, Apple Maps or AI-search tracking.",
-              "No white-label reports, client portal or API.",
+              "White-label reports on the Agency plan only, and no client portal, share links or API.",
               "No citation, listings or GBP posting tools.",
             ]}
             source={<TextLink href="/pricing">GridBeacon pricing</TextLink>}

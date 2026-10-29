@@ -28,7 +28,7 @@ import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
  * The agency case rests on one verified fact: every paid plan has
  * unlimited businesses, keywords and team members, so cost follows
  * scanning, not client count. Everything agencies ask for that is NOT
- * built (white-label reports, client portal or public links, an API,
+ * built (client portal or public links, an API, white-label AI reports,
  * GBP posting) is listed on the page in its own section rather than
  * left for a trial user to discover. Check that section against the
  * app before every edit: if one of those ships, move it up.
@@ -66,7 +66,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Does GridBeacon have white-label reports or a client portal?",
-    "Not yet. You can download scan report PDFs, CSV exports and, on paid plans, AI Ranking Intelligence PDFs to send to clients, but they carry GridBeacon's branding, and there are no client logins or public report links. If white-label reporting is a must, Local Falcon, BrightLocal and Local Viking offer it.",
+    "White-label reports, yes, on the Agency plan: scan, keyword and location reports, online and as PDFs, carry your agency's logo, header colour, contact details and footer note instead of GridBeacon's. AI Ranking Intelligence PDFs still carry GridBeacon's branding, and there are no client logins or public report links yet.",
   ],
   [
     "Can I use GridBeacon to win new clients?",
@@ -360,18 +360,19 @@ export default function AgencyPage() {
         <Split
           media={
             <Note>
-              If white-label reporting is essential to how you sell,{" "}
+              White-label scan, keyword and location reports are included
+              on the Agency plan. If you need a client portal or an API,{" "}
               <TextLink href="/local-falcon-alternative">Local Falcon</TextLink>,{" "}
               <TextLink href="/brightlocal-alternative">BrightLocal</TextLink> and{" "}
               <TextLink href="/local-viking-alternative">Local Viking</TextLink>{" "}
-              all offer it. Our comparison pages show what each costs.
+              cover more. Our comparison pages show what each costs.
             </Note>
           }
         >
           <Checklist
             variant="cross"
             items={[
-              "White-label reports with your agency's logo and colours.",
+              "White-label AI Ranking Intelligence reports (scan, keyword and location reports are white-label on Agency).",
               "Client logins, a client portal or public report links.",
               "An API or integrations such as Looker Studio or Zapier.",
               "Google Business Profile post scheduling or profile editing.",

@@ -70,7 +70,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Does GridBeacon offer white-label client links like Whitespark?",
-    "No. Whitespark lets you share live, white-label grid links with clients. GridBeacon lets you invite teammates and download PDF reports and CSV exports, but reports carry GridBeacon's branding and there are no public client links yet.",
+    "Not yet. Whitespark lets you share live, white-label grid links with clients. GridBeacon reports can be white-label on the Agency plan (your logo, colour and contact details, online and as PDFs), but there are no public client links yet.",
   ],
   [
     "Is GridBeacon affiliated with Whitespark?",
@@ -214,7 +214,7 @@ export default function WhitesparkAlternativePage() {
             ["Keyword research", "Keyword Explorer with local search volume (paid plans)", "Not included"],
             ["Citations", "Citation Audit: listing accuracy on 60+ directories (paid plans)", "Separate product (Local Citation Finder)"],
             ["Organic and Bing tracking", "Not available", "Separate product (Local Rank Tracker, from $14/mo)"],
-            ["Client sharing", "Team invites, PDF reports and CSV exports", "Live white-label share links, CSV and PDF export"],
+            ["Client sharing", "Team invites, PDF reports (white-label on Agency) and CSV exports", "Live white-label share links, CSV and PDF export"],
           ]}
           caption={
             <>

@@ -138,8 +138,8 @@ export default function LocalVikingAlternativePage() {
           <p>
             <strong>Stay with Local Viking</strong> if you rely on it to
             schedule Google Business Profile posts and photos for clients,
-            want GeoGrid credits that roll over, or need white-label reports
-            and an embeddable GeoGrid widget.
+            want GeoGrid credits that roll over, or need an embeddable GeoGrid
+            widget for client sites.
           </p>
         </Split>
         <Toc
@@ -211,7 +211,7 @@ export default function LocalVikingAlternativePage() {
             ["Reviews", "Review Intelligence: analysis of up to 500 reviews", "Review management"],
             ["GBP post scheduling", "Not available", "Unlimited GBP posts"],
             ["Organic keyword tracking", "Not available", "Maps and organic, desktop and mobile (keyword credits)"],
-            ["White label", "Not available", "Pro plan and up, plus a GeoGrid widget"],
+            ["White label", "Agency plan: scan, keyword and location reports", "Pro plan and up, plus a GeoGrid widget"],
           ]}
           caption={
             <>
@@ -290,7 +290,7 @@ export default function LocalVikingAlternativePage() {
             items={[
               "Scheduled Google Business Profile posts and photos across many client profiles.",
               "GeoGrid credits that roll over instead of resetting each month.",
-              "White-label reporting and an embeddable GeoGrid widget for client sites.",
+              "White label from a cheaper plan, and an embeddable GeoGrid widget for client sites.",
               "Keyword tracking in organic results on desktop and mobile, alongside Maps.",
               "Grids placed by a spacing between points rather than an overall radius.",
             ]}

@@ -29,7 +29,8 @@ import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
  * backend api/scan_reports.py -- no model, no credits) and the AI
  * Ranking Intelligence report (AI_REPORT_CREDITS = 100, paid plans via
  * enforce_ai_report_access). Section names are the ones each report
- * prints. Neither is white-label; the page says so.
+ * prints. The scan report is white-label on the Agency plan
+ * (report_branding_service); the AI report is not. The page says so.
  */
 
 const PATH = "/local-seo-report";
@@ -64,7 +65,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Are GridBeacon reports white-label?",
-    "No. Both reports carry GridBeacon's branding. You can send them to clients as they are, but not under your agency's own logo. If white-label reporting is essential, tools such as Local Falcon, BrightLocal and Local Viking offer it.",
+    "The scan report is, on the Agency plan: online and as a PDF it carries your agency's logo, header colour, contact details and footer note instead of GridBeacon's. Keyword and location reports work the same way. The AI Ranking Intelligence report still carries GridBeacon's branding.",
   ],
   [
     "Can reports be sent to clients automatically?",
@@ -230,9 +231,9 @@ export default function LocalSeoReportPage() {
             ["What it does", "Presents the scan's data", "Interprets the data and recommends actions"],
             ["Best for", "Your own analysis, data-minded clients", "Client meetings, monthly summaries, owners"],
             ["Format", "Browser view and PDF", "PDF"],
-            ["Branding", "GridBeacon", "GridBeacon"],
+            ["Branding", "Your agency's on the Agency plan", "GridBeacon"],
           ]}
-          caption="Neither report is white-label today."
+          caption="White-label applies to the scan report on the Agency plan, not yet to the AI report."
         />
       </Section>
 

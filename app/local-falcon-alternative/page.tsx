@@ -56,7 +56,7 @@ export const metadata: Metadata = pageMetadata({
 const FAQS: [string, string][] = [
   [
     "Is GridBeacon a good Local Falcon alternative?",
-    "For Google Maps rank tracking, GridBeacon offers lower credit costs and competitor grids from each scan. Paid plans support grids up to 21×21 and a 100-mile radius; the free plan supports up to 5×5 and 5 miles. If you also need Apple Maps or AI search tracking, white-label reports or an API, Local Falcon covers more.",
+    "For Google Maps rank tracking, GridBeacon offers lower credit costs and competitor grids from each scan. Paid plans support grids up to 21×21 and a 100-mile radius; the free plan supports up to 5×5 and 5 miles. If you also need Apple Maps or AI search tracking or an API, Local Falcon covers more.",
   ],
   [
     "Is GridBeacon cheaper than Local Falcon?",
@@ -72,7 +72,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Does GridBeacon offer white-label reports?",
-    "Not today. GridBeacon's AI Ranking Intelligence reports are PDFs you can share with clients, but they carry GridBeacon's branding.",
+    "Yes, on the Agency plan. Scan, keyword and location reports, online and as PDFs, can carry your agency's logo, header colour and contact details instead of GridBeacon's. AI Ranking Intelligence reports still carry GridBeacon's branding.",
   ],
   [
     "Can I import my Local Falcon scan history?",
@@ -139,8 +139,8 @@ export default function LocalFalconAlternativePage() {
         intro={
           <p>
             Choose GridBeacon for lower-cost Google Maps scans and competitor
-            grids. Consider Local Falcon if you need additional search platforms,
-            white-label reports, or integrations. Availability can depend on the plan.
+            grids. Consider Local Falcon if you need additional search platforms
+            or integrations. Availability can depend on the plan.
           </p>
         }
       >
@@ -177,7 +177,7 @@ export default function LocalFalconAlternativePage() {
           rows={[
             ["AI scan analysis", "AI Ranking Intelligence report, 100 credits (paid plans)", "Falcon AI analysis, 25 credits"],
             ["Scheduled scans", "Daily to monthly, paid plans", "Yes (Campaigns)"],
-            ["White-label reports", "Not available", "Available"],
+            ["White-label reports", "Agency plan: scan, keyword and location reports", "Available"],
             ["API and integrations", "Not available", "API, MCP, Looker Studio, Slack, Zapier, n8n"],
           ]}
           caption={
@@ -256,7 +256,6 @@ export default function LocalFalconAlternativePage() {
           <Checklist
             items={[
               "Rank tracking on Apple Maps, or visibility in AI answer engines such as ChatGPT, Gemini and Google AI Overviews.",
-              "White-label reports under your agency's own brand.",
               "An API, MCP access or integrations with Looker Studio, Zapier, Slack or n8n.",
               "An AI agent that can act on a Google Business Profile, such as replying to reviews or publishing posts.",
               "More than 32,000 credits a month on a single self-serve plan.",

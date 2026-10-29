@@ -73,7 +73,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Does GridBeacon offer white-label reports like BrightLocal?",
-    "Not today. GridBeacon's scan reports and AI Ranking Intelligence reports are PDFs you can share with clients, but they carry GridBeacon's branding. If white-label reporting is essential, BrightLocal includes it.",
+    "Yes, on the Agency plan. Scan, keyword and location reports, online and as PDFs, can carry your agency's logo, header colour, contact details and footer note instead of GridBeacon's. AI Ranking Intelligence reports still carry GridBeacon's branding, and there is no client portal.",
   ],
   [
     "Is GridBeacon affiliated with BrightLocal?",
@@ -141,8 +141,8 @@ export default function BrightLocalAlternativePage() {
           </p>
           <p>
             <strong>Stay with BrightLocal</strong> if you use it mainly for
-            citation building, listings management, review generation or white-label
-            client reporting. GridBeacon does not replace those.
+            citation building, listings management, review generation or a white-label
+            client portal. GridBeacon does not replace those.
           </p>
           <p>
             <strong>Use both</strong> if you want BrightLocal&apos;s suite and
@@ -194,7 +194,7 @@ export default function BrightLocalAlternativePage() {
             ["Organic rank tracking", "Not available: Google Maps only", "Local Rank Tracker, up to 100 keywords"],
             ["Citations and listings", "Citation Audit on paid plans (60+ directories, 300 credits); no citation building or listings sync", "Citation Tracker, listings sync, Citation Builder (pay per citation)"],
             ["Review management", "Review Intelligence: analysis of up to 500 reviews", "Monitoring, replies, review campaigns and widgets (Grow)"],
-            ["White-label reports", "Not available", "Available"],
+            ["White-label reports", "Agency plan: scan, keyword and location reports", "Available"],
             ["API", "Not available", "Custom-priced API"],
           ]}
           caption={
@@ -353,7 +353,7 @@ export default function BrightLocalAlternativePage() {
               "Review monitoring, review request campaigns and review widgets for your website.",
               "Organic and local-pack rank tracking in Google search, not just Google Maps.",
               "Google Business Profile post scheduling and GBP audits against competitors.",
-              "White-label reports under your agency's brand.",
+              "White-label reports on every plan, or a client portal under your agency's brand.",
               "An API to pull local search data into your own tools.",
               "AI visibility tracking across ChatGPT and Google's AI answers.",
             ]}
