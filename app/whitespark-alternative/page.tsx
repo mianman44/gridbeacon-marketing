@@ -30,7 +30,7 @@ import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
  * (one credit per point). That makes this the most direct price
  * comparison of all the pages, so the credit table is the centre of
  * it, and it says plainly where Whitespark is cheaper (the $10 entry
- * plan) and what it has that GridBeacon lacks (white-label live links,
+ * plan) and what it has that GridBeacon lacks (white label below Agency,
  * Bing and organic tracking in its separate Local Rank Tracker).
  */
 
@@ -54,7 +54,7 @@ export const metadata: Metadata = pageMetadata({
 const FAQS: [string, string][] = [
   [
     "Is GridBeacon a good Whitespark alternative?",
-    "For Google Maps geo-grid tracking, yes. GridBeacon and Whitespark Local Ranking Grids both charge one credit per grid point, but GridBeacon includes more credits for the money on comparable plans, allows larger grids (up to 441 points against 225) and gives 500 free credits against 200. Whitespark is the better fit if you need white-label live report links or organic and Bing rank tracking.",
+    "For Google Maps geo-grid tracking, yes. GridBeacon and Whitespark Local Ranking Grids both charge one credit per grid point, but GridBeacon includes more credits for the money on comparable plans, allows larger grids (up to 441 points against 225) and gives 500 free credits against 200. Whitespark is the better fit if you need organic and Bing rank tracking, or white-label links on a small plan.",
   ],
   [
     "Is GridBeacon cheaper than Whitespark?",
@@ -70,7 +70,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Does GridBeacon offer white-label client links like Whitespark?",
-    "Not yet. Whitespark lets you share live, white-label grid links with clients. GridBeacon reports can be white-label on the Agency plan (your logo, colour and contact details, online and as PDFs), but there are no public client links yet.",
+    "Yes. On any paid plan you can share a live link to a scan, keyword or location report that clients open without an account, and revoke it at any time. On the Agency plan those reports carry your logo, colour and contact details instead of GridBeacon's. Whitespark offers white-label grid links too.",
   ],
   [
     "Is GridBeacon affiliated with Whitespark?",
@@ -138,7 +138,7 @@ export default function WhitesparkAlternativePage() {
           <p>
             <strong>Choose Whitespark</strong> if you only need a couple of
             small grids a month (its $10 plan is cheaper than any paid
-            GridBeacon plan), if clients expect live white-label links, or if
+            GridBeacon plan), if you want white-label links below an agency plan, or if
             you also want Bing and organic rank tracking from the same
             company.
           </p>
@@ -214,7 +214,7 @@ export default function WhitesparkAlternativePage() {
             ["Keyword research", "Keyword Explorer with local search volume (paid plans)", "Not included"],
             ["Citations", "Citation Audit: listing accuracy on 60+ directories (paid plans)", "Separate product (Local Citation Finder)"],
             ["Organic and Bing tracking", "Not available", "Separate product (Local Rank Tracker, from $14/mo)"],
-            ["Client sharing", "Team invites, PDF reports (white-label on Agency) and CSV exports", "Live white-label share links, CSV and PDF export"],
+            ["Client sharing", "Live share links (paid plans), PDF reports and CSV exports; white-label on Agency", "Live white-label share links, CSV and PDF export"],
           ]}
           caption={
             <>
@@ -287,7 +287,7 @@ export default function WhitesparkAlternativePage() {
         >
           <Checklist
             items={[
-              "Live, white-label report links your clients can open without an account.",
+              "White-label client links on a plan smaller than an agency plan.",
               "Rank tracking in organic results and on Bing, not just Google Maps.",
               "A very small monthly budget: Whitespark's $10 plan (2,000 credits) is below GridBeacon's cheapest paid plan.",
               "More than 32,000 credits a month on a single plan.",

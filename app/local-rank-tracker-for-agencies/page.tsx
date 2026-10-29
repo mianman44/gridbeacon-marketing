@@ -28,7 +28,7 @@ import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
  * The agency case rests on one verified fact: every paid plan has
  * unlimited businesses, keywords and team members, so cost follows
  * scanning, not client count. Everything agencies ask for that is NOT
- * built (client portal or public links, an API, white-label AI reports,
+ * built (client portal or logins, an API, white-label AI reports,
  * GBP posting) is listed on the page in its own section rather than
  * left for a trial user to discover. Check that section against the
  * app before every edit: if one of those ships, move it up.
@@ -66,7 +66,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Does GridBeacon have white-label reports or a client portal?",
-    "White-label reports, yes, on the Agency plan: scan, keyword and location reports, online and as PDFs, carry your agency's logo, header colour, contact details and footer note instead of GridBeacon's. AI Ranking Intelligence PDFs still carry GridBeacon's branding, and there are no client logins or public report links yet.",
+    "White-label reports, yes, on the Agency plan: scan, keyword and location reports, online and as PDFs, carry your agency's logo, header colour, contact details and footer note instead of GridBeacon's. Any paid plan can also send clients a live report link they open without an account. AI Ranking Intelligence PDFs still carry GridBeacon's branding, and there are no client logins or client portal.",
   ],
   [
     "Can I use GridBeacon to win new clients?",
@@ -373,7 +373,7 @@ export default function AgencyPage() {
             variant="cross"
             items={[
               "White-label AI Ranking Intelligence reports (scan, keyword and location reports are white-label on Agency).",
-              "Client logins, a client portal or public report links.",
+              "Client logins or a client portal (share links open reports without one).",
               "An API or integrations such as Looker Studio or Zapier.",
               "Google Business Profile post scheduling or profile editing.",
               "Citation building, listings sync or review request campaigns.",
