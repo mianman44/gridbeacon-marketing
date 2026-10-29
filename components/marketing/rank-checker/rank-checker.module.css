@@ -25,7 +25,7 @@
 .page p { color: var(--text); }
 .page a, .page button, .page input, .page summary { -webkit-tap-highlight-color: transparent; }
 .page :is(a, button, input, summary):focus-visible { outline: 3px solid var(--blue-dark); outline-offset: 4px; }
-.page section[id] { scroll-margin-top: 104px; }
+.page section[id] { scroll-margin-top: 130px; }
 .container { max-width: 1240px; padding: 0 24px; margin: 0 auto; }
 .telemetry { border-bottom: 1px solid var(--line); background: #f1f5f9; font: 10px/1.5 var(--font-rank-mono), monospace; color: #475569; }
 .telemetry .container { display: flex; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
@@ -105,7 +105,7 @@
 .segments span { display: block; text-align: center; padding: 7px; font-size: 12px; border-radius: 4px; color: #475569; }
 .segments input:checked + span { background: var(--blue); color: white; }
 .segments input:focus-visible + span { outline: 3px solid var(--blue-dark); outline-offset: 2px; }
-.gridSize { margin-top: 22px; }
+.radius, .gridSize { margin-top: 22px; }
 .gridOptions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .gridOptions > * { padding: 14px; border: 1px solid var(--line); border-radius: 6px; background: #f8fafc; }
 .gridOptions strong { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; font-weight: 600; }
@@ -263,6 +263,7 @@
   .scannerHeader { padding: 14px; font-size: 12px; }
   .scannerHeader > span:first-child { gap: 6px; }
   .form { padding: 18px 15px; }
+  .scanner > .errorNote, .scanner > .noticeNote { margin: 0 15px 18px; }
   .demoNotice { flex-direction: column; gap: 8px; }
   .gridOptions { grid-template-columns: 1fr; }
   .gridOptions strong { font-size: 13px; }
@@ -360,10 +361,13 @@
 .failure h3 { margin: 0; font-size: 18px; color: #0f172a; }
 .failure p { margin: 0; font-size: 14px; color: #475569; }
 
-.errorNote {
-  margin: 14px 0 0; padding: 10px 12px; border-radius: 10px;
+/* Direct children of the card, so they carry the form's side padding;
+   scoped to .scanner to outrank `.page p`, which reset margin and colour. */
+.scanner > .errorNote, .scanner > .noticeNote {
+  margin: 0 28px 24px; padding: 10px 12px; border-radius: 10px;
   border: 1px solid #fecaca; background: #fef2f2; color: #b91c1c; font-size: 13px;
 }
+.scanner > .noticeNote { border-color: #bfdbfe; background: #eff6ff; color: #1d4ed8; }
 
 .spin { animation: rankCheckerSpin 1s linear infinite; }
 @keyframes rankCheckerSpin { to { transform: rotate(360deg); } }

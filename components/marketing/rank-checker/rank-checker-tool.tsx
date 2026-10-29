@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
   type FormEvent,
+  type KeyboardEvent,
 } from "react";
 import {
   ArrowRight,
@@ -21,6 +22,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { SIGNUP_URL } from "@/lib/seo";
 import {
   CheckerError,
   EVENTS,
@@ -49,13 +51,30 @@ declare global {
         element: HTMLElement,
         options: { sitekey: string; callback: (token: string) => void },
       ) => string;
+      reset: (widgetId: string) => void;
     };
   }
 }
 
-function Turnstile({ onToken }: { onToken: (token: string) => void }) {
+/* A Turnstile token is spent by the server's siteverify even when the
+   request then fails (limit reached, bad email), so each change of
+   resetKey asks the widget for a fresh one. */
+function Turnstile({
+  onToken,
+  resetKey,
+}: {
+  onToken: (token: string) => void;
+  resetKey: number;
+}) {
   const holder = useRef<HTMLDivElement | null>(null);
   const rendered = useRef(false);
+  const widgetId = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!resetKey || !widgetId.current || !window.turnstile) return;
+    onToken("");
+    window.turnstile.reset(widgetId.current);
+  }, [onToken, resetKey]);
 
   useEffect(() => {
     if (!TURNSTILE_SITE_KEY || rendered.current) return;
@@ -63,7 +82,7 @@ function Turnstile({ onToken }: { onToken: (token: string) => void }) {
     function render() {
       if (!holder.current || rendered.current || !window.turnstile) return;
       rendered.current = true;
-      window.turnstile.render(holder.current, {
+      widgetId.current = window.turnstile.render(holder.current, {
         sitekey: TURNSTILE_SITE_KEY,
         callback: onToken,
       });
@@ -106,6 +125,8 @@ export function RankCheckerTool() {
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileReset, setTurnstileReset] = useState(0);
+  const [notice, setNotice] = useState("");
 
   // step 3 onwards
   const [code, setCode] = useState("");
@@ -127,12 +148,13 @@ export function RankCheckerTool() {
       setState("LIMIT_REACHED");
     }
 
+    setNotice("");
     setError(message);
   }
 
-  async function findBusinesses(event: FormEvent) {
+  async function findBusinesses(event: FormEvent | KeyboardEvent) {
     event.preventDefault();
-    if (query.trim().length < 2) return;
+    if (searching || query.trim().length < 2) return;
 
     setSearching(true);
     setError("");
@@ -203,6 +225,7 @@ export function RankCheckerTool() {
       trackChecker(EVENTS.emailSubmitted, { radius_miles: radius });
       setState("VERIFYING_EMAIL");
     } catch (caught) {
+      setTurnstileReset((count) => count + 1);
       fail(caught);
     } finally {
       setBusy(false);
@@ -214,6 +237,7 @@ export function RankCheckerTool() {
 
     setBusy(true);
     setError("");
+    setNotice("");
 
     try {
       const verified = await verifyCheck(token, code.trim());
@@ -237,7 +261,7 @@ export function RankCheckerTool() {
 
     try {
       await resendCode(token);
-      setError("A new code is on its way.");
+      setNotice("A new code is on its way.");
     } catch (caught) {
       fail(caught);
     } finally {
@@ -346,6 +370,11 @@ export function RankCheckerTool() {
                         setQuery(event.target.value);
                         setSelected(null);
                       }}
+                      // Enter searches; it would otherwise submit the
+                      // whole form before a business is picked.
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter") findBusinesses(event);
+                      }}
                       placeholder="Business name and city"
                       maxLength={160}
                       autoComplete="organization"
@@ -436,7 +465,7 @@ export function RankCheckerTool() {
                       <strong>
                         3×3 <small>FREE</small>
                       </strong>
-                      <span>9 neighbourhood points</span>
+                      <span>9 neighborhood points</span>
                     </span>
                     <Check size={16} aria-hidden="true" />
                   </label>
@@ -502,7 +531,10 @@ export function RankCheckerTool() {
                   </span>
                 </label>
 
-                <Turnstile onToken={setTurnstileToken} />
+                <Turnstile
+                  onToken={setTurnstileToken}
+                  resetKey={turnstileReset}
+                />
 
                 <Button
                   type="submit"
@@ -675,13 +707,23 @@ export function RankCheckerTool() {
                   GridBeacon account lifts that, with bigger grids and saved
                   history.
                 </p>
+                <a href={SIGNUP_URL} className={styles.primary}>
+                  Create Free Account{" "}
+                  <ArrowRight size={17} aria-hidden="true" />
+                </a>
               </div>
             </div>
           ) : null}
 
-          {error ? (
+          {error && state !== "LIMIT_REACHED" ? (
             <p role="status" className={styles.errorNote}>
               {error}
+            </p>
+          ) : null}
+
+          {notice ? (
+            <p role="status" className={styles.noticeNote}>
+              {notice}
             </p>
           ) : null}
 
