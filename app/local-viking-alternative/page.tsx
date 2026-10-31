@@ -263,7 +263,7 @@ export default function LocalVikingAlternativePage() {
             },
             {
               title: "Reports that explain the grid",
-              body: "Scan report PDFs and CSV exports, plus AI Ranking Intelligence reports and an action plan on paid plans.",
+              body: "Scan report PDFs and CSV exports, plus AI Ranking Intelligence reports, an action plan and Rank MRI investigations on paid plans.",
             },
           ]}
         />

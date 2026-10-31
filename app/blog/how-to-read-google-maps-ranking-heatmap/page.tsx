@@ -43,6 +43,7 @@ export default function HeatmapGuide() {
     <p><strong>Next step:</strong> confirm the exact listing and keyword, inspect nearby points and check the profile directly in Google Maps if absence is unexpected. For a sudden change, use the <Link href="/blog/why-google-maps-rankings-dropped">ranking-drop checklist</Link> before editing the profile.</p>
     <h2>Turn the reading into one useful action</h2>
     <p>Write down the observation, its limit and your next check. For example: “Top-ten coverage is broad, but the eastern customer area has fewer top-three points. I will inspect recurring competitors there and compare the same points next week.” That is more actionable than “the map needs to be greener”.</p>
+    <p>On paid plans, <Link href="/rank-mri">Rank MRI</Link> takes the next step from the map: click any point to see who outranks you and what is different, and weak areas are grouped into one issue instead of dozens of red pins.</p>
     <p>Google’s <a href="https://support.google.com/business/answer/7091">local ranking guidance</a> describes relevance, distance and prominence. Use those as a framework for investigation, not a way to diagnose a specific cause from a coloured map alone.</p>
   </BlogArticle>;
 }

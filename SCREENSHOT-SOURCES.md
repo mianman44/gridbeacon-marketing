@@ -27,3 +27,7 @@ The original homepage, header, footer, and layout are backed up at `../backups/m
 ## Rank history section screenshot — October 6, 2026
 
 `public/marketing/google-maps-rank-tracker/jeweler-grid-new-york-20261006.png` derives from the user-supplied `D:/GridBeacon ScreenShoots/New folder/06.10.2026_10.19.40_REC.png`. It shows the keyword `jeweler new york`, dated October 4 in the UI, with four rings, a 7-mile radius, 61 points, 16% visibility, an average rank of 21.1 and 3% top-three coverage. The company name was covered with a grey bar using the image-editing tool. The edited output measures 1498 × 1050. The image is a saved scan, not a trend comparison; the caption describes it accordingly. The existing scan history table below is retained.
+
+## Rank MRI — October 31, 2026
+
+`public/marketing/rank-mri/rank-mri-{issues,why,competitors}.webp` are browser captures of the local GridBeacon app, from the fictional demo business in `backend/scripts/seed_rank_mri_demo.py`. The business, competitors and ranks are made up, and every use must stay captioned as example data.

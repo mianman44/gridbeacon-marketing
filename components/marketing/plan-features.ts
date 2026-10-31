@@ -43,6 +43,7 @@ export const PLAN_FEATURE_GROUPS: FeatureGroup[] = [
       "Full scan history archive",
       "Local keyword discovery",
       "Citation Audit across 60+ directories",
+      "Rank MRI point-by-point investigation",
     ],
   },
   {

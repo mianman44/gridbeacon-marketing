@@ -260,6 +260,25 @@ export default function LocalSeoReportPage() {
         </InlineCta>
       </Section>
 
+      <Section
+        id="rank-mri"
+        eyebrow="Rank MRI"
+        title="Investigation Reports for a Point, an Issue or a Whole Scan"
+        intro={
+          <p>
+            On paid plans, <TextLink href="/rank-mri">Rank MRI</TextLink> adds
+            reports you can hand to a client: the map, the findings and their
+            limits, the work completed and any experiment results. Each one is
+            fixed when you create it, and carries your branding on the Agency
+            plan.
+          </p>
+        }
+      >
+        <InlineCta>
+          <TextLink href="/rank-mri">See what Rank MRI reports include</TextLink>
+        </InlineCta>
+      </Section>
+
       <Section id="faq" tone="tint" eyebrow="FAQ" title="Local SEO Report Questions">
         <Faq items={FAQS.map(([question, answer]) => [question, <p key="a">{answer}</p>])} />
       </Section>

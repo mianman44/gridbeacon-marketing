@@ -344,6 +344,7 @@ export function RankCheckResult({
                 "Gap Grid",
                 "Rank History",
                 "AI Reports",
+                "Rank MRI",
                 "Scheduled Scans",
                 "GBP Activity Tracking",
                 "Shareable Reports",

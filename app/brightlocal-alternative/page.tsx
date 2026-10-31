@@ -315,7 +315,7 @@ export default function BrightLocalAlternativePage() {
             },
             {
               title: "Reports you can send",
-              body: "A standard scan report PDF, CSV exports, and on paid plans an AI Ranking Intelligence report with an action plan.",
+              body: "A standard scan report PDF, CSV exports, and on paid plans an AI Ranking Intelligence report with an action plan, plus Rank MRI investigation reports.",
             },
             {
               title: "Try it without a trial clock",

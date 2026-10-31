@@ -250,7 +250,7 @@ export default function WhitesparkAlternativePage() {
             },
             {
               title: "More included in one plan",
-              body: "Review Intelligence, GBP Activity monitoring, Keyword Explorer, the Citation Audit and AI reports come with paid plans instead of being separate subscriptions.",
+              body: "Rank MRI, Review Intelligence, GBP Activity monitoring, Keyword Explorer, the Citation Audit and AI reports come with paid plans instead of being separate subscriptions.",
             },
             {
               title: "See who wins each point",

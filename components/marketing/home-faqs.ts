@@ -23,6 +23,11 @@ export const homeFaqs: HomeFaq[] = [
       "One credit per grid point. A 5 × 5 grid is 25 credits, a 9 × 9 is 81. You can see the exact cost before you run it, and remove any points outside your service area (e.g., lakes, parks, empty water bodies) to bring it down.",
   },
   {
+    question: "Can GridBeacon show what is different where I rank poorly?",
+    answer:
+      'Yes. On paid plans, <a href="/rank-mri">Rank MRI</a> lets you click any point to see who outranks you and how you compare, then groups weak areas into tasks. It shows evidence to check, not Google\'s reasons, and analyzing a scan uses no credits.',
+  },
+  {
     question: "What do I get for free?",
     answer:
       "500 scan credits when you create an account, with no credit card required. That covers twenty full 5 × 5 scans. Grid size and radius are subject to your plan limits. The free plan tracks one business and three keywords.",

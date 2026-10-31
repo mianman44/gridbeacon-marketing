@@ -437,6 +437,32 @@ export default function AgencyPage() {
         <RelatedComparisons current={PATH} />
       </Section>
 
+      <Section
+        id="rank-mri"
+        eyebrow="Rank MRI"
+        title="Go From a Red Map to a Client Plan"
+        intro={
+          <p>
+            On paid plans, <TextLink href="/rank-mri">Rank MRI</TextLink> turns a
+            scan into work your team can run: grouped issues, assigned tasks,
+            recorded changes and before-and-after results.
+          </p>
+        }
+      >
+        <Cards
+          items={[
+            { title: "One issue, one task", body: "Neighbouring points with the same pattern become one issue, with an owner, a due date, comments and files." },
+            { title: "Show what changed", body: "Record what you did and when, then compare later scans of the same grid with how things looked before." },
+            { title: "Reports in your name", body: "Point, issue and full-scan PDFs carry your branding on the Agency plan." },
+          ]}
+        />
+        <Note>
+          Experiments show what happened after a change, not that the change
+          caused it, so the claims you make to a client stay ones you can stand
+          behind.
+        </Note>
+      </Section>
+
       <Section id="faq" tone="tint" eyebrow="FAQ" title="GridBeacon for Agencies: Questions">
         <Faq items={FAQS.map(([question, answer]) => [question, <p key="a">{answer}</p>])} />
       </Section>

@@ -568,6 +568,7 @@ export default function GoogleMapsRankTrackerPage() {
             { title: "Custom scan areas", body: "Exclude grid points outside the area you want to measure and check the credit cost before scanning." },
             { title: "PDF reports and CSV exports", body: "Download standard scan reports as PDFs and export grid points and rank history to CSV." },
             { title: "Keyword Explorer", tag: "Paid plans", body: "Discover local keyword ideas to help choose the searches you track." },
+            { title: "Rank MRI", tag: "Paid plans", body: "Click any grid point to see who outranks you and what is different, then group weak areas into tasks and track what changes." },
             { title: "Citation Audit", tag: "Paid plans", body: "Check US business listings across 60+ directories for inconsistent details, possible duplicates and listing opportunities." },
             { title: "AI Action Plan", tag: "Paid plans", body: "Turn your business's local SEO findings into prioritised actions you can review and work through." },
             { title: "Multiple businesses and keywords", tag: "Paid plans", body: "Add unlimited business profiles and tracked keywords, with scans drawing from one workspace credit pool." },
@@ -583,6 +584,8 @@ export default function GoogleMapsRankTrackerPage() {
           <TextLink href="/features">Explore all features</TextLink>
           {" · "}
           <TextLink href="/pricing">Compare plans</TextLink>
+          {" · "}
+          <TextLink href="/rank-mri">Explore Rank MRI</TextLink>
           {" · "}
           <TextLink href="/citation-audit">Explore Citation Audit</TextLink>
           {" · "}

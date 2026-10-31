@@ -232,6 +232,27 @@ export default function CompetitorAnalysisPage() {
         </InlineCta>
       </Section>
 
+      <Section
+        id="rank-mri"
+        tone="tint"
+        eyebrow="Rank MRI"
+        title="Compare Yourself With Who Wins Each Point"
+        intro={
+          <p>
+            On paid plans, <TextLink href="/rank-mri">Rank MRI</TextLink> sets
+            your listing beside the businesses ahead of you at any point: reviews,
+            ratings, categories and distance where a public address exists. It
+            also shows which competitors have moved ahead of you between two
+            comparable scans, and where.
+          </p>
+        }
+      >
+        <Note>
+          These are observed differences to check, not proof of why a competitor
+          ranks where it does.
+        </Note>
+      </Section>
+
       <Section id="faq" eyebrow="FAQ" title="Local Competitor Analysis Questions">
         <Faq items={FAQS.map(([question, answer]) => [question, <p key="a">{answer}</p>])} />
       </Section>
