@@ -67,6 +67,7 @@ function softwareApplication() {
       "Scan history",
       "Scheduled scans on paid plans",
       "AI Ranking Intelligence reports on paid plans",
+      "Rank MRI point-by-point ranking investigation on paid plans",
     ],
     offers: [
       ["Free", "0"],
