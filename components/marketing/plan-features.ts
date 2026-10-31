@@ -41,7 +41,7 @@ export const PLAN_FEATURE_GROUPS: FeatureGroup[] = [
       "Competitor grids from the same scan",
       "Current rank, best rank and visibility",
       "Full scan history archive",
-      "Local keyword discovery",
+      "Keyword Explorer",
       "Citation Audit across 60+ directories",
       "Rank MRI point-by-point investigation",
     ],
@@ -52,7 +52,6 @@ export const PLAN_FEATURE_GROUPS: FeatureGroup[] = [
       "The part you send to a client, or read on a Monday morning.",
     features: [
       "AI Ranking Intelligence Report (PDF)",
-      "AI-powered scan reports",
       "AI Action Plan",
       "GBP Activity monitoring",
       "Review Intelligence, up to 500 reviews",
