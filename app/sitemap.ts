@@ -27,6 +27,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/automated-google-maps-rank-tracking",
     ].map((path) => ({ url: `${baseUrl}${path}`, changeFrequency: "monthly" as const, priority: 0.8 })),
     {
+      url: `${baseUrl}/tutorials`,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/google-maps-rank-checker`,
       changeFrequency: "monthly",
       priority: 0.8,

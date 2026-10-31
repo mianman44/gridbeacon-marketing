@@ -17,6 +17,7 @@
  * markup is valid and other engines still read it.
  */
 
+import { ALL_TUTORIALS, isoLength } from "@/lib/tutorials";
 import { SITE_URL } from "@/lib/seo";
 import { homeFaqSchema } from "@/components/marketing/home-faqs";
 
@@ -216,6 +217,38 @@ export function ProductPageStructuredData({
       data={{
         "@context": "https://schema.org",
         "@graph": graph,
+      }}
+    />
+  );
+}
+
+/* The tutorial library, so each video can appear in video results. */
+export function TutorialsStructuredData() {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          breadcrumb("Tutorials", "/tutorials"),
+          {
+            "@type": "ItemList",
+            name: "GridBeacon Tutorials",
+            itemListElement: ALL_TUTORIALS.map((tutorial, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              item: {
+                "@type": "VideoObject",
+                name: tutorial.title,
+                description: tutorial.summary,
+                thumbnailUrl: `https://i.ytimg.com/vi/${tutorial.id}/hqdefault.jpg`,
+                uploadDate: tutorial.uploadDate,
+                duration: isoLength(tutorial.seconds),
+                contentUrl: `https://www.youtube.com/watch?v=${tutorial.id}`,
+                embedUrl: `https://www.youtube-nocookie.com/embed/${tutorial.id}`,
+              },
+            })),
+          },
+        ],
       }}
     />
   );
