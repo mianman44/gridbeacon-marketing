@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { GapIllustration } from "@/components/marketing/google-maps-rank-tracker/gap-illustration";
 import {
   ButtonLink,
   Cards,
@@ -29,14 +28,15 @@ import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
  * commercial SEO page and the pattern for the ones after it.
  *
  * Every product image is a real GridBeacon capture (sources in
- * SCREENSHOT-SOURCES.md), cropped to leave out account details. The
- * Gap view has no publishable capture yet, so it is drawn and
- * labelled as an illustration. Claims follow the product as built:
+ * SCREENSHOT-SOURCES.md) with account details and customers' names
+ * and addresses removed. Captures from the fictional demo businesses
+ * stay captioned as example data. Claims follow the product as built:
  * credits, plan gates and schedules are checked against the backend.
  */
 
 const PATH = "/google-maps-rank-tracker";
 const IMAGES = "/marketing/google-maps-rank-tracker";
+const MRI_IMAGES = "/marketing/rank-mri";
 
 export const metadata: Metadata = pageMetadata({
   path: PATH,
@@ -65,11 +65,19 @@ const FAQS: [string, React.ReactNode][] = [
   [
     "How does geo-grid rank tracking work?",
     <p key="a">
-      You choose a grid (from 3 × 3 up to 21 × 21 points) and a radius
-      around your business. GridBeacon runs your keyword as a separate
+      You choose a square grid (from 3 × 3 up to 21 × 21 points) or rings
+      around your business, plus a radius. GridBeacon runs your keyword as a separate
       Google Maps search from each point&apos;s coordinates, records the
-      results and plots your position at every point as a colour-coded
+      results and plots your position at every point as a color-coded
       heatmap.
+    </p>,
+  ],
+  [
+    "Can I scan in circles instead of a square?",
+    <p key="a">
+      Yes. Ring grids place points in circles around your business, and
+      the app shows the exact point count and credit cost before you run
+      the scan. Stick to one shape for a keyword so scans stay comparable.
     </p>,
   ],
   [
@@ -78,7 +86,7 @@ const FAQS: [string, React.ReactNode][] = [
       Google ranks local results on relevance, prominence and distance
       from the person searching. As the searcher moves, distance changes
       and so does the set of nearby competitors, which is why a business
-      can be first in one neighbourhood and missing a few miles away.
+      can be first in one neighborhood and missing a few miles away.
     </p>,
   ],
   [
@@ -88,6 +96,16 @@ const FAQS: [string, React.ReactNode][] = [
       point, so you can open any competitor&apos;s grid, see how many
       points they beat you at and compare the two in the Gap view. That
       comes from the scan you already ran and uses no extra credits.
+    </p>,
+  ],
+  [
+    "Can GridBeacon show what is different where I rank poorly?",
+    <p key="a">
+      Yes. On paid plans,{" "}
+      <TextLink href="/rank-mri">Rank MRI</TextLink>{" "}
+      lets you click any point to see who outranks you and what is different, then groups
+      weak areas into tasks. It shows evidence to check, not Google&apos;s
+      reasons, and analyzing a scan uses no credits.
     </p>,
   ],
   [
@@ -120,9 +138,11 @@ const FAQS: [string, React.ReactNode][] = [
   [
     "Can agencies use GridBeacon for clients?",
     <p key="a">
-      Yes. Agencies track each client as its own business, share heatmaps
-      and AI report PDFs with clients, schedule repeat scans and invite
-      team members into the same workspace on paid plans.
+      Yes. On paid plans, agencies track each client as its own business,
+      send live report links that open without a login, share AI report
+      PDFs, schedule repeat scans and invite team members into the same
+      workspace. The Agency plan adds your logo and colors to scan,
+      keyword and location reports.
     </p>,
   ],
   [
@@ -155,16 +175,16 @@ export default function GoogleMapsRankTrackerPage() {
         primary={{ label: "Start Free", href: SIGNUP_URL }}
         primaryNote="No credit card required. New accounts get 500 free scan credits."
         secondary={{ label: "See How It Works", href: "#how-it-works" }}
-        facts={["3 × 3 to 21 × 21 grids", "0.1 to 100 mile radius", "1 credit per grid point"]}
+        facts={["Square grids to 21 × 21", "Ring grids", "0.1 to 100 mile radius", "1 credit per grid point"]}
         media={
           <Screenshot
-            src={`${IMAGES}/geo-grid-scan-austin-20261006.png`}
+            src={`${IMAGES}/geo-grid-scan-austin-20261031.png`}
             width={1503}
             height={1046}
             eager
             sizes="(min-width: 1240px) 700px, (min-width: 1024px) 56vw, 100vw"
             alt="GridBeacon scan for attic insulation austin showing 61 rank markers across Austin, with 100% top-three coverage and an average rank of 1.3"
-            caption="A real GridBeacon scan for “attic insulation austin”: 61 points across a 7-mile radius, with an average rank of 1.3. Each marker shows the business's Google Maps position at that point."
+            caption="A real GridBeacon scan for “attic insulation austin”: a ring grid of 61 points across a 7-mile radius, with an average rank of 1.3. Each marker shows the business's Google Maps position at that point."
           />
         }
       />
@@ -198,7 +218,7 @@ export default function GoogleMapsRankTrackerPage() {
             items: [
               "A single ranking, from a single location",
               "No view of how rankings change across the area",
-              "No idea which competitors win in which neighbourhoods",
+              "No idea which competitors win in which neighborhoods",
               "Hard to tell whether local SEO work made a difference",
             ],
           }}
@@ -237,14 +257,14 @@ export default function GoogleMapsRankTrackerPage() {
           <p>
             A geo-grid scan places a grid of points over the area around your
             business and checks your ranking from every one of them. The
-            result is a map you can read in seconds: green where customers see
-            you first, red where they barely see you at all.
+            result is a map you can read in seconds: green for the top 3, blue
+            for 4 to 10, orange for 11 to 20 and red for 21 or lower.
           </p>
           <Checklist
             items={[
-              "Pick a grid from 3 × 3 (9 points) up to 21 × 21 (441 points) and a radius from 0.1 to 100 miles.",
+              "Pick a square grid from 3 × 3 (9 points) up to 21 × 21 (441 points), or rings around your business, with a radius from 0.1 to 100 miles.",
               "Each point is a separate Google Maps search for your keyword from that exact coordinate.",
-              "Rankings are plotted as a colour-coded heatmap, so strong and weak areas stand out at a glance.",
+              "Rankings are plotted as a color-coded heatmap, so strong and weak areas stand out at a glance.",
               "Remove points you don't serve, such as lakes or areas outside your service area, before you run the scan. You only pay for the points you keep.",
             ]}
           />
@@ -260,16 +280,16 @@ export default function GoogleMapsRankTrackerPage() {
           reverse
           media={
             <Screenshot
-              src={`${IMAGES}/ac-repair-grid-daphne-20261006.png`}
-              width={1498}
-              height={1050}
-              alt="GridBeacon ac repair scan across Daphne, Alabama, showing 61 rank markers with an average rank of 6.3; company name hidden"
-              caption="A real “ac repair” scan around Daphne, Alabama: 61 points across a 5-mile radius, with rankings from 1 to 15. Select a point in the app to explore the competitors ranking there."
+              src={`${IMAGES}/grid-point-inspector-20261031.webp`}
+              width={1372}
+              height={772}
+              alt="GridBeacon heatmap with one grid point selected and the list of businesses Google Maps ranked at that point"
+              caption="Select any point to see every business ranked there, in order. Names shown are samples."
             />
           }
         >
           <p>
-            Every scan records the full local results at every point, not just
+            Every scan records the businesses ranked at every point, not just
             your own position. Competitor data comes from the scan you have
             already run, so looking at it costs no extra credits.
           </p>
@@ -278,7 +298,7 @@ export default function GoogleMapsRankTrackerPage() {
               "Click any point to see the local competitors ranked there and where you sit among them.",
               "The Competitors tab lists the businesses seen across the scan, with their average rank and how many points they beat you at.",
               "Open any competitor's grid to see the areas where they dominate and the areas where they are weak.",
-              "Compare share of visibility across competitors and export the results to CSV.",
+              "Check each competitor's rating and review count next to their rankings.",
             ]}
           />
           <p>
@@ -295,16 +315,27 @@ export default function GoogleMapsRankTrackerPage() {
         eyebrow="Gap view"
         title="Find Local Ranking Gaps"
       >
-        <Split media={<GapIllustration />}>
+        <Split
+          media={
+            <Screenshot
+              src={`${IMAGES}/gap-view-example-20261031.webp`}
+              width={1600}
+              height={858}
+              alt="GridBeacon Gap view comparing a business with one competitor: green markers where the business leads, red where the competitor leads, grey where they are level or cannot be compared"
+              caption="The Gap view. Example data: a fictional business and competitors."
+            />
+          }
+        >
           <p>
             Once you pick a competitor, the heatmap can switch between your
             grid, their grid and a Gap view. The Gap view compares the two
             point by point: green where your business ranks higher, red where
-            the competitor does.
+            the competitor does, and each marker shows how many places separate
+            you.
           </p>
           <p>
             That turns a vague “they&apos;re beating us” into specific places
-            on the map, such as the neighbourhoods furthest from your address
+            on the map, such as the neighborhoods furthest from your address
             or the side of town where a competitor is based. Those are the
             areas that may deserve attention next.
           </p>
@@ -319,18 +350,60 @@ export default function GoogleMapsRankTrackerPage() {
       </Section>
 
       <Section
+        id="rank-mri"
+        eyebrow="Rank MRI"
+        title="See What's Different Where You Rank Poorly"
+        intro={
+          <p>
+            A heatmap shows where you are weak. On paid plans, Rank MRI helps
+            you work out what to look at next.
+          </p>
+        }
+      >
+        <Split
+          reverse
+          media={
+            <Screenshot
+              src={`${MRI_IMAGES}/rank-mri-issues.webp`}
+              width={1600}
+              height={982}
+              alt="GridBeacon heatmap with the Rank MRI panel open and one weak zone highlighted on the map"
+              caption="Example data: a fictional business and competitors."
+            />
+          }
+        >
+          <Checklist
+            items={[
+              "Click any point to see who outranks you there and what is different.",
+              "Group weak areas into tasks your team can work through.",
+              "Track what changes on later scans.",
+              "Analyzing a scan uses no credits.",
+            ]}
+          />
+          <Note>
+            Rank MRI shows evidence to check, not Google&apos;s reasons. It
+            can&apos;t tell you why a ranking changed.
+          </Note>
+          <p>
+            <TextLink href="/rank-mri">Explore Rank MRI</TextLink>
+          </p>
+        </Split>
+      </Section>
+
+      <Section
         id="rank-history"
+        tone="tint"
         eyebrow="Rank history"
         title="Track Ranking Changes Over Time"
       >
         <Split
           media={
             <Screenshot
-              src={`${IMAGES}/jeweler-grid-new-york-20261006.png`}
-              width={1498}
-              height={1050}
-              alt="GridBeacon jeweler new york scan showing 61 ranking points across New York, with an average rank of 21.1; company name hidden"
-              caption="A saved “jeweler new york” scan across a 7-mile radius, with an average rank of 21.1. Repeat the same keyword and scan settings to compare coverage over time."
+              src={`${IMAGES}/rank-movement-heatmap-20260919.webp`}
+              width={1600}
+              height={813}
+              alt="GridBeacon heatmap with trend arrows showing where rankings moved since the previous scan"
+              caption="Trend arrows show where rankings moved since the previous scan. Repeat the same keyword and scan settings to keep scans comparable."
             />
           }
         >
@@ -349,27 +422,31 @@ export default function GoogleMapsRankTrackerPage() {
         </Split>
         <Stack>
           <Screenshot
-            src={`${IMAGES}/scan-history-table.webp`}
+            src={`${IMAGES}/scan-history-example-20261031.webp`}
             width={1600}
-            height={749}
+            height={345}
             sizes="(min-width: 1240px) 1192px, 100vw"
             alt="GridBeacon scan history table showing best rank, coverage and Google Maps ranking movement over 7, 15, 30 and 60 days"
-            caption="The scan list keeps every scan with its best rank, coverage and movement against earlier scans."
+            caption="The scan list keeps every scan with its best rank, coverage (the top 10 share, same as Visibility) and movement against earlier scans. Example data: a fictional business."
           />
         </Stack>
       </Section>
 
       <Section
         id="ai-reports"
-        tone="tint"
-        eyebrow="AI Ranking Intelligence reports"
+        eyebrow="Reports"
         title="Turn Ranking Data Into Actionable Insights"
         intro={
-          <p>
-            On paid plans, any completed scan can become an AI Ranking
-            Intelligence Report: a PDF that explains in plain language what
-            the scan shows and what to look at first.
-          </p>
+          <>
+            <p>
+              Every plan can download a standard PDF report of a completed scan.
+            </p>
+            <p>
+              On paid plans, a scan can also become an AI Ranking Intelligence
+              Report: a PDF that explains in plain language what the scan shows
+              and what to look at first.
+            </p>
+          </>
         }
       >
         <Split
@@ -399,14 +476,14 @@ export default function GoogleMapsRankTrackerPage() {
               "A scan summary: visibility, average rank, top-3 coverage and how far from the business you still rank in the top 10.",
               "Ranking observations: your strongest and weakest areas, by direction and distance.",
               "Competitor insights: who is ahead of you, and where.",
-              "Opportunities: prioritised next steps, each tied to evidence from the scan.",
+              "Opportunities: prioritized next steps, each tied to evidence from the scan.",
               "A PDF you can download and share with a client or your team.",
             ]}
           />
           <Note>
             The report explains what the scan data shows; it can&apos;t
             guarantee ranking changes. Its opportunity scores are
-            GridBeacon&apos;s way of prioritising, not Google ranking factors.
+            GridBeacon&apos;s way of prioritizing, not Google ranking factors.
             Each report uses 100 credits.
           </Note>
           <p>
@@ -417,6 +494,7 @@ export default function GoogleMapsRankTrackerPage() {
 
       <Section
         id="scheduled-scans"
+        tone="tint"
         eyebrow="Scheduled scans"
         title="Monitor Rankings Without Running Every Scan Manually"
         intro={
@@ -451,7 +529,6 @@ export default function GoogleMapsRankTrackerPage() {
 
       <Section
         id="agencies"
-        tone="tint"
         eyebrow="For agencies"
         title="Built for Local SEO Agencies"
       >
@@ -464,6 +541,8 @@ export default function GoogleMapsRankTrackerPage() {
                 { title: "Visual results", body: "Heatmaps clients understand without an SEO glossary." },
                 { title: "Proof over time", body: "Before-and-after scans and movement by keyword." },
                 { title: "Team access", body: "Invite colleagues into the same workspace." },
+                { title: "Client share links", body: "Send a live report link that opens without a login." },
+                { title: "White-label reports", body: "Your logo and colors on reports, on the Agency plan." },
               ]}
             />
           }
@@ -479,7 +558,8 @@ export default function GoogleMapsRankTrackerPage() {
               "Prove ranking changes with saved scans and trend views.",
               "Show visual results instead of spreadsheets.",
               "Monitor each client's local competitors.",
-              "Send AI report PDFs as part of your reporting.",
+              "Send client share links and AI report PDFs as part of your reporting.",
+              "Compare a keyword across locations, or a location across keywords.",
               "Schedule repeat scans for every client.",
             ]}
           />
@@ -491,12 +571,13 @@ export default function GoogleMapsRankTrackerPage() {
 
       <Section
         id="local-businesses"
+        tone="tint"
         eyebrow="For local businesses"
         title="Understand Where Customers Can Actually Find You"
         intro={
           <p>
             If customers find you through Google Maps, your ranking in each
-            neighbourhood decides who gets the call. GridBeacon suits any
+            neighborhood affects who they see first. GridBeacon suits any
             business that serves a local area, for example:
           </p>
         }
@@ -505,10 +586,10 @@ export default function GoogleMapsRankTrackerPage() {
           columns={4}
           items={[
             { title: "Garage door companies", body: "Check you appear across the suburbs you drive to, not just near the shop.", href: "/local-rank-tracking-for-garage-door-companies" },
-            { title: "Locksmiths", body: "Emergency searches favour whoever is closest. Find where you drop out.", href: "/service-area-business-rank-tracking", linkLabel: "Explore service-area tracking" },
+            { title: "Locksmiths", body: "See how your ranking changes street by street and find where you drop out.", href: "/service-area-business-rank-tracking", linkLabel: "Explore service-area tracking" },
             { title: "HVAC companies", body: "See how far your visibility reaches during busy seasons.", href: "/local-rank-tracking-for-hvac" },
             { title: "Roofers", body: "Compare your coverage with the crews competing for the same jobs.", href: "/local-rank-tracking-for-roofers" },
-            { title: "Plumbers", body: "Spot the neighbourhoods where “plumber near me” sends people elsewhere.", href: "/local-rank-tracking-for-plumbers" },
+            { title: "Plumbers", body: "Spot the neighborhoods where “plumber near me” sends people elsewhere.", href: "/local-rank-tracking-for-plumbers" },
             { title: "Dentists", body: "Understand which parts of town see your practice first.", href: "/local-rank-tracking-for-dentists" },
             { title: "Law firms", body: "Check visibility for practice-area searches across the city.", href: "/local-rank-tracking-for-lawyers" },
             { title: "Other local services", body: "Cleaners, electricians, movers and more: anyone customers search for nearby.", href: "/local-rank-tracking-by-industry", linkLabel: "Browse all industries" },
@@ -518,7 +599,6 @@ export default function GoogleMapsRankTrackerPage() {
 
       <Section
         id="how-it-works"
-        tone="tint"
         eyebrow="How it works"
         title="Track Google Maps Rankings in Four Steps"
       >
@@ -526,7 +606,7 @@ export default function GoogleMapsRankTrackerPage() {
           items={[
             {
               title: "Add your business",
-              body: "Find it on Google Maps by name and GridBeacon brings in its location and profile details.",
+              body: "Find it on Google Maps by name and GridBeacon brings in its location and profile details. No storefront? Center scans on the area you serve.",
             },
             {
               title: "Add the keywords you want to track",
@@ -534,7 +614,7 @@ export default function GoogleMapsRankTrackerPage() {
             },
             {
               title: "Choose your grid and scan area",
-              body: "Pick the grid size and radius, remove points you don't serve, and see the exact credit cost before you run it.",
+              body: "Pick a square or ring grid and a radius, remove points you don't serve, and see the exact credit cost before you run it.",
             },
             {
               title: "View rankings across the map",
@@ -544,48 +624,44 @@ export default function GoogleMapsRankTrackerPage() {
         />
         <InlineCta>
           <TextLink href="/how-it-works">Read the full walkthrough</TextLink>
+          {" · "}
+          <TextLink href="/google-maps-rank-checker">Try the free rank checker</TextLink>
         </InlineCta>
       </Section>
 
       <Section
         id="features"
+        tone="tint"
         eyebrow="What's included"
-        title="Everything You Need to Track Google Maps Rankings"
+        title="More Ways to Track and Improve Local Rankings"
         intro={
           <p>
-            Scanning, competitor grids, the Gap view and history work on every
-            plan. Features marked “Paid plans” need a Starter, Professional or
-            Agency subscription.
+            Scanning, competitor grids, the Gap view, history and standard
+            reports work on every plan. Features marked “Paid plans” need a
+            Starter, Professional or Agency subscription.
           </p>
         }
       >
         <Cards
           items={[
-            { title: "Geo-grid rank tracking", body: "Grids from 3 × 3 to 21 × 21 and a radius from 0.1 to 100 miles." },
-            { title: "Competitor grids", body: "The full local results at every point, with no extra credits." },
-            { title: "Gap view", body: "Your grid against a competitor's, point by point." },
-            { title: "Rank history", body: "Compare scans and follow movement over 7 to 60 days." },
             { title: "Custom scan areas", body: "Exclude grid points outside the area you want to measure and check the credit cost before scanning." },
             { title: "PDF reports and CSV exports", body: "Download standard scan reports as PDFs and export grid points and rank history to CSV." },
-            { title: "Keyword Explorer", tag: "Paid plans", body: "Discover local keyword ideas to help choose the searches you track." },
-            { title: "Rank MRI", tag: "Paid plans", body: "Click any grid point to see who outranks you and what is different, then group weak areas into tasks and track what changes." },
-            { title: "Citation Audit", tag: "Paid plans", body: "Check US business listings across 60+ directories for inconsistent details, possible duplicates and listing opportunities." },
-            { title: "AI Action Plan", tag: "Paid plans", body: "Turn your business's local SEO findings into prioritised actions you can review and work through." },
-            { title: "Multiple businesses and keywords", tag: "Paid plans", body: "Add unlimited business profiles and tracked keywords, with scans drawing from one workspace credit pool." },
+            { title: "Keyword and Location Reports", body: "Compare a keyword across locations, or a location across keywords." },
+            { title: "Multiple businesses and keywords", tag: "Paid plans", body: "Add unlimited business profiles and tracked keywords, and queue several keywords at once, with scans drawing from one workspace credit pool." },
             { title: "Team access", tag: "Paid plans", body: "Invite unlimited team members with admin or member roles to work in the same workspace." },
-            { title: "AI Ranking Intelligence reports", tag: "Paid plans", body: "Plain-language PDF reports built from a scan." },
-            { title: "Scheduled scans and alerts", tag: "Paid plans", body: "Daily, weekly, biweekly or monthly scans, with configurable ranking-change email alerts." },
-            { title: "GBP Activity monitoring", tag: "Paid plans", body: "Keep track of activity on a Google Business Profile over time." },
-            { title: "Review Intelligence", tag: "Paid plans", body: "Analyse up to 500 Google reviews for a business." },
-            { title: "Credit-based scanning", body: "One credit per grid point, 500 free credits to start and top-ups when you need them." },
+            { title: "Client share links", tag: "Paid plans", body: "Send a live report link that opens without a login." },
+            { title: "White-label reports", tag: "Agency plan", body: "Your logo and colors on scan, keyword and location reports." },
+            { title: "Keyword Explorer", tag: "Paid plans", body: "Find the local search terms people use, with search volume. 100 credits per search." },
+            { title: "Citation Audit", tag: "Paid plans", body: "Check US business listings across 60+ directories for inconsistent details, possible duplicates and listing opportunities. 300 credits per audit." },
+            { title: "AI Action Plan", tag: "Paid plans", body: "Turn your business's local SEO findings into prioritized actions you can review and work through. 100 credits per plan." },
+            { title: "GBP Activity monitoring", tag: "Paid plans", body: "Keep a timeline of detected changes to your public Google profile, including reviews and photos. 300 credits per 30 days." },
+            { title: "Review Intelligence", tag: "Paid plans", body: "Analyze up to 500 public Google reviews for a business. 10–50 credits per analysis." },
           ]}
         />
         <InlineCta>
           <TextLink href="/features">Explore all features</TextLink>
           {" · "}
           <TextLink href="/pricing">Compare plans</TextLink>
-          {" · "}
-          <TextLink href="/rank-mri">Explore Rank MRI</TextLink>
           {" · "}
           <TextLink href="/citation-audit">Explore Citation Audit</TextLink>
           {" · "}
@@ -595,7 +671,6 @@ export default function GoogleMapsRankTrackerPage() {
 
       <Section
         id="trust"
-        tone="tint"
         eyebrow="Straight answers"
         title="What You Can Count On"
       >
@@ -604,7 +679,7 @@ export default function GoogleMapsRankTrackerPage() {
             { title: "No credit card to start", body: "New accounts get 500 scan credits. Upgrade only if you need more." },
             { title: "Transparent credits", body: "One credit per grid point, and the cost is shown before every scan." },
             { title: "Real Google Maps results", body: "Each point is a Google Maps search for your keyword from that coordinate." },
-            { title: "Real screenshots", body: "Every product image on this page comes from actual GridBeacon scans." },
+            { title: "Real screenshots", body: "Every product image on this page is a capture of GridBeacon. Anything using fictional example data says so." },
             {
               title: "Secure payments",
               body: <>Billing runs through Paddle, so GridBeacon never stores your card number. <TextLink href="/security">Security</TextLink></>,
@@ -619,6 +694,7 @@ export default function GoogleMapsRankTrackerPage() {
 
       <Section
         id="faq"
+        tone="tint"
         eyebrow="FAQ"
         title="Google Maps Rank Tracking Questions"
       >

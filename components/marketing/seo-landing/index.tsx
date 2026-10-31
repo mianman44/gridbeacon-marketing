@@ -11,10 +11,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { isValidElement, type ReactNode } from "react";
 
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
+import { FaqStructuredData } from "@/components/marketing/structured-data";
 
 import styles from "./seo-landing.module.css";
 
@@ -514,9 +515,29 @@ export function RankKey({
   );
 }
 
+/* An answer's visible text, for the FAQPage JSON-LD. */
+function faqText(node: ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") {
+    return String(node);
+  }
+  if (Array.isArray(node)) {
+    return node.map(faqText).join("");
+  }
+  if (isValidElement<{ children?: ReactNode }>(node)) {
+    return faqText(node.props.children);
+  }
+  return "";
+}
+
 export function Faq({ items }: { items: [string, ReactNode][] }) {
   return (
     <div className={styles.faq}>
+      <FaqStructuredData
+        items={items.map(([question, answer]) => [
+          question,
+          faqText(answer).replace(/\s+/g, " ").trim(),
+        ])}
+      />
       {items.map(([question, answer]) => (
         <details className={styles.faqItem} key={question}>
           <summary className={styles.faqQuestion}>

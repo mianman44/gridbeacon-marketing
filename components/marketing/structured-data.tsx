@@ -43,6 +43,24 @@ function JsonLd({ data }: { data: object }) {
   );
 }
 
+/* A landing page's FAQ, built from the visible accordion so the two
+   cannot drift apart. */
+export function FaqStructuredData({ items }: { items: [string, string][] }) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: items.map(([question, answer]) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: { "@type": "Answer", text: answer },
+        })),
+      }}
+    />
+  );
+}
+
 function softwareApplication() {
   return {
     "@type": "SoftwareApplication",
