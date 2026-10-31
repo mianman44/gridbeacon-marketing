@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { ArrowRight, Check, ChartNoAxesCombined, Crosshair, Eye, Grid3X3, Lightbulb, MapPin, Radar, Target, Trophy, Users } from "lucide-react";
 import { Faq } from "@/components/marketing/seo-landing";
+import { TutorialVideo } from "@/components/marketing/tutorials/tutorial-video";
 import { SIGNUP_URL } from "@/lib/seo";
+import { ALL_TUTORIALS } from "@/lib/tutorials";
+import { RankCheckerStickyCta } from "./rank-checker-sticky-cta";
 import { RankCheckerTool } from "./rank-checker-tool";
 import styles from "./rank-checker.module.css";
 
@@ -26,10 +29,14 @@ function RankHeatmapPreview({ compact = false }: { compact?: boolean }) {
   );
 }
 
+/* The tool is the first thing on the page: people searching for a rank
+   checker came to run one. The sample result sits below it. */
 function RankCheckerHero() {
-  return <section className={styles.hero} aria-labelledby="hero-heading"><div className={`${styles.container} ${styles.heroGrid}`}>
-    <div><span className={styles.eyebrow}><Radar size={14} aria-hidden="true" /> FREE GOOGLE MAPS TOOL</span><h1 id="hero-heading">Check Your <span>Google Maps Rankings</span> for Free</h1><p className={styles.heroDescription}>See how your business ranks across real neighborhood coordinates with a geo-grid heatmap, visibility score, and local competitor insights.</p><div className={styles.actions}><a className={styles.primary} href="#rank-checker">Check Rankings Free <ArrowRight size={17} aria-hidden="true" /></a><a className={styles.outline} href="#sample-results"><Eye size={17} aria-hidden="true" /> See Sample Report</a></div><ul className={styles.trust}>{["Free rank check", "No credit card required", "Local geo-grid results"].map(text => <li key={text}><Check size={14} aria-hidden="true" />{text}</li>)}</ul><p className={styles.heroNote}>Free 3×3 scan · Results in about a minute · One free check per day</p></div>
-    <div className={`${styles.card} ${styles.heroPreview}`}><div className={styles.previewHeader}><span><span className={styles.statusDot} /> GEO-GRID PREVIEW</span><span>SAMPLE RESULT</span></div><RankHeatmapPreview compact /><div className={styles.previewMetrics}><div><span>Average Rank</span><strong>#6.4</strong></div><div><span>Visibility</span><strong>78<span>%</span></strong></div><Radar size={26} aria-hidden="true" /></div></div>
+  return <section className={styles.hero} aria-labelledby="hero-heading"><div className={`${styles.container} ${styles.heroIntro}`}>
+    <span className={styles.eyebrow}><Radar size={14} aria-hidden="true" /> FREE GOOGLE MAPS TOOL</span>
+    <h1 id="hero-heading">Check Your <span>Google Maps Rankings</span> for Free</h1>
+    <p className={styles.heroDescription}>See where your business ranks across 9 real points around your location, and who is beating you. Just verify your email. Results arrive in about a minute.</p>
+    <ol className={styles.heroSteps}>{["Find your business", "Verify your email", "See your heatmap"].map((step, index) => <li key={step}><span>{index + 1}</span>{step}</li>)}</ol>
   </div></section>;
 }
 
@@ -50,6 +57,17 @@ function SampleResults() {
   </div></section>;
 }
 
+function ReadYourResults() {
+  const tutorial = ALL_TUTORIALS.find((item) => item.id === "N03Q_BaraxU");
+
+  if (!tutorial) return null;
+
+  return <section className={styles.watch} aria-labelledby="watch-heading"><div className={`${styles.container} ${styles.watchGrid}`}>
+    <div><span className={styles.eyebrow}>3-MINUTE TUTORIAL</span><h2 id="watch-heading">Not Sure How to Read Your Heatmap?</h2><p>Learn what the colors mean, how Visibility and Average Rank are worked out, and how to spot your strong and weak areas.</p><Link className={styles.watchLink} href="/tutorials">Browse all tutorials <ArrowRight size={14} aria-hidden="true" /></Link></div>
+    <div className={styles.watchVideo}><TutorialVideo tutorial={tutorial} /></div>
+  </div></section>;
+}
+
 function RankCheckerEducation() {
   const cards = [
     { Icon: MapPin, title: "True Spatial Proximity", text: "A search near your front door can look very different from one a few streets away. See the location behind the ranking.", label: "Location matters" },
@@ -61,11 +79,11 @@ function RankCheckerEducation() {
 }
 
 function HowItWorks() {
-  return <section className={styles.how} aria-labelledby="how-heading"><div className={styles.container}><div className={styles.sectionHeading}><span className={styles.eyebrow}>FROM SEARCH TO LOCAL INSIGHT</span><h2 id="how-heading">How GridBeacon Scans Local Rankings</h2><p>A clearer view of the places where your customers are searching.</p></div><div className={styles.steps}>{[["Enter Business & Keyword", "Choose the Google Business Profile and keyword you want to measure."], ["Scan Multiple Locations", "GridBeacon checks rankings from multiple geographic coordinates."], ["Analyze the Heatmap", "See where visibility is strong, weak, or being captured by competitors."]].map(([title, text], index) => <article key={title}><span className={styles.stepNumber}>STEP 0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>;
+  return <section id="how-it-works" className={styles.how} aria-labelledby="how-heading"><div className={styles.container}><div className={styles.sectionHeading}><span className={styles.eyebrow}>FROM SEARCH TO LOCAL INSIGHT</span><h2 id="how-heading">How GridBeacon Scans Local Rankings</h2><p>A clearer view of the places where your customers are searching.</p></div><div className={styles.steps}>{[["Enter Business & Keyword", "Choose the Google Business Profile and keyword you want to measure."], ["Scan Multiple Locations", "GridBeacon checks rankings from multiple geographic coordinates."], ["Analyze the Heatmap", "See where visibility is strong, weak, or being captured by competitors."]].map(([title, text], index) => <article key={title}><span className={styles.stepNumber}>STEP 0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>;
 }
 
 function UpgradeCTA() {
-  return <section className={styles.upgrade} aria-labelledby="upgrade-heading"><div className={`${styles.container} ${styles.upgradeGrid}`}><div><span className={styles.eyebrow}><Radar size={15} aria-hidden="true" /> THE FULL GRIDBEACON PLATFORM</span><h2 id="upgrade-heading">Go Beyond a Free Rank Check</h2><p>Track rankings over time, compare competitors and understand where your Google Maps visibility is being won or lost.</p><ul className={styles.featureList}>{["Larger geo-grid scans", "Scheduled rank tracking", "Competitor Grid", "Gap Grid analysis", "Rank history", "AI Reports", "GBP activity tracking", "Shareable reports"].map(feature => <li key={feature}><Check size={15} aria-hidden="true" />{feature}</li>)}</ul><div className={styles.actions}><a href={SIGNUP_URL} className={styles.primary}>Create Free GridBeacon Account <ArrowRight size={16} aria-hidden="true" /></a><Link href="/features" className={styles.secondary}>View GridBeacon Features</Link></div></div><div className={styles.comparison}><div><span className={styles.comparisonLabel}>FREE RANK CHECKER</span><h3>A snapshot of local visibility</h3><ul>{["3×3 grid", "Single keyword", "Real Google Maps results"].map(item => <li key={item}><Check size={14} aria-hidden="true" />{item}</li>)}</ul><span className={styles.comparisonNote}>One free check per day</span></div><div><span className={styles.comparisonLabel}><Radar size={14} aria-hidden="true" /> GRIDBEACON</span><h3>The bigger picture. Over time.</h3><ul>{["Larger grids", "Tracking history", "Competitor analysis", "Gap Grid", "AI Reports", "Scheduled scans"].map(item => <li key={item}><Check size={14} aria-hidden="true" />{item}</li>)}</ul><span className={styles.comparisonNote}>Feature availability depends on your plan.</span></div></div></div></section>;
+  return <section className={styles.upgrade} aria-labelledby="upgrade-heading"><div className={`${styles.container} ${styles.upgradeGrid}`}><div><span className={styles.eyebrow}><Radar size={15} aria-hidden="true" /> THE FULL GRIDBEACON PLATFORM</span><h2 id="upgrade-heading">Go Beyond a Free Rank Check</h2><p>Track rankings over time, compare competitors and understand where your Google Maps visibility is being won or lost.</p><ul className={styles.featureList}>{["Larger geo-grid scans", "Scheduled rank tracking", "Competitor grids", "Gap view", "Rank history", "Rank MRI", "AI reports", "GBP Activity", "Client share links"].map(feature => <li key={feature}><Check size={15} aria-hidden="true" />{feature}</li>)}</ul><div className={styles.actions}><a href={SIGNUP_URL} className={styles.primary}>Create Free GridBeacon Account <ArrowRight size={16} aria-hidden="true" /></a><Link href="/features" className={styles.secondary}>View GridBeacon Features</Link></div></div><div className={styles.comparison}><div><span className={styles.comparisonLabel}>FREE RANK CHECKER</span><h3>A snapshot of local visibility</h3><ul>{["3×3 grid", "Single keyword", "Real Google Maps results"].map(item => <li key={item}><Check size={14} aria-hidden="true" />{item}</li>)}</ul><span className={styles.comparisonNote}>One free check per day</span></div><div><span className={styles.comparisonLabel}><Radar size={14} aria-hidden="true" /> GRIDBEACON</span><h3>The bigger picture. Over time.</h3><ul>{["500 free credits", "Larger grids", "Competitor grids", "Gap view", "Rank history", "Rank MRI on paid plans"].map(item => <li key={item}><Check size={14} aria-hidden="true" />{item}</li>)}</ul><span className={styles.comparisonNote}>Free accounts cover 1 business and 3 keywords. Scheduled scans, Rank MRI and AI reports need a paid plan.</span></div></div></div></section>;
 }
 
 function RankCheckerFAQ() {
@@ -76,20 +94,26 @@ function RankCheckerFAQ() {
     ["Is the GridBeacon rank checker free?", "Yes. Verify your email and you can run one free 3×3 scan per day, with no credit card and no account needed. The results come from real Google Maps searches at each grid point."],
     ["What is the difference between this tool and GridBeacon?", "This tool runs a single 3×3 scan for one keyword. The full GridBeacon platform supports larger grids, competitor comparisons, ranking history and additional analysis, with features depending on your plan."],
     ["Can I track rankings over time?", "The full GridBeacon platform lets you compare scan history and use scheduled rank tracking on supported plans. The free checker gives you a one-off snapshot with a shareable results link; it does not track rankings over time."],
+    ["Why is my rank different on my phone?", "Google shapes Maps results around where the searcher is standing. Your phone shows the result for your exact spot, and it can also reflect your own search history. A geo-grid runs the same search from fixed points, so you can see the whole area instead of one location."],
+    ["How accurate is this check?", "Each of the 9 points is a real Google Maps search for your keyword from that coordinate. Rankings move during the day, so treat a scan as a snapshot of that moment rather than a permanent position."],
+    ["How often should I check my rankings?", "Weekly is useful while you are actively working on your local SEO, and every two weeks or monthly is usually enough for steady monitoring. The free checker allows one scan per day."],
+    ["Can I check a client's or competitor's business?", "Yes. You can check any business with a Google Maps listing, which is useful for sizing up a prospect or a competitor. The limit is one free check per email address per day, and each report has a link you can share."],
+    ["Does it work outside the United States?", "Yes. It works for businesses listed on Google Maps, using search results from the coordinates around that business."],
   ];
   return <section className={styles.faqSection} aria-labelledby="faq-heading"><div className={styles.container}><div className={styles.sectionHeading}><span className={styles.eyebrow}>A LITTLE MORE CLARITY</span><h2 id="faq-heading">Frequently Asked Questions</h2><p>Understanding your Google Maps rankings, one question at a time.</p></div><div className={styles.faqWrap}><Faq items={items} /></div></div></section>;
 }
 
 export function GoogleMapsRankCheckerPage() {
   return <main id="main-content" className={styles.page}>
-    <div className={styles.telemetry}><div className={styles.container}><span><Radar size={13} aria-hidden="true" /> Google Maps Rank Intelligence</span><span>3×3 LOCAL RANKING GRID</span></div></div>
     <RankCheckerHero />
     <RankCheckerTool />
     <SampleResults />
+    <ReadYourResults />
     <RankCheckerEducation />
     <HowItWorks />
     <UpgradeCTA />
     <RankCheckerFAQ />
+    <RankCheckerStickyCta />
     <section className={styles.finalSection} aria-labelledby="final-heading"><div className={styles.container}><div className={`${styles.card} ${styles.finalCard}`}><span className={styles.finalIcon}><Radar size={25} aria-hidden="true" /></span><h2 id="final-heading">Start Tracking Your Google Maps Rankings Smarter</h2><p>Run a free local rank check, then use GridBeacon to monitor rankings, competitors and visibility over time.</p><div className={styles.actions}><a className={styles.primary} href="#rank-checker">Run Free Rank Check <ArrowRight size={16} aria-hidden="true" /></a><a className={styles.secondary} href={SIGNUP_URL}>Create Free Account</a></div><span className={styles.finalNote}>One free check per day · No credit card required</span></div></div></section>
   </main>;
 }

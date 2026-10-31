@@ -331,18 +331,9 @@ export function RankCheckerTool() {
     <section
       id="rank-checker"
       className={styles.scannerSection}
-      aria-labelledby="checker-heading"
+      aria-label="Run your free Google Maps rank check"
     >
       <div className={styles.container}>
-        <div className={styles.sectionHeading}>
-          <span className={styles.eyebrow}>LOCATION-BASED RANK CHECK</span>
-          <h2 id="checker-heading">Run Your Free Google Maps Rank Check</h2>
-          <p>
-            Pick your Google Business Profile, choose a keyword and see how
-            your ranking changes across a 3×3 grid of real coordinates.
-          </p>
-        </div>
-
         <div
           className={`${styles.card} ${styles.scanner} ${
             state === "COMPLETED" ? styles.resultCard : ""
@@ -488,8 +479,12 @@ export function RankCheckerTool() {
                 </Button>
                 <p>
                   <Check size={13} aria-hidden="true" /> No credit card
-                  required <span>·</span> Results in about a minute
+                  <span>·</span> No account <span>·</span> Next step: verify
+                  your email
                 </p>
+                <a className={styles.sampleLink} href="#sample-results">
+                  See a sample report first
+                </a>
               </div>
             </form>
           ) : null}

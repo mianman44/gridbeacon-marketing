@@ -58,6 +58,77 @@ export function topTenCoverage(result: CheckResult): number | null {
   ).length;
 }
 
+/* The sign-up prompt's opening line, built from this scan alone. It uses
+   the business's name because the report can be shared with anyone. */
+function scanFinding(result: CheckResult, totalPoints: number) {
+  const top3 = result.metrics?.top3_count ?? 0;
+  const outside = totalPoints - top3;
+
+  const rival = result.competitors.reduce<
+    CheckResult["competitors"][number] | null
+  >(
+    (best, competitor) =>
+      (competitor.points_ahead_of_you ?? 0)
+      > (best?.points_ahead_of_you ?? 0)
+        ? competitor
+        : best,
+    null,
+  );
+
+  return {
+    title:
+      outside > 0
+        ? `Outside the top 3 at ${outside} of ${totalPoints} points`
+        : `In the top 3 at all ${totalPoints} points`,
+    detail:
+      rival?.points_ahead_of_you && rival.business_name
+        ? `${rival.business_name} ranks above ${result.business_name} at ${rival.points_ahead_of_you} of ${totalPoints} points.`
+        : outside > 0
+          ? `See which businesses take those points, and where.`
+          : `This keyword looks strong. Check your other keywords before you relax.`,
+  };
+}
+
+/* Each size drawn at its real point count, so the difference can be seen. */
+const SCAN_SIZES = [
+  { size: 3, label: "This scan", detail: "9 points" },
+  { size: 5, label: "5×5", detail: "25 points · 25 credits" },
+  { size: 9, label: "9×9", detail: "81 points · 81 credits" },
+];
+
+function ScanSizes() {
+  return (
+    <section className={styles.scanSizes} aria-labelledby="scan-sizes-heading">
+      <div>
+        <h3 id="scan-sizes-heading">9 Points Is a Sample of Your Area</h3>
+        <p>
+          A larger scan shows the streets between these points. Your 500 free
+          credits cover 20 more 5×5 scans, in a square or in rings around your
+          business.
+        </p>
+      </div>
+
+      <ul>
+        {SCAN_SIZES.map(({ size, label, detail }) => (
+          <li key={size}>
+            <span
+              className={styles.scanDots}
+              style={{ "--dots": size } as React.CSSProperties}
+              aria-hidden="true"
+            >
+              {Array.from({ length: size * size }).map((_, index) => (
+                <i key={index} />
+              ))}
+            </span>
+            <strong>{label}</strong>
+            <span>{detail}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function Heatmap({ result }: { result: CheckResult }) {
   const size = result.grid_size || 3;
   const byCell = new Map<string, number | null>();
@@ -142,6 +213,7 @@ export function RankCheckResult({
   const location = shortLocation(result.formatted_address);
   const topTen = topTenCoverage(result);
   const totalPoints = metrics?.total_points ?? result.points.length;
+  const finding = scanFinding(result, totalPoints);
 
   const tiles = [
     {
@@ -236,9 +308,30 @@ export function RankCheckResult({
           </p>
         </div>
 
-        <span className={styles.completeBadge}>
-          <CheckCircle2 size={14} aria-hidden="true" /> Scan Complete
-        </span>
+        <div className={styles.resultHeaderActions}>
+          <span className={styles.completeBadge}>
+            <CheckCircle2 size={14} aria-hidden="true" /> Scan Complete
+          </span>
+
+          {resultUrl ? (
+            <button
+              type="button"
+              className={styles.secondaryAction}
+              onClick={copyLink}
+            >
+              {copied ? (
+                <Check size={15} aria-hidden="true" />
+              ) : (
+                <Copy size={15} aria-hidden="true" />
+              )}
+              {copied ? "Link Copied" : "Share This Report"}
+            </button>
+          ) : null}
+
+          <span aria-live="polite" className={styles.visuallyHidden}>
+            {copied ? "Report link copied to clipboard" : ""}
+          </span>
+        </div>
       </header>
 
       <div className={styles.liveMetrics}>
@@ -332,22 +425,17 @@ export function RankCheckResult({
           ) : null}
 
           <section className={styles.liveConvert}>
-            <h3>Track These Rankings Over Time</h3>
-            <p>
-              Create a free GridBeacon account to save this scan and monitor
-              how your Google Maps rankings change over time.
+            <h3>{finding.title}</h3>
+            <p>{finding.detail}</p>
+            <p className={styles.convertOffer}>
+              A free account includes:
             </p>
             <ul>
               {[
-                "5×5 and larger grids",
-                "Competitor Grid",
-                "Gap Grid",
-                "Rank History",
-                "AI Reports",
-                "Rank MRI",
-                "Scheduled Scans",
-                "GBP Activity Tracking",
-                "Shareable Reports",
+                "500 credits, enough for 20 more 5×5 scans",
+                "Competitor grids and the Gap view",
+                "Your ranking history",
+                "This scan, saved to your account",
               ].map((benefit) => (
                 <li key={benefit}>
                   <Check size={13} aria-hidden="true" />
@@ -363,37 +451,26 @@ export function RankCheckResult({
                 onSignupClick?.();
               }}
             >
-              Create Free GridBeacon Account
+              See Who&apos;s Beating You
               <ArrowRight size={16} aria-hidden="true" />
             </a>
             <p className={styles.convertNote}>
-              Your scan is saved. Sign up with this email and it appears in
-              your account — no rescan, no credits used.
+              Free, with no credit card. Sign up with this email and this scan
+              appears in your account. Paid plans add Rank MRI, AI reports and
+              scheduled scans.
             </p>
           </section>
         </aside>
       </div>
 
-      <div className={styles.resultActions}>
-        {resultUrl ? (
-          <button
-            type="button"
-            className={styles.secondaryAction}
-            onClick={copyLink}
-          >
-            {copied ? (
-              <Check size={15} aria-hidden="true" />
-            ) : (
-              <Copy size={15} aria-hidden="true" />
-            )}
-            {copied ? "Copied" : "Copy Report Link"}
-          </button>
-        ) : null}
+      <ScanSizes />
 
-        <span aria-live="polite" className={styles.visuallyHidden}>
-          {copied ? "Report link copied to clipboard" : ""}
-        </span>
-      </div>
+      <p className={styles.resultHelp}>
+        New to heatmaps?{" "}
+        <a href="/tutorials#reading-results">
+          Watch how to read your results
+        </a>
+      </p>
 
       <div className={styles.resultStatusBar}>
         <span>
