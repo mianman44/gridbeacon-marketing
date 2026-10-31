@@ -35,7 +35,7 @@ export const homeFaqs: HomeFaq[] = [
   {
     question: "Can I see what competitors rank for?",
     answer:
-      "Yes. Every scan already records the whole local pack at each point, so competitor grids come from the scan you have already run. Opening competitor telemetry costs nothing extra.",
+      "Yes. Every scan already records the whole local pack at each point, so competitor grids come from the scan you have already run. Viewing competitors costs nothing extra.",
   },
   {
     question: "Do you work outside the United States?",
@@ -55,7 +55,7 @@ export const homeFaqs: HomeFaq[] = [
   {
     question: "Can I track GMB / GBP rankings for my clients?",
     answer:
-      "Yes. Paid plans include unlimited Google Business Profiles and keywords, scheduled scans, team access and AI Ranking Intelligence PDF reports you can send to clients.",
+      "Yes. Paid plans include unlimited Google Business Profiles and keywords, scheduled scans, team access, client share links and AI Ranking Intelligence PDF reports you can send to clients. White-label reports are on the Agency plan.",
   },
 ];
 
