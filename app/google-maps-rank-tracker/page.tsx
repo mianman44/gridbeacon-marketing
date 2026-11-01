@@ -21,6 +21,7 @@ import {
   TextLink,
 } from "@/components/marketing/seo-landing";
 import { ProductPageStructuredData } from "@/components/marketing/structured-data";
+import { GRIDBEACON } from "@/lib/competitors";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
 /*
@@ -40,9 +41,9 @@ const MRI_IMAGES = "/marketing/rank-mri";
 
 export const metadata: Metadata = pageMetadata({
   path: PATH,
-  title: "Google Maps Rank Tracker & Geo-Grid Tracker | GridBeacon",
+  title: "Google Maps Rank Tracker with Free Heatmaps | GridBeacon",
   description:
-    "Track Google Maps rankings across a geo-grid, monitor competitors, identify ranking gaps, follow rank history and generate local SEO reports with GridBeacon.",
+    "Track Google Maps rankings across your whole service area. See heatmaps, competitors and rank history. Start free with 500 credits, no credit card.",
   absoluteTitle: true,
   image: {
     url: `${IMAGES}/og-google-maps-rank-tracker.jpg`,
@@ -51,6 +52,20 @@ export const metadata: Metadata = pageMetadata({
     alt: "A GridBeacon geo-grid scan showing a business's Google Maps rankings at 25 points across Dallas",
   },
 });
+
+/* A 5 × 5 scan is the size the FAQ prices, so plans are compared on it. */
+const SCAN_POINTS = 25;
+
+const PLANS = [
+  {
+    title: "Free: $0",
+    body: `${GRIDBEACON.freeCredits} one-time credits, enough for ${Number(GRIDBEACON.freeCredits) / SCAN_POINTS} scans at 5 × 5. One business and three keywords.`,
+  },
+  ...GRIDBEACON.plans.map(([name, monthly, annual, credits]) => ({
+    title: `${name}: ${monthly}/mo`,
+    body: `${annual} a month billed annually. ${credits} credits a month, enough for ${Math.floor(Number(credits.replace(",", "")) / SCAN_POINTS).toLocaleString("en-US")} scans at 5 × 5.`,
+  })),
+];
 
 const FAQS: [string, React.ReactNode][] = [
   [
@@ -121,7 +136,8 @@ const FAQS: [string, React.ReactNode][] = [
     <p key="a">
       One credit per grid point, and you see the cost before you run it.
       A 5 × 5 scan uses 25 credits and a 21 × 21 scan uses 441. New
-      accounts start with 500 free credits; see{" "}
+      accounts start with 500 free credits, and paid plans start at{" "}
+      {GRIDBEACON.plans[0][1]} a month; see{" "}
       <TextLink href="/pricing">pricing</TextLink> for plan allowances and
       top-ups.
     </p>,
@@ -162,6 +178,7 @@ export default function GoogleMapsRankTrackerPage() {
       <ProductPageStructuredData name="Google Maps Rank Tracker" path={PATH} />
 
       <Hero
+        crumb="Google Maps Rank Tracker"
         eyebrow="Google Maps Rank Tracking"
         title="Google Maps Rank Tracker Built for Local SEO"
         lede={
@@ -268,6 +285,9 @@ export default function GoogleMapsRankTrackerPage() {
               "Remove points you don't serve, such as lakes or areas outside your service area, before you run the scan. You only pay for the points you keep.",
             ]}
           />
+          <InlineCta>
+            <TextLink href="/what-is-a-geo-grid">What is a geo-grid?</TextLink>
+          </InlineCta>
         </Split>
       </Section>
 
@@ -301,11 +321,11 @@ export default function GoogleMapsRankTrackerPage() {
               "Check each competitor's rating and review count next to their rankings.",
             ]}
           />
-          <p>
-            <TextLink href="/features#deep-dive-competitor">
-              More about competitor tracking
+          <InlineCta>
+            <TextLink href="/local-seo-competitor-analysis">
+              More about local competitor analysis
             </TextLink>
-          </p>
+          </InlineCta>
         </Split>
       </Section>
 
@@ -384,9 +404,9 @@ export default function GoogleMapsRankTrackerPage() {
             Rank MRI shows evidence to check, not Google&apos;s reasons. It
             can&apos;t tell you why a ranking changed.
           </Note>
-          <p>
+          <InlineCta>
             <TextLink href="/rank-mri">Explore Rank MRI</TextLink>
-          </p>
+          </InlineCta>
         </Split>
       </Section>
 
@@ -486,9 +506,9 @@ export default function GoogleMapsRankTrackerPage() {
             GridBeacon&apos;s way of prioritizing, not Google ranking factors.
             Each report uses 100 credits.
           </Note>
-          <p>
-            <TextLink href="/features#deep-dive-reports">See report features</TextLink>
-          </p>
+          <InlineCta>
+            <TextLink href="/local-seo-report">See what a local SEO report includes</TextLink>
+          </InlineCta>
         </Split>
       </Section>
 
@@ -525,6 +545,11 @@ export default function GoogleMapsRankTrackerPage() {
           Scheduled scans are available on paid plans and use credits in the
           same way as a manual scan.
         </Note>
+        <InlineCta>
+          <TextLink href="/automated-google-maps-rank-tracking">
+            More about automated rank tracking
+          </TextLink>
+        </InlineCta>
       </Section>
 
       <Section
@@ -540,9 +565,9 @@ export default function GoogleMapsRankTrackerPage() {
                 { title: "Many businesses", body: "Unlimited businesses and keywords on paid plans." },
                 { title: "Visual results", body: "Heatmaps clients understand without an SEO glossary." },
                 { title: "Proof over time", body: "Before-and-after scans and movement by keyword." },
-                { title: "Team access", body: "Invite colleagues into the same workspace." },
-                { title: "Client share links", body: "Send a live report link that opens without a login." },
-                { title: "White-label reports", body: "Your logo and colors on reports, on the Agency plan." },
+                { title: "Team access", body: "Invite unlimited team members with admin or member roles, on paid plans." },
+                { title: "Client share links", body: "Send a live report link that opens without a login, on paid plans." },
+                { title: "White-label reports", body: "Your logo and colors on scan, keyword and location reports, on the Agency plan." },
               ]}
             />
           }
@@ -565,6 +590,11 @@ export default function GoogleMapsRankTrackerPage() {
           />
           <InlineCta>
             <ButtonLink href={SIGNUP_URL}>Start Tracking Client Rankings</ButtonLink>
+          </InlineCta>
+          <InlineCta>
+            <TextLink href="/local-rank-tracker-for-agencies">
+              See GridBeacon for agencies
+            </TextLink>
           </InlineCta>
         </Split>
       </Section>
@@ -648,9 +678,6 @@ export default function GoogleMapsRankTrackerPage() {
             { title: "PDF reports and CSV exports", body: "Download standard scan reports as PDFs and export grid points and rank history to CSV." },
             { title: "Keyword and Location Reports", body: "Compare a keyword across locations, or a location across keywords." },
             { title: "Multiple businesses and keywords", tag: "Paid plans", body: "Add unlimited business profiles and tracked keywords, and queue several keywords at once, with scans drawing from one workspace credit pool." },
-            { title: "Team access", tag: "Paid plans", body: "Invite unlimited team members with admin or member roles to work in the same workspace." },
-            { title: "Client share links", tag: "Paid plans", body: "Send a live report link that opens without a login." },
-            { title: "White-label reports", tag: "Agency plan", body: "Your logo and colors on scan, keyword and location reports." },
             { title: "Keyword Explorer", tag: "Paid plans", body: "Find the local search terms people use, with search volume. 100 credits per search." },
             { title: "Citation Audit", tag: "Paid plans", body: "Check US business listings across 60+ directories for inconsistent details, possible duplicates and listing opportunities. 300 credits per audit." },
             { title: "AI Action Plan", tag: "Paid plans", body: "Turn your business's local SEO findings into prioritized actions you can review and work through. 100 credits per plan." },
@@ -661,9 +688,9 @@ export default function GoogleMapsRankTrackerPage() {
         <InlineCta>
           <TextLink href="/features">Explore all features</TextLink>
           {" · "}
-          <TextLink href="/pricing">Compare plans</TextLink>
-          {" · "}
           <TextLink href="/citation-audit">Explore Citation Audit</TextLink>
+          {" · "}
+          <TextLink href="/best-local-rank-trackers">Best local rank trackers compared</TextLink>
           {" · "}
           <TextLink href="/local-falcon-alternative">GridBeacon vs Local Falcon</TextLink>
         </InlineCta>
@@ -676,25 +703,41 @@ export default function GoogleMapsRankTrackerPage() {
       >
         <Cards
           items={[
-            { title: "No credit card to start", body: "New accounts get 500 scan credits. Upgrade only if you need more." },
-            { title: "Transparent credits", body: "One credit per grid point, and the cost is shown before every scan." },
+            { title: "Try it on your own business", body: "Run a free 9-point check with just your email, then judge the results yourself.", href: "/google-maps-rank-checker", linkLabel: "Run the free rank checker" },
+            { title: "Watch the product work", body: "Short video tutorials walk through scans, heatmaps and reports step by step.", href: "/tutorials", linkLabel: "Watch the tutorials" },
             { title: "Real Google Maps results", body: "Each point is a Google Maps search for your keyword from that coordinate." },
             { title: "Real screenshots", body: "Every product image on this page is a capture of GridBeacon. Anything using fictional example data says so." },
-            {
-              title: "Secure payments",
-              body: <>Billing runs through Paddle, so GridBeacon never stores your card number. <TextLink href="/security">Security</TextLink></>,
-            },
-            {
-              title: "A person answers",
-              body: <>Questions go to our support team. <TextLink href="/contact">Contact us</TextLink></>,
-            },
+            { title: "Secure payments", body: "Billing runs through Paddle, so GridBeacon never stores your card number.", href: "/security", linkLabel: "Security" },
+            { title: "A person answers", body: "Questions go to our support team.", href: "/contact", linkLabel: "Contact us" },
           ]}
         />
       </Section>
 
       <Section
-        id="faq"
+        id="pricing"
         tone="tint"
+        eyebrow="Pricing"
+        title="Google Maps Rank Tracker Pricing"
+        intro={
+          <p>
+            Every plan uses the same credits: one credit per grid point, with
+            the cost shown before each scan. No credit card is needed to start.
+          </p>
+        }
+      >
+        <Cards columns={4} items={PLANS} />
+        <Note>
+          Paid plans add unlimited businesses, keywords and team members,
+          scheduled scans, Rank MRI and AI reports. The Agency plan adds
+          white-label reports. Credit top-ups: {GRIDBEACON.topUps}.
+        </Note>
+        <InlineCta>
+          <TextLink href="/pricing">Compare plans</TextLink>
+        </InlineCta>
+      </Section>
+
+      <Section
+        id="faq"
         eyebrow="FAQ"
         title="Google Maps Rank Tracking Questions"
       >

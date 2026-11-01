@@ -28,7 +28,7 @@ const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const SOCIAL_PROFILES: string[] = [
   // "https://www.linkedin.com/company/<gridbeacon>",
   // "https://x.com/<gridbeacon>",
-  // "https://www.youtube.com/@<gridbeacon>",
+  "https://www.youtube.com/@GridBeacon",
 ];
 
 function JsonLd({ data }: { data: object }) {
@@ -98,6 +98,16 @@ function softwareApplication() {
       name,
       price,
       priceCurrency: "USD",
+      // Every price but Free is per month.
+      ...(price === "0" ? {} : {
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price,
+          priceCurrency: "USD",
+          unitCode: "MON",
+          unitText: "month",
+        },
+      }),
       url: `${SITE_URL}/pricing`,
     })),
   };

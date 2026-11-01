@@ -167,6 +167,45 @@
   text-decoration-color: currentColor;
 }
 
+.breadcrumb {
+  margin-bottom: 14px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--muted);
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li + li::before {
+  content: "/";
+  margin-right: 8px;
+}
+
+.breadcrumb a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+/* Links that stand alone get a full finger-sized target on phones.
+   Links inside a sentence keep the line's own height. */
+@media (max-width: 767px) {
+  .card > .textLink,
+  .inlineCta .textLink,
+  .breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
 .button:focus-visible,
 .textLink:focus-visible,
 .faqQuestion:focus-visible {

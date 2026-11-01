@@ -13,9 +13,9 @@ import "@/components/marketing/stitch-home.css";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
-  // Leads with "geo-grid local rank tracker". /google-maps-rank-tracker
-  // keeps its own title and owns that phrase, so the two do not compete.
-  title: "Geo-Grid Local Rank Tracker for Google Maps | GridBeacon",
+  // Owns "geo-grid local rank tracker". /google-maps-rank-tracker owns
+  // "Google Maps rank tracker", so neither title uses the other's phrase.
+  title: "Geo-Grid Local Rank Tracker with Free Credits | GridBeacon",
   description:
     "Geo-grid local rank tracker for Google Business Profiles. See your Maps rank at every point of your service area, spy on competitors. 500 free credits.",
   absoluteTitle: true,

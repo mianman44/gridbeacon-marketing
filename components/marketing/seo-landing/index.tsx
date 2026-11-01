@@ -237,6 +237,7 @@ export function RelatedComparisons({ current }: { current: string }) {
 }
 
 export function Hero({
+  crumb,
   eyebrow,
   title,
   lede,
@@ -247,6 +248,9 @@ export function Hero({
   updated,
   media,
 }: {
+  /* The page's name in a visible Home / page trail, matching its
+     BreadcrumbList markup. */
+  crumb?: string;
   eyebrow: string;
   title: ReactNode;
   lede: ReactNode;
@@ -262,6 +266,14 @@ export function Hero({
     <section className={styles.hero}>
       <div className={`${styles.container} ${styles.heroGrid}`}>
         <div>
+          {crumb && (
+            <nav className={styles.breadcrumb} aria-label="Breadcrumb">
+              <ol>
+                <li><Link href="/">Home</Link></li>
+                <li aria-current="page">{crumb}</li>
+              </ol>
+            </nav>
+          )}
           <p className={styles.eyebrow}>{eyebrow}</p>
           <h1 className={styles.heroTitle}>{title}</h1>
           <p className={styles.heroLede}>{lede}</p>

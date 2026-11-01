@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 import "@/components/marketing/stitch-how.css";
 export const metadata: Metadata = pageMetadata({
   path: "/how-it-works",
-  title: "How Geo-Grid Rank Tracking Works",
+  title: "How It Works: Scans, Credits and Heatmaps",
   description:
     "How GridBeacon checks your Google Maps ranking from every point of a grid, what a scan costs in credits, and how to read the heatmap and competitor results.",
 });
