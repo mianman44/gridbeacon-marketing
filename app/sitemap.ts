@@ -10,14 +10,14 @@ const INDUSTRY_PAGES_UPDATED = "2026-09-27";
 
 const PAGES_UPDATED: Record<string, string> = {
   "/": "2026-11-01",
-  "/about": "2026-09-24",
+  "/about": "2026-11-03",
   "/automated-google-maps-rank-tracking": "2026-10-30",
   "/best-local-rank-trackers": "2026-11-02",
   "/blog": "2026-11-02",
   "/brightlocal-alternative": "2026-10-31",
   "/cancellation-policy": "2026-09-24",
   "/citation-audit": "2026-09-29",
-  "/contact": "2026-09-24",
+  "/contact": "2026-11-03",
   "/features": "2026-11-02",
   "/gmb-rank-tracker": "2026-11-02",
   "/google-business-profile-monitoring": "2026-10-30",

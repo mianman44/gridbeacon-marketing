@@ -19,8 +19,9 @@ import {
 import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import styles from "@/components/marketing/company.module.css";
-import { BreadcrumbStructuredData } from "@/components/marketing/structured-data";
+import { AboutStructuredData } from "@/components/marketing/structured-data";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
+import { initials, TEAM } from "@/lib/team";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about",
@@ -74,7 +75,7 @@ export default function AboutPage() {
   return (
     <div className={styles.page}>
       <link rel="stylesheet" href="/stitch-fonts.css" />
-      <BreadcrumbStructuredData name="About" path="/about" />
+      <AboutStructuredData />
       <MarketingHeader />
 
       <main id="main-content">
@@ -192,6 +193,48 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className={styles.section} id="team">
+          <div className={styles.container}>
+            <div className={styles.sectionHead}>
+              <p className={styles.eyebrow}>The team</p>
+              <h2 className={styles.h2}>
+                The people <span>behind GridBeacon.</span>
+              </h2>
+            </div>
+            <ul className={styles.team}>
+              {TEAM.map((member) => (
+                <li className={styles.card} key={member.name}>
+                  {member.photo ? (
+                    <Image
+                      className={styles.teamPhoto}
+                      src={member.photo.src}
+                      width={member.photo.width}
+                      height={member.photo.height}
+                      alt={`${member.name}, ${member.role} of GridBeacon`}
+                      sizes="(min-width: 768px) 280px, 80vw"
+                    />
+                  ) : (
+                    <span className={styles.teamInitials} aria-hidden="true">
+                      {initials(member.name)}
+                    </span>
+                  )}
+                  <h3>{member.name}</h3>
+                  <p>{member.role}, GridBeacon</p>
+                  {member.profiles.length > 0 && (
+                    <p className={styles.teamLinks}>
+                      {member.profiles.map(({ label, url }) => (
+                        <a key={label} href={url} rel="me noopener" target="_blank">
+                          {label}
+                        </a>
+                      ))}
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 

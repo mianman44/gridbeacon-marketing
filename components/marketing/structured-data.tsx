@@ -20,6 +20,7 @@
 import { ALL_TUTORIALS, isoLength } from "@/lib/tutorials";
 import { SITE_URL } from "@/lib/seo";
 import { homeFaqSchema } from "@/components/marketing/home-faqs";
+import { TEAM, type TeamMember } from "@/lib/team";
 
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 
@@ -127,6 +128,19 @@ function softwareApplication() {
   };
 }
 
+/* A founder as a Person, tied to the company by @id. */
+function person(member: TeamMember) {
+  return {
+    "@type": "Person",
+    "@id": `${SITE_URL}/about#${member.name.toLowerCase().replace(/[^a-z]+/g, "-")}`,
+    name: member.name,
+    jobTitle: member.role,
+    ...(member.photo ? { image: `${SITE_URL}${member.photo.src}` } : {}),
+    ...(member.profiles.length ? { sameAs: member.profiles.map(({ url }) => url) } : {}),
+    worksFor: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "GridBeacon" },
+  };
+}
+
 function breadcrumb(name: string, path: string) {
   return {
     "@type": "BreadcrumbList",
@@ -172,6 +186,7 @@ export function HomeStructuredData() {
               url: `${SITE_URL}/contact`,
             },
             sameAs: SOCIAL_PROFILES,
+            founder: TEAM.map(person),
           },
           {
             "@type": "WebSite",
@@ -318,6 +333,28 @@ export function FreeRankCheckerStructuredData() {
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
             provider: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "GridBeacon", url: SITE_URL },
           },
+        ],
+      }}
+    />
+  );
+}
+
+/* /about: the page, its place under home, and the founders. */
+export function AboutStructuredData() {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          breadcrumb("About", "/about"),
+          {
+            "@type": "AboutPage",
+            "@id": `${SITE_URL}/about#page`,
+            url: `${SITE_URL}/about`,
+            name: "About GridBeacon",
+            about: { "@id": ORGANIZATION_ID },
+          },
+          ...TEAM.map(person),
         ],
       }}
     />

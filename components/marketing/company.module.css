@@ -516,6 +516,57 @@ a.card:hover,
   color: var(--blue);
 }
 
+/* ---------- Team ---------- */
+
+.team {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  max-width: 640px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .team {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.teamPhoto,
+.teamInitials {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  height: auto;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.teamInitials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-mid);
+  color: var(--blue);
+  font-family: var(--heading);
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.teamLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.teamLinks a {
+  font-weight: 600;
+  color: var(--blue);
+}
+
 /* ---------- Info panel ---------- */
 
 .info {

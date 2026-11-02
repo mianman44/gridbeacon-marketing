@@ -18,6 +18,7 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import styles from "@/components/marketing/company.module.css";
 import { BreadcrumbStructuredData } from "@/components/marketing/structured-data";
 import { pageMetadata } from "@/lib/seo";
+import { TEAM } from "@/lib/team";
 
 export const metadata: Metadata = pageMetadata({
   path: "/contact",
@@ -77,7 +78,9 @@ export default function ContactPage() {
             <p className={styles.lede}>
               Questions about your account, a scan, your subscription,
               billing or credits all reach the same inbox, and a person reads
-              it.
+              it. GridBeacon was founded by{" "}
+              {TEAM.map((member) => member.name).join(" and ")}.{" "}
+              <Link href="/about#team">Meet the team</Link>.
             </p>
             <div className={styles.actions}>
               <a href={`mailto:${SUPPORT_EMAIL}`} className={styles.btnPrimary}>
