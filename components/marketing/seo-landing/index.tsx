@@ -216,11 +216,13 @@ export function ToolReview({
    competitor can reach the others, and none is an orphan. */
 const COMPARISONS: [string, string][] = [
   ["Best local rank trackers compared", "/best-local-rank-trackers"],
-  ["GridBeacon vs Local Falcon", "/local-falcon-alternative"],
-  ["GridBeacon vs BrightLocal", "/brightlocal-alternative"],
-  ["GridBeacon vs Whitespark", "/whitespark-alternative"],
-  ["GridBeacon vs Local Viking", "/local-viking-alternative"],
-  ["GridBeacon for agencies", "/local-rank-tracker-for-agencies"],
+  ["Local Falcon alternative", "/local-falcon-alternative"],
+  ["BrightLocal alternative", "/brightlocal-alternative"],
+  ["Whitespark alternatives", "/whitespark-alternative"],
+  ["Local Viking alternative", "/local-viking-alternative"],
+  ["Local rank tracker for agencies", "/local-rank-tracker-for-agencies"],
+  ["Multi-location rank tracking", "/multi-location-rank-tracking"],
+  ["Google Maps rank tracker", "/google-maps-rank-tracker"],
 ];
 
 export function RelatedComparisons({ current }: { current: string }) {

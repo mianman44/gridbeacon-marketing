@@ -12,7 +12,7 @@ import landingStyles from "@/components/marketing/seo-landing/seo-landing.module
 
 export const metadata: Metadata = pageMetadata({
   path: "/features",
-  title: "Features: Heatmaps, Competitors and Reports",
+  title: "Local Rank Tracker Features: Heatmaps & Reports",
   description:
     "Geo-grid heatmaps, competitor grids from every scan, custom scan areas, scheduled scans, scan history and AI ranking reports for Google Business Profiles.",
 });

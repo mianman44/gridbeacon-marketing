@@ -81,7 +81,7 @@ const FAQS: [string, string][] = [
 export default function BestLocalRankTrackersPage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Best Local Rank Trackers" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="Best Local Rank Trackers" path={PATH} />
 
       <Hero
         eyebrow="Local rank tracker comparison"

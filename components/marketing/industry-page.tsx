@@ -46,7 +46,7 @@ export function IndustryPage({ industry }: { industry: Industry }) {
 
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name={industry.breadcrumb} path={industry.path} faqs={industry.faqs} />
+      <ProductPageStructuredData name={industry.breadcrumb} path={industry.path} />
 
       <Hero
         eyebrow={industry.eyebrow}
@@ -168,6 +168,9 @@ export function IndustryPage({ industry }: { industry: Industry }) {
             <>
               Google ranks local results on relevance, distance and
               prominence. <TextLink href="/local-seo-competitor-analysis">How to find who beats you at each point</TextLink>.
+              Run a <TextLink href="/google-maps-rank-checker">free Google Maps rank check</TextLink> to
+              see where you stand, then follow it over time with
+              a <TextLink href="/google-maps-rank-tracker">Google Maps rank tracker</TextLink>.
             </>
           }
         />

@@ -24,7 +24,7 @@ export interface CommercialPageContent {
 
 export function CommercialFeaturePage({ content: c }: { content: CommercialPageContent }) {
   return <SeoLandingPage>
-    <ProductPageStructuredData name={c.name} path={c.path} faqs={c.faqs} />
+    <ProductPageStructuredData name={c.name} path={c.path} />
     <Hero eyebrow={c.name} title={c.title} lede={c.lede}
       primary={{ label: "Start Free", href: SIGNUP_URL }}
       primaryNote={c.access} secondary={{ label: "See the Workflow", href: "#workflow" }} facts={c.facts}

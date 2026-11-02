@@ -95,7 +95,7 @@ const FAQS: [string, string][] = [
 export default function RankMriPage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Rank MRI" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="Rank MRI" path={PATH} />
 
       <Hero
         eyebrow="Rank MRI"
@@ -271,7 +271,7 @@ export default function RankMriPage() {
         <InlineCta>
           <TextLink href="/pricing">Pricing and credits</TextLink>
           {" · "}
-          <TextLink href="/local-seo-competitor-analysis">Competitor analysis</TextLink>
+          <TextLink href="/google-maps-rank-tracker">Google Maps rank tracker</TextLink>
           {" · "}
           <TextLink href="/blog/why-google-maps-rankings-dropped">Why rankings drop</TextLink>
         </InlineCta>

@@ -91,7 +91,6 @@ export default function WhatIsAGeoGridPage() {
       <ProductPageStructuredData
         name="What Is a Geo-Grid?"
         path={PATH}
-        faqs={FAQS}
         article={{ headline: TITLE, description: DESCRIPTION, dateModified: UPDATED }}
       />
 

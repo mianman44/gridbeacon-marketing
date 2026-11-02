@@ -77,7 +77,7 @@ const FAQS: [string, string][] = [
 export default function CompetitorAnalysisPage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Local SEO Competitor Analysis" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="Local SEO Competitor Analysis" path={PATH} />
 
       <Hero
         eyebrow="Local SEO competitor analysis"
@@ -229,6 +229,10 @@ export default function CompetitorAnalysisPage() {
           <TextLink href="/what-is-a-geo-grid">How geo-grids work</TextLink>
           {" · "}
           <TextLink href="/local-seo-report">Turn the analysis into a client report</TextLink>
+          {" · "}
+          <TextLink href="/google-maps-rank-tracker">Google Maps rank tracker</TextLink>
+          {" · "}
+          <TextLink href="/google-maps-rank-checker">Free Google Maps rank checker</TextLink>
         </InlineCta>
       </Section>
 

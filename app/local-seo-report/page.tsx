@@ -80,7 +80,7 @@ const FAQS: [string, string][] = [
 export default function LocalSeoReportPage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Local SEO Report" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="Local SEO Report" path={PATH} />
 
       <Hero
         eyebrow="Local SEO reports"
@@ -252,9 +252,9 @@ export default function LocalSeoReportPage() {
           ]}
         />
         <InlineCta>
-          <TextLink href="/local-rank-tracker-for-agencies">GridBeacon for agencies</TextLink>
+          <TextLink href="/local-rank-tracker-for-agencies">Local rank tracker for agencies</TextLink>
           {" · "}
-          <TextLink href="/local-seo-competitor-analysis">Competitor analysis</TextLink>
+          <TextLink href="/multi-location-rank-tracking">Multi-location rank tracking</TextLink>
           {" · "}
           <TextLink href="/what-is-a-geo-grid">What is a geo-grid?</TextLink>
         </InlineCta>

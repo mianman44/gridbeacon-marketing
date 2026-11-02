@@ -143,7 +143,7 @@ function CitationAuditIllustration() {
 export default function CitationAuditPage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Citation Audit" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="Citation Audit" path={PATH} />
 
       <Hero
         eyebrow="Citation Audit"
@@ -154,7 +154,8 @@ export default function CitationAuditPage() {
             ago: listings drift, and customers end up at the wrong door.
             GridBeacon checks your business on 60+ US directories, maps and
             review sites, and shows exactly which listings are wrong, what they
-            say and what they should say.
+            say and what they should say. A self-serve alternative to a paid
+            citation audit service, with results in minutes.
           </>
         }
         primary={{ label: "Start Free", href: SIGNUP_URL }}

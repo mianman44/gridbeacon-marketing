@@ -84,7 +84,7 @@ const FAQS: [string, string][] = [
 export default function BrightLocalAlternativePage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="BrightLocal Alternative" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="BrightLocal Alternative" path={PATH} />
 
       <Hero
         eyebrow="BrightLocal alternative"
@@ -120,7 +120,7 @@ export default function BrightLocalAlternativePage() {
       <Section
         id="short-answer"
         eyebrow="The short answer"
-        title="Should You Switch From BrightLocal?"
+        title="BrightLocal Competitors: Should You Switch?"
       >
         <Split
           media={

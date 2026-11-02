@@ -179,11 +179,11 @@ export function HomeStructuredData() {
 }
 
 /* A commercial landing page for the product: the shared
-   SoftwareApplication node plus its breadcrumb. */
+   SoftwareApplication node plus its breadcrumb. The page's FAQPage
+   comes from the visible <Faq> accordion, so it is not repeated here. */
 export function ProductPageStructuredData({
   name,
   path,
-  faqs,
   article,
 }: {
   name: string;
@@ -191,9 +191,6 @@ export function ProductPageStructuredData({
   /* For explainer pages: an Article node naming GridBeacon as author
      and publisher. dateModified should move with real edits only. */
   article?: { headline: string; description: string; dateModified: string };
-  /* The page's visible FAQ, question and plain-text answer, word for
-     word -- FAQPage markup must match what the reader sees. */
-  faqs?: [string, string][];
 }) {
   const graph: object[] = [softwareApplication(), breadcrumb(name, path)];
   if (article) {
@@ -208,17 +205,6 @@ export function ProductPageStructuredData({
       author: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "GridBeacon", url: SITE_URL },
       publisher: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "GridBeacon", url: SITE_URL },
       about: { "@id": `${SITE_URL}/#software` },
-    });
-  }
-  if (faqs?.length) {
-    graph.push({
-      "@type": "FAQPage",
-      "@id": `${SITE_URL}${path}#faq`,
-      mainEntity: faqs.map(([question, answer]) => ({
-        "@type": "Question",
-        name: question,
-        acceptedAnswer: { "@type": "Answer", text: answer },
-      })),
     });
   }
 

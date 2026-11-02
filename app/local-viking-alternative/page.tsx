@@ -81,7 +81,7 @@ const FAQS: [string, string][] = [
 export default function LocalVikingAlternativePage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Local Viking Alternative" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="Local Viking Alternative" path={PATH} />
 
       <Hero
         eyebrow="Local Viking alternative"

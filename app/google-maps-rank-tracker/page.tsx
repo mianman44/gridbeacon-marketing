@@ -209,7 +209,7 @@ export default function GoogleMapsRankTrackerPage() {
       <Section
         id="why-location-matters"
         eyebrow="Why one ranking isn't enough"
-        title="Your Google Maps Ranking Changes by Location"
+        title="Geo-Location Rank Tracking: Why Your Ranking Changes by Location"
         intro={
           <>
             <p>

@@ -87,11 +87,11 @@ const FAQS: [string, string][] = [
 export default function LocalFalconAlternativePage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Local Falcon Alternative" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="Local Falcon Alternative" path={PATH} />
 
       <Hero
         eyebrow="Local Falcon alternative"
-        title="Google Maps tracking. Lower scan costs."
+        title="The Local Falcon Alternative With Lower Scan Costs"
         lede={
           <>
             A Local Falcon alternative for tracking rankings across your

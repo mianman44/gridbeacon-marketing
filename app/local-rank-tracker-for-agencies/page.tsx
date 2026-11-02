@@ -85,7 +85,7 @@ const FAQS: [string, string][] = [
 export default function AgencyPage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Local Rank Tracker for Agencies" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="Local Rank Tracker for Agencies" path={PATH} />
 
       <Hero
         eyebrow="For local SEO agencies"
@@ -220,11 +220,11 @@ export default function AgencyPage() {
           ]}
         />
         <InlineCta>
-          <TextLink href="/local-seo-competitor-analysis">Competitor analysis</TextLink>
+          <TextLink href="/multi-location-rank-tracking">Multi-location rank tracking</TextLink>
           {" · "}
           <TextLink href="/local-seo-report">Client reports</TextLink>
           {" · "}
-          <TextLink href="/service-area-business-rank-tracking">Service-area businesses</TextLink>
+          <TextLink href="/best-local-rank-trackers">Best local rank trackers compared</TextLink>
         </InlineCta>
       </Section>
 

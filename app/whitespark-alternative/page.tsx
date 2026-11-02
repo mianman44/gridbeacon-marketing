@@ -81,7 +81,7 @@ const FAQS: [string, string][] = [
 export default function WhitesparkAlternativePage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Whitespark Alternative" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="Whitespark Alternative" path={PATH} />
 
       <Hero
         eyebrow="Whitespark alternative"
@@ -116,7 +116,7 @@ export default function WhitesparkAlternativePage() {
       <Section
         id="short-answer"
         eyebrow="The short answer"
-        title="GridBeacon or Whitespark: Which Should You Use?"
+        title="Whitespark Alternatives: GridBeacon or Whitespark?"
       >
         <Split
           media={

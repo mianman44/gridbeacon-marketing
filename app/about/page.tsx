@@ -24,7 +24,7 @@ import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about",
-  title: "About",
+  title: "About GridBeacon: Geo-Grid Local Rank Tracking",
   description:
     "GridBeacon is a local search visibility platform for monitoring Google Business Profile rankings across geographic grids. Operated by Hustle 24/7.",
 });
@@ -87,7 +87,7 @@ export default function AboutPage() {
               About GridBeacon
             </span>
             <h1 className={styles.heroTitle}>
-              Local search, <span>made legible.</span>
+              GridBeacon makes local search <span>legible.</span>
             </h1>
             <p className={styles.lede}>
               GridBeacon is a platform for monitoring Google Business Profile
@@ -109,7 +109,7 @@ export default function AboutPage() {
                 <i />
                 <i />
                 <i />
-                <span>app.gridbeacon.com/heatmap-explorer</span>
+                <span>app.gridbeaconhq.com/heatmap-explorer</span>
               </div>
               <Image
                 src="/stitch/google-maps-rank-heatmap-dashboard.webp"

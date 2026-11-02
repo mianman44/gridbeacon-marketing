@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 import "@/components/marketing/stitch-pricing.css";
 export const metadata: Metadata = pageMetadata({
   path: "/pricing",
-  title: "Pricing & Scan Credits",
+  title: "Local Rank Tracker Pricing: Plans From $0",
   description:
     "GridBeacon plans from $0 to $69.99 a month. One credit per grid point, 500 free credits at signup, monthly credit allowances and one-time top-up packs.",
 });

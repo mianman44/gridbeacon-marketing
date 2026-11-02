@@ -79,7 +79,7 @@ const FAQS: [string, string][] = [
 export default function ServiceAreaBusinessPage() {
   return (
     <SeoLandingPage>
-      <ProductPageStructuredData name="Service-Area Business Rank Tracking" path={PATH} faqs={FAQS} />
+      <ProductPageStructuredData name="Service-Area Business Rank Tracking" path={PATH} />
 
       <Hero
         eyebrow="Service-area businesses"
