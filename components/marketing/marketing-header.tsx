@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LOGIN_URL, SIGNUP_URL } from "@/lib/seo";
 import { trackEvent } from "@/lib/tracking";
-import { OFFER_LIVE_AT_BUILD, UPGRADE_OFFER, offerTimeLeft } from "@/lib/upgrade-offer";
+import { OFFER_LIVE_AT_BUILD, UPGRADE_OFFER, offerEndLabel, offerTimeLeft } from "@/lib/upgrade-offer";
 import styles from "./stitch-header.module.css";
 
 const links = [
@@ -45,7 +45,9 @@ export function MarketingHeader() {
         <span aria-hidden="true">🎁</span>{" "}
         <strong>{UPGRADE_OFFER.percentOff}% off your first {UPGRADE_OFFER.months} months</strong>
         <span className={styles.offerLong}> on any monthly plan</span>
-        {offerLeft && <>{" · ends in "}<span className={styles.offerTimer}>{offerLeft}</span></>}
+        {offerLeft
+          ? <>{" · ends in "}<span className={styles.offerTimer}>{offerLeft}</span></>
+          : <>{" · ends "}{offerEndLabel()}</>}
         {" · "}<span className={styles.offerCta}>Start free →</span>
       </a>
     )}

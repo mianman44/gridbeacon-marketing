@@ -47,6 +47,10 @@ export function offerPrice(price: string): string {
   return `$${(Math.round(amount * (100 - UPGRADE_OFFER.percentOff)) / 100).toFixed(2)}`;
 }
 
+/* "Nov 30": the deadline as plain text, the same on the server and in
+   the browser. The header shows it until the countdown takes over, so
+   readers that never run JavaScript (AI tools, link previews) still
+   see when the offer ends. */
 export function offerEndLabel(): string {
   return new Date(UPGRADE_OFFER.endsAt).toLocaleDateString("en-US", {
     month: "short",
