@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LOGIN_URL, SIGNUP_URL } from "@/lib/seo";
 import { trackEvent } from "@/lib/tracking";
-import { UPGRADE_OFFER, offerTimeLeft } from "@/lib/upgrade-offer";
+import { OFFER_LIVE_AT_BUILD, UPGRADE_OFFER, offerTimeLeft } from "@/lib/upgrade-offer";
 import styles from "./stitch-header.module.css";
 
 const links = [
@@ -20,10 +20,10 @@ export function MarketingHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   /* The promotion bar sits inside the fixed header, so it and the
-     spacer grow together. Rendered on the server while the offer runs;
-     the browser takes it away the moment it has ended, even before the
-     site is next rebuilt. */
-  const [offerLive, setOfferLive] = useState(true);
+     spacer grow together. Rendered on the server only if the offer was
+     running at build time; the browser takes it away the moment it has
+     ended, even before the site is next rebuilt. */
+  const [offerLive, setOfferLive] = useState(OFFER_LIVE_AT_BUILD);
   /* Filled after mount so server and client first renders agree; ticks
      each minute, each second in the last hour, and hides the bar at 0. */
   const [offerLeft, setOfferLeft] = useState<string | null>(null);

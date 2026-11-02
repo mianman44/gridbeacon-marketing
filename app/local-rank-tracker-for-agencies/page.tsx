@@ -19,6 +19,7 @@ import {
   Toc,
 } from "@/components/marketing/seo-landing";
 import { ProductPageStructuredData } from "@/components/marketing/structured-data";
+import { IndustryLinks } from "@/components/marketing/industry-page";
 import { COMPETITORS_CHECKED, SOURCES } from "@/lib/competitors";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
@@ -435,6 +436,7 @@ export default function AgencyPage() {
           <TextLink href="/best-local-rank-trackers">See all local rank trackers compared</TextLink>
         </InlineCta>
         <RelatedComparisons current={PATH} />
+        <IndustryLinks lead="Client trades with their own guide:" />
       </Section>
 
       <Section

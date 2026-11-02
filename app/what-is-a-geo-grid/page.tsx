@@ -257,7 +257,8 @@ export default function WhatIsAGeoGridPage() {
         />
         <InlineCta>
           Grid sizes in GridBeacon run from 3 × 3 to 21 × 21 and the radius
-          from 0.1 to 100 miles. <TextLink href="/pricing">See what each size costs in credits</TextLink>.
+          from 0.1 to 100 miles. <TextLink href="/pricing">See what each size costs in credits</TextLink>, or
+          read <TextLink href="/blog/geo-grid-size-and-radius">how to choose a geo-grid size and radius</TextLink>.
         </InlineCta>
       </Section>
 

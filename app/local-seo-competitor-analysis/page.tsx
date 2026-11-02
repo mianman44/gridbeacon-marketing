@@ -228,6 +228,8 @@ export default function CompetitorAnalysisPage() {
         <InlineCta>
           <TextLink href="/what-is-a-geo-grid">How geo-grids work</TextLink>
           {" · "}
+          <TextLink href="/blog/why-google-maps-rankings-dropped">Google Maps rankings dropped? A diagnosis checklist</TextLink>
+          {" · "}
           <TextLink href="/local-seo-report">Turn the analysis into a client report</TextLink>
           {" · "}
           <TextLink href="/google-maps-rank-tracker">Google Maps rank tracker</TextLink>

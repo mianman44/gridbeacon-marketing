@@ -62,6 +62,20 @@ export function FaqStructuredData({ items }: { items: [string, string][] }) {
   );
 }
 
+/* The question/answer pairs of a Stitch page's FAQ section, read from
+   the same markup string the page renders, so the FAQPage schema
+   always matches what visitors see. The section starts at its
+   "Frequently asked questions" heading; each question is an h3/h4 and
+   its answer the next .faq-answer div or paragraph. */
+export function faqsFromMarkup(html: string): [string, string][] {
+  const start = html.search(/Frequently Asked Questions/i);
+  if (start < 0) return [];
+  const section = html.slice(start, html.indexOf("</section>", start));
+  const text = (fragment: string) => fragment.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  return [...section.matchAll(/<h[34][^>]*>([\s\S]*?)<\/h[34]>[\s\S]*?<(?:div class="faq-answer[^"]*"|p[^>]*)>([\s\S]*?)<\/(?:div|p)>/g)]
+    .map(([, question, answer]) => [text(question), text(answer)]);
+}
+
 function softwareApplication() {
   return {
     "@type": "SoftwareApplication",
@@ -243,6 +257,66 @@ export function TutorialsStructuredData() {
                 embedUrl: `https://www.youtube-nocookie.com/embed/${tutorial.id}`,
               },
             })),
+          },
+        ],
+      }}
+    />
+  );
+}
+
+/* The blog index: a Blog node listing every post. */
+export function BlogStructuredData({
+  posts,
+}: {
+  posts: readonly { slug: string; title: string; description: string; date: string }[];
+}) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          breadcrumb("Blog", "/blog"),
+          {
+            "@type": "Blog",
+            "@id": `${SITE_URL}/blog#blog`,
+            name: "GridBeacon Blog",
+            url: `${SITE_URL}/blog`,
+            inLanguage: "en",
+            publisher: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "GridBeacon", url: SITE_URL },
+            blogPost: posts.map((post) => ({
+              "@type": "BlogPosting",
+              headline: post.title,
+              description: post.description,
+              datePublished: post.date,
+              url: `${SITE_URL}/blog/${post.slug}`,
+            })),
+          },
+        ],
+      }}
+    />
+  );
+}
+
+/* The free rank checker: a tool anyone can use without an account. */
+export function FreeRankCheckerStructuredData() {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          breadcrumb("Google Maps Rank Checker", "/google-maps-rank-checker"),
+          {
+            "@type": "WebApplication",
+            "@id": `${SITE_URL}/google-maps-rank-checker#tool`,
+            name: "Free Google Maps Rank Checker",
+            url: `${SITE_URL}/google-maps-rank-checker`,
+            applicationCategory: "BusinessApplication",
+            operatingSystem: "Web browser",
+            isAccessibleForFree: true,
+            description:
+              "Checks a business's Google Maps position at 9 points (a 3 × 3 grid) around it for one keyword, free and without an account.",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+            provider: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "GridBeacon", url: SITE_URL },
           },
         ],
       }}

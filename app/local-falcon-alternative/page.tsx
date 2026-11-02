@@ -303,10 +303,10 @@ export default function LocalFalconAlternativePage() {
               See the full Google Maps rank tracker
             </TextLink>
             {" · "}
-            <TextLink href="/reports/garage-door-20260908/report.pdf">Open a historical sample report (PDF)</TextLink>
+            <TextLink href="/local-seo-report">See what a local SEO report includes</TextLink>
           </p>
         </Split>
-        <Note>Each point represents a search from a sampled location. Rankings can differ with coordinates, keyword, language and scan time. Compare matching settings over time; a heatmap measures rankings, not calls or revenue. The sample report illustrates the paid reporting feature and carries GridBeacon branding.</Note>
+        <Note>Each point represents a search from a sampled location. Rankings can differ with coordinates, keyword, language and scan time. Compare matching settings over time; a heatmap measures rankings, not calls or revenue.</Note>
       </Section>
 
       <Section

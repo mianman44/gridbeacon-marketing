@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
-import { BreadcrumbStructuredData } from "@/components/marketing/structured-data";
+import { FreeRankCheckerStructuredData } from "@/components/marketing/structured-data";
 import { GoogleMapsRankCheckerPage } from "@/components/marketing/rank-checker/rank-checker-page";
 import { pageMetadata } from "@/lib/seo";
 
@@ -34,7 +34,7 @@ export const metadata = pageMetadata({
 export default function Page() {
   return (
     <>
-      <BreadcrumbStructuredData name="Google Maps Rank Checker" path="/google-maps-rank-checker" />
+      <FreeRankCheckerStructuredData />
       <MarketingHeader />
       <div className={`${geist.variable} ${mono.variable}`}>
         <GoogleMapsRankCheckerPage />

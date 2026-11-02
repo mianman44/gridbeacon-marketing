@@ -19,7 +19,7 @@ import {
   Toc,
 } from "@/components/marketing/seo-landing";
 import { ProductPageStructuredData } from "@/components/marketing/structured-data";
-import { COMPETITORS_CHECKED, SOURCES } from "@/lib/competitors";
+import { COMPETITORS_CHECKED, LOCAL_VIKING_HELP_READ, SOURCES } from "@/lib/competitors";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
 /*
@@ -54,7 +54,7 @@ export const metadata: Metadata = pageMetadata({
 const FAQS: [string, string][] = [
   [
     "Is Local Viking now called Local Optics?",
-    `Local Viking's pricing and sign-up now point to Local Optics (app.localoptics.com), and its site uses both names, while its help centre is still branded Local Viking. The plans below are the ones on the Local Optics pricing page, checked in ${COMPETITORS_CHECKED}.`,
+    `Local Viking's pricing and sign-up now point to Local Optics (app.localoptics.com), its site uses both names, and its scheduling help now lives in the Local Optics knowledge base. The plans below are the ones on the Local Optics pricing page, checked in ${COMPETITORS_CHECKED}.`,
   ],
   [
     "Is GridBeacon a good Local Viking alternative?",
@@ -62,11 +62,11 @@ const FAQS: [string, string][] = [
   ],
   [
     "How do Local Viking's GeoGrid credits compare with GridBeacon's?",
-    "Both charge one credit per grid point. Local Viking's Enterprise plan includes 32,400 GeoGrid credits and 70 listings for $200 a month; GridBeacon's Agency plan includes 32,000 credits and unlimited businesses for $69.99. Local Viking's help centre says GeoGrid credits roll over month to month; GridBeacon's plan credits reset each cycle, while top-up credits carry over.",
+    "Both charge one credit per grid point. Local Viking's Enterprise plan includes 32,400 GeoGrid credits and 70 listings for $200 a month; GridBeacon's Agency plan includes 32,000 credits and unlimited businesses for $69.99. Local Viking's help centre (read in September 2026, since taken down) said GeoGrid credits roll over month to month; GridBeacon's plan credits reset each cycle, while top-up credits carry over.",
   ],
   [
     "What grid sizes do Local Viking and GridBeacon support?",
-    "Local Viking's help centre lists grids from 3 × 3 to 13 × 13 (up to 169 points), with 0.1 to 10 miles between points. GridBeacon supports every odd size from 3 × 3 to 21 × 21 (up to 441 points) with a radius from 0.1 to 100 miles.",
+    "Local Viking's help centre, when read in September 2026, listed grids from 3 × 3 to 13 × 13 (up to 169 points), with 0.1 to 10 miles between points. GridBeacon supports every odd size from 3 × 3 to 21 × 21 (up to 441 points) with a radius from 0.1 to 100 miles.",
   ],
   [
     "Can GridBeacon schedule Google Business Profile posts?",
@@ -205,7 +205,7 @@ export default function LocalVikingAlternativePage() {
             ["Coverage", "Radius from 0.1 to 100 miles", "0.1 to 10 miles between points"],
             ["Credit model", "1 credit per grid point", "1 credit per grid point"],
             ["Unused credits", "Plan credits reset each cycle; top-ups carry over", "GeoGrid credits roll over"],
-            ["Scheduled scans", "Daily, weekly, biweekly or monthly, with email alerts", "Weekly or monthly"],
+            ["Scheduled scans", "Daily, weekly, biweekly or monthly, with email alerts", "Recurring schedules: weekly, monthly or a custom interval"],
             ["Competitor data", "Every business at every point; any competitor's grid and a Gap view", "Competitor geogrids by Maps URL, search or Place ID"],
             ["AI analysis", "AI Ranking Intelligence PDF and AI Action Plan (paid plans)", "Not listed"],
             ["Reviews", "Review Intelligence: analysis of up to 500 reviews", "Review management"],
@@ -219,15 +219,13 @@ export default function LocalVikingAlternativePage() {
               <TextLink href={SOURCES.localOpticsPricing} rel="nofollow noopener">
                 its pricing page
               </TextLink>{" "}
-              and help centre articles on{" "}
-              <TextLink href={SOURCES.localVikingGrids} rel="nofollow noopener">
-                creating geogrids
-              </TextLink>{" "}
-              and{" "}
-              <TextLink href={SOURCES.localVikingCredits} rel="nofollow noopener">
-                credits
+              , checked in {COMPETITORS_CHECKED}, and{" "}
+              <TextLink href={SOURCES.localOpticsSchedules} rel="nofollow noopener">
+                its knowledge base on scheduled geogrids
               </TextLink>
-              , checked in {COMPETITORS_CHECKED}.
+              . Grid sizes, point spacing and credit rollover are from Local
+              Viking&apos;s help centre as read in {LOCAL_VIKING_HELP_READ};
+              those articles have since been taken down.
             </>
           }
         />

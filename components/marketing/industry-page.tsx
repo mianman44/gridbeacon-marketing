@@ -40,9 +40,15 @@ const MODEL_LABEL: Record<Industry["model"], string> = {
 
 export function IndustryPage({ industry }: { industry: Industry }) {
   const scan = exampleScan(industry);
-  const related = industry.related
+  /* Every other trade, the closest ones first: each industry page is
+     otherwise reachable only through the hub. */
+  const closest = industry.related
     .map((slug) => INDUSTRIES.find((other) => other.slug === slug))
     .filter((other): other is Industry => !!other);
+  const related = [
+    ...closest,
+    ...INDUSTRIES.filter((other) => other.slug !== industry.slug && !closest.includes(other)),
+  ];
 
   return (
     <SeoLandingPage>
@@ -207,6 +213,22 @@ export function IndustryPage({ industry }: { industry: Industry }) {
         secondary={{ label: "For Agencies", href: "/local-rank-tracker-for-agencies" }}
       />
     </SeoLandingPage>
+  );
+}
+
+/* A line of links to every trade page, for the commercial pages that
+   speak to the same buyers (agencies, service-area businesses). */
+export function IndustryLinks({ lead = "Rank tracking by trade:" }: { lead?: string }) {
+  return (
+    <InlineCta>
+      {lead}{" "}
+      {INDUSTRIES.map((industry, index) => (
+        <span key={industry.slug}>
+          {index > 0 && " · "}
+          <TextLink href={industry.path}>{industry.titleNoun}</TextLink>
+        </span>
+      ))}
+    </InlineCta>
   );
 }
 

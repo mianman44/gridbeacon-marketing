@@ -63,7 +63,7 @@ function ReadYourResults() {
   if (!tutorial) return null;
 
   return <section className={styles.watch} aria-labelledby="watch-heading"><div className={`${styles.container} ${styles.watchGrid}`}>
-    <div><span className={styles.eyebrow}>3-MINUTE TUTORIAL</span><h2 id="watch-heading">Not Sure How to Read Your Heatmap?</h2><p>Learn what the colors mean, how Visibility and Average Rank are worked out, and how to spot your strong and weak areas.</p><Link className={styles.watchLink} href="/tutorials">Browse all tutorials <ArrowRight size={14} aria-hidden="true" /></Link></div>
+    <div><span className={styles.eyebrow}>3-MINUTE TUTORIAL</span><h2 id="watch-heading">Not Sure How to Read Your Heatmap?</h2><p>Learn what the colors mean, how Visibility and Average Rank are worked out, and how to spot your strong and weak areas.</p><Link className={styles.watchLink} href="/tutorials">Browse all tutorials <ArrowRight size={14} aria-hidden="true" /></Link> <Link className={styles.watchLink} href="/blog/how-to-read-google-maps-ranking-heatmap">Read the heatmap guide <ArrowRight size={14} aria-hidden="true" /></Link></div>
     <div className={styles.watchVideo}><TutorialVideo tutorial={tutorial} /></div>
   </div></section>;
 }

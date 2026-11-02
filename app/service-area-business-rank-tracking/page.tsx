@@ -17,6 +17,7 @@ import {
   Toc,
 } from "@/components/marketing/seo-landing";
 import { ProductPageStructuredData } from "@/components/marketing/structured-data";
+import { IndustryLinks } from "@/components/marketing/industry-page";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
 /*
@@ -285,6 +286,7 @@ export default function ServiceAreaBusinessPage() {
           {" · "}
           <TextLink href="/pricing">Pricing</TextLink>
         </InlineCta>
+        <IndustryLinks lead="Service-area trades we cover:" />
       </Section>
 
       <Section id="faq" tone="tint" eyebrow="FAQ" title="Service-Area Business Questions">

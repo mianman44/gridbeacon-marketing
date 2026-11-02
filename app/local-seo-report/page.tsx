@@ -252,6 +252,8 @@ export default function LocalSeoReportPage() {
           ]}
         />
         <InlineCta>
+          <TextLink href="/blog/share-of-local-voice">What share of local voice measures</TextLink>
+          {" · "}
           <TextLink href="/local-rank-tracker-for-agencies">Local rank tracker for agencies</TextLink>
           {" · "}
           <TextLink href="/multi-location-rank-tracking">Multi-location rank tracking</TextLink>

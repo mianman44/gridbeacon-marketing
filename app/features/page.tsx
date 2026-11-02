@@ -2,7 +2,7 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import type { Metadata } from "next";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { featuresMarkup } from "@/components/marketing/stitch-features-markup";
-import { BreadcrumbStructuredData } from "@/components/marketing/structured-data";
+import { ProductPageStructuredData } from "@/components/marketing/structured-data";
 import { pageMetadata } from "@/lib/seo";
 import "@/components/marketing/stitch-features.css";
 import { Cards, Section } from "@/components/marketing/seo-landing";
@@ -20,7 +20,7 @@ export const metadata: Metadata = pageMetadata({
 export default function FeaturesPage() {
   return <>
     <link rel="stylesheet" href="/features-utilities.css" />
-    <BreadcrumbStructuredData name="Features" path="/features" />
+    <ProductPageStructuredData name="Features" path="/features" />
     <MarketingHeader />
     <div id="stitch-features" dangerouslySetInnerHTML={{ __html: featuresMarkup }} />
     <div className={landingStyles.page}><Section id="explore-workflows" tone="tint" eyebrow="Explore the workflows" title="Make GridBeacon Part of Your Routine">

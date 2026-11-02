@@ -21,9 +21,9 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   path: "/contact",
-  title: "Contact",
+  title: "Contact GridBeacon Support",
   description:
-    "Contact GridBeacon support for help with your account, scans, subscription, billing or credits.",
+    "Questions about GridBeacon scans, credits, billing or your account? Email founder@gridbeaconhq.com and get a reply from a person.",
 });
 
 const SUPPORT_EMAIL = "founder@gridbeaconhq.com";

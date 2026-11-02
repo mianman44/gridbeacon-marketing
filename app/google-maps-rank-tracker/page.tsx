@@ -21,6 +21,7 @@ import {
   TextLink,
 } from "@/components/marketing/seo-landing";
 import { ProductPageStructuredData } from "@/components/marketing/structured-data";
+import { IndustryLinks } from "@/components/marketing/industry-page";
 import { GRIDBEACON } from "@/lib/competitors";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
@@ -656,6 +657,8 @@ export default function GoogleMapsRankTrackerPage() {
           <TextLink href="/how-it-works">Read the full walkthrough</TextLink>
           {" · "}
           <TextLink href="/google-maps-rank-checker">Try the free rank checker</TextLink>
+          {" · "}
+          <TextLink href="/blog/how-to-read-google-maps-ranking-heatmap">How to read a Google Maps ranking heatmap</TextLink>
         </InlineCta>
       </Section>
 
@@ -694,6 +697,7 @@ export default function GoogleMapsRankTrackerPage() {
           {" · "}
           <TextLink href="/local-falcon-alternative">GridBeacon vs Local Falcon</TextLink>
         </InlineCta>
+        <IndustryLinks lead="Google Maps rank tracking for:" />
       </Section>
 
       <Section

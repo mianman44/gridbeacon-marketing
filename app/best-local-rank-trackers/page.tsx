@@ -379,13 +379,14 @@ export default function BestLocalRankTrackersPage() {
             ]}
             cons={[
               "Plans capped at 1 to 70 listings.",
-              "Grids up to 13 × 13; weekly or monthly schedules.",
+              "Grids up to 13 × 13 (per its former help centre).",
               "32,400 GeoGrid credits cost $200 a month.",
             ]}
             source={
               <>
                 Sources: <TextLink href={SOURCES.localOpticsPricing} rel="nofollow noopener">Local Optics pricing</TextLink>,{" "}
-                <TextLink href={SOURCES.localVikingGrids} rel="nofollow noopener">Local Viking help centre</TextLink>.{" "}
+                <TextLink href={SOURCES.localOpticsSchedules} rel="nofollow noopener">Local Optics knowledge base</TextLink>;
+                grid size from Local Viking&apos;s help centre as read in September 2026, since taken down.{" "}
                 <TextLink href="/local-viking-alternative">GridBeacon vs Local Viking</TextLink>
               </>
             }

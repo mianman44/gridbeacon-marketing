@@ -6,7 +6,7 @@ import { BLOG_POSTS } from "@/lib/blog";
 import { pageMetadata } from "@/lib/seo";
 
 const post = BLOG_POSTS[1];
-const base = pageMetadata({ path: `/blog/${post.slug}`, title: post.title, description: post.description, image: { url: post.image, width: post.imageWidth, height: post.imageHeight, alt: post.imageAlt } });
+const base = pageMetadata({ path: `/blog/${post.slug}`, title: post.seoTitle, absoluteTitle: true, description: post.description, image: { url: post.image, width: post.imageWidth, height: post.imageHeight, alt: post.imageAlt } });
 export const metadata = { ...base, openGraph: { ...base.openGraph, type: "article" as const, publishedTime: post.date, modifiedTime: post.date } };
 
 export default function HeatmapGuide() {

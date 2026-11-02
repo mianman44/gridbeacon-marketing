@@ -16,9 +16,9 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   path: "/security",
-  title: "Security",
+  title: "Security & Data Protection",
   description:
-    "How GridBeacon protects customer accounts, application data and billing workflows, and how to report a security concern.",
+    "How GridBeacon protects customer accounts and application data, why payments go through Paddle rather than us, and how to report a security concern privately.",
 });
 
 /* Deliberately describes controls that exist rather than claiming
@@ -41,7 +41,7 @@ export default function SecurityPage() {
         <section className={`${styles.container} ${styles.pageHero}`}>
           <p className={styles.eyebrow}>Security / 01</p>
           <h1>
-            Practical controls,
+            GridBeacon security: practical controls,
             <br />
             <span>plainly described.</span>
           </h1>

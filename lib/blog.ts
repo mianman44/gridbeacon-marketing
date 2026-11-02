@@ -1,6 +1,10 @@
 export const BLOG_POSTS = [{
   slug: "how-to-check-google-maps-ranking",
   title: "How to Check Your Google Maps Ranking Across a City",
+  /* The <title>, used as-is: kept to ~60 characters so results do not cut it off. */
+  seoTitle: "How to Check Your Google Maps Ranking Across a City",
+  /* Finishes "Read the guide to ..." on the blog index. */
+  anchor: "checking your Google Maps ranking",
   description: "Run your first geo-grid scan, choose useful settings and turn a map of local rankings into a repeatable baseline.",
   date: "2026-10-29",
   category: "Rank tracking",
@@ -13,6 +17,8 @@ export const BLOG_POSTS = [{
 }, {
   slug: "how-to-read-google-maps-ranking-heatmap",
   title: "How to Read a Google Maps Ranking Heatmap: 5 Worked Examples",
+  seoTitle: "How to Read a Google Maps Ranking Heatmap (5 Examples)",
+  anchor: "reading a Google Maps ranking heatmap",
   description: "Learn what strong, uneven and limited coverage look like using real GridBeacon scans, with five worked interpretations and clear next steps.",
   date: "2026-10-29",
   category: "Heatmap guides",
@@ -25,6 +31,8 @@ export const BLOG_POSTS = [{
 }, {
   slug: "why-google-maps-rankings-dropped",
   title: "Why Your Google Maps Rankings Dropped: A Step-by-Step Checklist",
+  seoTitle: "Google Maps Rankings Dropped? A Step-by-Step Checklist",
+  anchor: "diagnosing a Google Maps ranking drop",
   description: "Check scan settings, listing status, profile changes and competitors before deciding why your Google Maps rankings fell. Includes a repeatable diagnosis checklist.",
   date: "2026-10-29",
   category: "Troubleshooting",
@@ -34,6 +42,34 @@ export const BLOG_POSTS = [{
   imageWidth: 1498,
   imageHeight: 1050,
   caption: "Historical scan: jeweler new york, October 4, 2026, 61 points and a seven-mile radius. This image shows limited coverage at one moment; it does not establish a ranking drop. The business name is obscured.",
+}, {
+  slug: "geo-grid-size-and-radius",
+  title: "What Grid Size and Radius Should You Use for a Geo-Grid Scan?",
+  seoTitle: "Geo-Grid Size and Radius: How to Choose (With Examples)",
+  anchor: "choosing a geo-grid size and radius",
+  description: "Pick a geo-grid size and radius that match where your customers are. Point spacing, credit costs and starting settings for storefronts and service-area businesses.",
+  date: "2026-11-02",
+  category: "Scan setup",
+  author: "GridBeacon",
+  image: "/marketing/google-maps-rank-tracker/geo-grid-scan-dallas-20260919.webp",
+  imageAlt: "A 5 × 5 GridBeacon geo-grid over Dallas, each of the 25 points coloured by a garage door company's Google Maps rank there",
+  imageWidth: 1600,
+  imageHeight: 780,
+  caption: "A real 5 × 5 GridBeacon scan for “garage door repair” in Dallas: 25 points, one Google Maps search each. The business name is obscured. This is an example, not a recommendation for your area.",
+}, {
+  slug: "share-of-local-voice",
+  title: "Share of Local Voice: What It Measures and How to Calculate It",
+  seoTitle: "Share of Local Voice: How to Calculate It (With Examples)",
+  anchor: "share of local voice",
+  description: "Share of local voice is the percentage of geo-grid points where a business ranks in the top 3. The formula, worked examples, and how to read it beside ARP and ATRP.",
+  date: "2026-11-02",
+  category: "Metrics",
+  author: "GridBeacon",
+  image: "/marketing/google-maps-rank-tracker/gap-view-example-20261031.webp",
+  imageAlt: "GridBeacon Gap view comparing a business with one competitor: green markers where the business leads, red where the competitor leads",
+  imageWidth: 1600,
+  imageHeight: 858,
+  caption: "The Gap view, with example data from a fictional business and competitors. Comparing two grids point by point shows where each one holds the top positions.",
 }] as const;
 
 export type BlogPost = (typeof BLOG_POSTS)[number];

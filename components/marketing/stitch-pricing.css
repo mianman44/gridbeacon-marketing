@@ -13,4 +13,4 @@
 @media (prefers-reduced-motion:reduce) { #stitch-pricing *, #stitch-pricing *::before, #stitch-pricing *::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
 @media(max-width:639px) { #stitch-pricing header>div { gap:8px; } #stitch-pricing header a[data-path=signup] { font-size:11px; padding:8px; } #stitch-pricing header a[data-path=home] span { font-size:15px; } #stitch-pricing header .w-8.h-8 { display:none; } }
 
-#stitch-pricing table{border-collapse:collapse;text-indent:0;border-color:inherit}#stitch-pricing button,#stitch-pricing input{font-family:inherit}#stitch-pricing button{cursor:pointer}#stitch-pricing [role=button]:focus-visible{outline:3px solid #2563eb;outline-offset:3px}#stitch-pricing [data-faq] h4{font-weight:600}
+#stitch-pricing table{border-collapse:collapse;text-indent:0;border-color:inherit}#stitch-pricing button,#stitch-pricing input{font-family:inherit}#stitch-pricing button{cursor:pointer}#stitch-pricing [role=button]:focus-visible{outline:3px solid #2563eb;outline-offset:3px}#stitch-pricing [data-faq] h3{font-weight:600}

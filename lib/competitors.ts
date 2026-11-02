@@ -13,6 +13,11 @@
 
 export const COMPETITORS_CHECKED = "September 2026";
 
+/* When the now-removed Local Viking help centre was read. Its grid
+   size, point spacing and credit rollover figures can no longer be
+   re-checked, so the pages say where and when they came from. */
+export const LOCAL_VIKING_HELP_READ = "September 2026";
+
 export const SOURCES = {
   localFalconPricing: "https://www.localfalcon.com/pricing",
   brightLocalPricing: "https://www.brightlocal.com/pricing/",
@@ -20,8 +25,10 @@ export const SOURCES = {
   whitesparkGrids: "https://whitespark.ca/local-ranking-grids/",
   whitesparkTracker: "https://whitespark.ca/local-rank-tracker/",
   localOpticsPricing: "https://app.localoptics.com/pricing",
-  localVikingCredits: "https://help.localviking.com/en/articles/2893947-keyword-and-geo-grid-credits-explained",
-  localVikingGrids: "https://help.localviking.com/en/articles/9136918-creating-geogrid",
+  /* help.localviking.com was taken down in late 2026 and its articles
+     now 404. Figures read there are dated by LOCAL_VIKING_HELP_READ and
+     no longer linked; scheduling comes from the Local Optics knowledge base. */
+  localOpticsSchedules: "https://clientportal.localoptics.com/knowledge-base/live-geogrids-vs-scheduled-geogrids-",
   semrushLocalPricing: "https://www.semrush.com/kb/1611-pricing-and-plans",
   semrushMapRankTracker: "https://www.semrush.com/kb/1399-map-rank-tracker",
   localoPricing: "https://localo.com/pricing",

@@ -19,6 +19,13 @@ export function upgradeOfferIsLive(now: number = Date.now()): boolean {
   return now < Date.parse(UPGRADE_OFFER.endsAt);
 }
 
+/* Whether the offer was running when the static pages were built.
+   Pages built after endsAt carry no offer markup at all, so crawlers
+   that never run JavaScript stop reading an expired discount. Pages
+   built before it still render the bar, and the browser hides it once
+   the offer ends (layout.tsx's inline script, then the header's timer). */
+export const OFFER_LIVE_AT_BUILD = upgradeOfferIsLive(Number(process.env.BUILD_STARTED_AT) || Date.now());
+
 /* "3d 4h 12m", then "7h 42m", then "42m 10s" in the last hour. */
 export function offerTimeLeft(now: number = Date.now()): { ms: number; text: string } {
   const ms = Math.max(0, Date.parse(UPGRADE_OFFER.endsAt) - now);

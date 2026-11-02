@@ -19,5 +19,11 @@
 .note,.related{background:#eff6ff;border:1px solid #bfdbfe;border-radius:16px;padding:24px;margin:32px 0}
 .related h2{font-size:22px;font-weight:700;margin:0 0 12px}.related ul{padding-left:20px;list-style:disc}.related li{margin:10px 0}
 .cta{display:inline-block;background:#2563eb;color:white!important;padding:14px 22px;border-radius:10px;text-decoration:none!important;font-weight:650}
+.tableWrap{overflow-x:auto;margin:24px 0;border:1px solid #cbd5e1;border-radius:14px}
+.tableWrap table{width:100%;border-collapse:collapse;font-size:16px;line-height:1.5}
+.tableWrap caption{caption-side:bottom;text-align:left;font-size:14px;color:#475569;padding:12px 16px}
+.tableWrap th,.tableWrap td{padding:10px 16px;text-align:left;border-bottom:1px solid #e2e8f0}
+.tableWrap th{background:#f8fafc;font-weight:700}
+.tableWrap tbody tr:last-child td{border-bottom:0}
 .toc{border-block:1px solid #cbd5e1;padding:20px 0;margin:32px 0}.toc ol{columns:2;font-size:16px}
 @media(max-width:700px){.wrap{padding:36px 20px 56px}.card{grid-template-columns:1fr;gap:0}.body{font-size:17px}.toc ol{columns:1}.cardBody{padding:24px}.body h2{font-size:25px}}

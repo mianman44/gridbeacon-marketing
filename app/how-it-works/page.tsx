@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { StitchHow } from "@/components/marketing/stitch-how";
-import { BreadcrumbStructuredData } from "@/components/marketing/structured-data";
+import { FaqStructuredData, ProductPageStructuredData, faqsFromMarkup } from "@/components/marketing/structured-data";
+import { howMarkup } from "@/components/marketing/stitch-how-markup";
 import { pageMetadata } from "@/lib/seo";
 import "@/components/marketing/stitch-how.css";
 export const metadata: Metadata = pageMetadata({
@@ -14,7 +15,8 @@ export const metadata: Metadata = pageMetadata({
 export default function HowItWorksPage() {
   return <>
     <link rel="stylesheet" href="/how-utilities.css" />
-    <BreadcrumbStructuredData name="How It Works" path="/how-it-works" />
+    <ProductPageStructuredData name="How It Works" path="/how-it-works" />
+    <FaqStructuredData items={faqsFromMarkup(howMarkup)} />
     <MarketingHeader />
     <main id="main-content"><StitchHow /></main>
     <MarketingFooter />

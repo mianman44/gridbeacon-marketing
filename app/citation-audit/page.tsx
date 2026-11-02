@@ -40,7 +40,7 @@ const PATH = "/citation-audit";
 
 export const metadata: Metadata = pageMetadata({
   path: PATH,
-  title: "Citation Audit: Find Business Listings With the Wrong Details | GridBeacon",
+  title: "Citation Audit Tool: Find Wrong Business Listings | GridBeacon",
   description:
     "Audit your business listings on 60+ US directories. Find wrong phone numbers, old addresses and duplicate listings, with a Citation Health score. 300 credits per audit.",
   absoluteTitle: true,

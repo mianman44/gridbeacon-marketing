@@ -5,7 +5,7 @@ import { BLOG_POSTS } from "@/lib/blog";
 import { pageMetadata } from "@/lib/seo";
 
 const post = BLOG_POSTS[0];
-const baseMetadata = pageMetadata({ path: `/blog/${post.slug}`, title: post.title, description: post.description, image: { url: post.image, width: 1498, height: 1050, alt: post.imageAlt } });
+const baseMetadata = pageMetadata({ path: `/blog/${post.slug}`, title: post.seoTitle, absoluteTitle: true, description: post.description, image: { url: post.image, width: 1498, height: 1050, alt: post.imageAlt } });
 export const metadata = { ...baseMetadata, openGraph: { ...baseMetadata.openGraph, type: "article" as const, publishedTime: post.date, modifiedTime: post.date } };
 
 export default function CheckGoogleMapsRankingPage() {

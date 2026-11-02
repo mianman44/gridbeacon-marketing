@@ -85,3 +85,49 @@ export const AUTOMATED_TRACKING: CommercialPageContent = {
   closing: { title: "Make Ranking History Part of Your Routine", body: "Try your first geo-grid with 500 free credits. Upgrade when you are ready to keep scans running on a schedule." },
   related: [["Google Maps rank tracker", "/google-maps-rank-tracker"], ["Multi-location tracking", "/multi-location-rank-tracking"], ["GBP monitoring", "/google-business-profile-monitoring"]],
 };
+
+// "GMB rank tracker" is the older name buyers still search. This page
+// takes the profile's point of view (finding it, what to check beside
+// the grid) so it does not repeat /google-maps-rank-tracker, which owns
+// "Google Maps rank tracker". Facts checked against the Add Business
+// search, scan settings and pricing in November 2026.
+export const GMB_RANK_TRACKER: CommercialPageContent = {
+  path: "/gmb-rank-tracker", name: "GMB Rank Tracker",
+  title: "A GMB Rank Tracker That Maps Your Google Business Profile Rankings",
+  description: "Track where your Google Business Profile (formerly GMB) ranks on Google Maps from every point of a geo-grid. No profile login needed. 500 free credits.",
+  lede: "Google My Business is now called Google Business Profile, but the question is the same: where does your listing show up in the map pack? GridBeacon finds your profile by name or Google Maps link, searches your keyword from every point of a grid around it, and shows the rank your profile holds at each one.",
+  facts: ["No GBP login or manager access needed", "3 × 3 to 21 × 21 grids", "500 free credits, no card"],
+  access: "Create an account with 500 free scan credits. No card required; scheduled scans need a paid plan.",
+  preview: { heading: "Track a profile, not just a keyword", rows: [["Find the profile", "Search by business name and city, or paste its Google Maps link."], ["Scan the area around it", "One Google Maps search per grid point, one credit each."], ["Read the profile's reach", "See where it holds the top 3, where it slips and who takes its place."]], caption: "Workflow overview. GridBeacon reads public Google Maps results; it never signs in to or edits the profile." },
+  features: [
+    { title: "Any public profile", body: "Track your own Google Business Profile, a client's or a competitor's. GridBeacon reads public Maps results, so no owner or manager access is needed." },
+    { title: "The profile's rank at every point", body: "Each grid point records where the profile ranked for your keyword, from #1 to beyond the results captured, coloured on a heatmap." },
+    { title: "Who outranks the profile", body: "Click any point to see every business Google listed there, with ratings and review counts. Open any competitor's grid from the same scan at no extra cost." },
+    { title: "Service-area profiles", body: "A profile with a hidden address still needs a centre point. Set it and the radius yourself so the grid covers the area you actually serve." },
+    { title: "Profile changes beside rankings", body: "On paid plans, GBP Activity monitoring keeps a timeline of detected profile changes, so a category or phone edit can be checked against the next scan." },
+    { title: "Reviews in context", body: "Review Intelligence analyses up to 500 public Google reviews for the profile and its competitors, to compare review growth with where each one ranks." },
+  ],
+  workflow: [
+    { title: "Add the profile", body: "Search for the business by name and city, or paste its Google Maps link, and confirm the right listing (the right branch, for multi-location brands)." },
+    { title: "Choose keywords and a grid", body: "Pick the service terms customers search and a grid and radius that cover your customers. The credit cost shows before you scan." },
+    { title: "Run the scan", body: "GridBeacon searches the keyword on Google Maps from each point and records the profile's position and the businesses ranked around it." },
+    { title: "Repeat on the same settings", body: "Rescan with the same centre, grid and radius, or schedule it on a paid plan, so changes in the profile's reach are real and comparable." },
+  ],
+  budget: { intro: "One credit per grid point, whichever profile you track. These examples scan one profile for three keywords, four times a month.", columns: ["Grid", "Calculation", "Credits a month"], rows: [["5 × 5", "3 × 25 × 4", "300"], ["9 × 9", "3 × 81 × 4", "972"], ["13 × 13", "3 × 169 × 4", "2,028"]], caption: "The 500 free signup credits cover the first scans. Paid plans include 8,000 to 32,000 credits a month; GBP monitoring and review analysis use credits of their own." },
+  applications: [
+    { title: "Business owners", body: "See how far your profile's top-3 visibility reaches before deciding which neighbourhoods or services to work on." },
+    { title: "GBP managers and agencies", body: "Track every client profile in one workspace, with unlimited profiles and keywords on paid plans." },
+    { title: "Multi-location brands", body: "Track each location's own profile with a grid around that branch, rather than one ranking for the whole brand." },
+  ],
+  limits: "GridBeacon measures where a profile ranks; it does not edit, verify or optimise Google Business Profiles, publish posts or reply to reviews. Rankings vary with location, keyword and time, so compare scans that use the same settings.",
+  faqs: [
+    ["Is a GMB rank tracker the same as a Google Business Profile rank tracker?", "Yes. Google renamed Google My Business to Google Business Profile in 2021. A GMB rank tracker, GBP rank tracker and Google Maps rank tracker all measure where a business's profile appears in Google Maps and local pack results."],
+    ["Do I need access to the Google Business Profile to track it?", "No. GridBeacon reads public Google Maps results, so you can track any business's profile, including competitors', without logging in to it or being a manager."],
+    ["How do I add my profile to GridBeacon?", "Search for the business by name and city, or paste its Google Maps link, then confirm the listing. For brands with several locations, add each branch's own profile."],
+    ["Can I track a service-area business with a hidden address?", "Yes. Choose the grid's centre and radius yourself so the scan covers the area you serve. See the service-area business guide for how to place it."],
+    ["How much does GMB rank tracking cost?", "One credit per grid point: a 9 × 9 scan uses 81 credits. New accounts get 500 free credits. Paid plans start at $19.99 a month for 8,000 credits, with unlimited profiles and keywords."],
+    ["Does GridBeacon track changes to the profile itself?", "On paid plans, GBP Activity monitoring records detected public profile changes such as name, category, phone, hours, reviews and photos, for 300 credits per 30 days at the standard cost."],
+  ],
+  closing: { title: "See Where Your Profile Really Ranks", body: "Add your Google Business Profile, run a geo-grid with your 500 free credits, and see its rank at every point around you." },
+  related: [["Google Maps rank tracker", "/google-maps-rank-tracker"], ["GBP monitoring", "/google-business-profile-monitoring"], ["Service-area businesses", "/service-area-business-rank-tracking"], ["Free Google Maps rank checker", "/google-maps-rank-checker"]],
+};
