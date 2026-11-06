@@ -1,0 +1,348 @@
+/* The app's heatmap pins (frontend/components/heatmap/MapHeatmap.tsx),
+   sized for a 9-point grid. Keep the two in step. */
+
+.frame {
+  position: relative;
+  height: 520px;
+  background: #e8edf3;
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+}
+
+.marker {
+  --marker-wrapper: 58px;
+  --marker-core: 36px;
+  --marker-font: 14px;
+
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: var(--marker-wrapper);
+  height: var(--marker-wrapper);
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  transform-origin: bottom center;
+  transition: transform 160ms ease, filter 160ms ease;
+}
+
+.marker:hover {
+  transform: translateY(-2px) scale(1.07);
+  filter: drop-shadow(0 8px 12px rgba(15, 23, 42, 0.15));
+}
+
+.marker:focus-visible .pin {
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #2583ea;
+}
+
+.outer {
+  position: relative;
+  display: block;
+  width: var(--marker-core);
+  height: calc(var(--marker-core) * 1.3);
+}
+
+.outer::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: calc(var(--marker-core) * 0.55);
+  height: calc(var(--marker-core) * 0.18);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(15, 23, 42, 0.34), rgba(15, 23, 42, 0));
+  pointer-events: none;
+}
+
+.pin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--marker-core);
+  height: var(--marker-core);
+  border-radius: 9999px 9999px 2px 9999px;
+  transform: rotate(45deg);
+  background: var(--rank-fill);
+  background:
+    radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.5) 0, rgba(255, 255, 255, 0) 24%),
+    radial-gradient(
+      circle at 30% 30%,
+      color-mix(in srgb, var(--rank-fill), #fff 40%) 0%,
+      var(--rank-fill) 46%,
+      color-mix(in srgb, var(--rank-fill), #000 24%) 100%
+    );
+  border: 1px solid var(--rank-border);
+  box-shadow:
+    inset -2px -2px 5px rgba(0, 0, 0, 0.22),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.35),
+    3px 3px 8px -2px rgba(15, 23, 42, 0.34);
+  transition: box-shadow 150ms ease;
+}
+
+.glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--marker-core);
+  height: var(--marker-core);
+  border-radius: 9999px 9999px 2px 9999px;
+  background: var(--rank-fill);
+  filter: blur(calc(var(--marker-core) * 0.26));
+  opacity: 0.85;
+  transform: rotate(45deg) scale(1.18);
+  pointer-events: none;
+}
+
+.core {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--marker-core);
+  height: var(--marker-core);
+  color: var(--rank-text);
+  font-size: var(--marker-font);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  pointer-events: none;
+  text-shadow: 0 1px 1px rgba(15, 23, 42, 0.1);
+}
+
+.marker:hover .pin {
+  box-shadow:
+    inset -2px -2px 5px rgba(0, 0, 0, 0.22),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.35),
+    4px 4px 12px -2px rgba(15, 23, 42, 0.38);
+}
+
+.selected {
+  z-index: 50;
+}
+
+.selected .pin {
+  box-shadow:
+    inset -2px -2px 5px rgba(0, 0, 0, 0.22),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.35),
+    0 0 0 3px #ffffff,
+    0 0 0 5px #2583ea,
+    5px 5px 16px -2px rgba(15, 23, 42, 0.26);
+}
+
+.selected .glow {
+  will-change: opacity, transform;
+  animation: breathe 2.2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: rotate(45deg) scale(1.05);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selected .glow {
+    animation: none;
+  }
+}
+
+/* The business badge sits on the centre pin. Clicks must reach the
+   pin under it; Google's marker ignores a style on the element, so
+   this has to be a stylesheet rule on the host element. */
+/* The free check is centred on the business, so the badge would sit
+   exactly on the centre pin and hide its number. It hangs just under
+   the pin's tip instead. */
+.business {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.22);
+  pointer-events: none;
+  transform: translateY(36px);
+}
+
+:global(gmp-advanced-marker):has(.business) {
+  pointer-events: none;
+}
+
+.businessCore {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #08111f;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
+/* The app's floating rank key, bottom left. */
+.legend {
+  position: absolute;
+  left: 12px;
+  bottom: 24px;
+  width: 136px;
+  padding: 12px 14px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+}
+
+.legend p {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.legend ul {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.legend i {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.1);
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.78);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* What a clicked pin says, and the sign-up it leads to. */
+.pointCard {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 240px;
+  padding: 14px 16px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.16);
+}
+
+.pointClose {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  padding: 4px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.pointClose:hover {
+  background: #f1f5f9;
+}
+
+.pointEyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.pointRank {
+  display: block;
+  margin-top: 4px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.pointCard p {
+  margin: 6px 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.pointCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f97316;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.pointCta:hover {
+  background: #ea580c;
+}
+
+@media (max-width: 767px) {
+  .frame {
+    height: 420px;
+  }
+
+  .legend {
+    display: none;
+  }
+
+  .pointCard {
+    left: 8px;
+    right: 8px;
+    top: auto;
+    bottom: 8px;
+    width: auto;
+  }
+}

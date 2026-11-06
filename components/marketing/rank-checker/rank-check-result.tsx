@@ -18,6 +18,7 @@ import {
   type CheckResult,
 } from "@/lib/free-rank-checker";
 import styles from "./rank-checker.module.css";
+import { RankCheckMap } from "./rank-check-map";
 
 /* The same bands the app uses: 1-3 green, 4-10 amber, 11+ red, and a
    neutral state when the business did not appear at that point. */
@@ -209,6 +210,8 @@ export function RankCheckResult({
   onSignupClick?: () => void;
 }) {
   const [copied, setCopied] = useState(false);
+  /* The real map when Maps loads; the drawn grid when it cannot. */
+  const [mapUnavailable, setMapUnavailable] = useState(false);
   const metrics = result.metrics;
   const location = shortLocation(result.formatted_address);
   const topTen = topTenCoverage(result);
@@ -353,27 +356,41 @@ export function RankCheckResult({
                 {result.grid_size}×{result.grid_size} Grid
               </span>
             </div>
-            <ul className={styles.legend}>
-              <li>
-                <i className={styles.good} />
-                #1–3
-              </li>
-              <li>
-                <i className={styles.medium} />
-                #4–10
-              </li>
-              <li>
-                <i className={styles.weak} />
-                #11+
-              </li>
-              <li>
-                <i className={styles.missing} />
-                Not found
-              </li>
-            </ul>
+            {mapUnavailable ? (
+              <ul className={styles.legend}>
+                <li>
+                  <i className={styles.good} />
+                  #1–3
+                </li>
+                <li>
+                  <i className={styles.medium} />
+                  #4–10
+                </li>
+                <li>
+                  <i className={styles.weak} />
+                  #11+
+                </li>
+                <li>
+                  <i className={styles.missing} />
+                  Not found
+                </li>
+              </ul>
+            ) : null}
           </div>
 
-          <Heatmap result={result} />
+          {mapUnavailable ? (
+            <Heatmap result={result} />
+          ) : (
+            <RankCheckMap
+              result={result}
+              signupUrl={SIGNUP_URL}
+              onSignupClick={() => {
+                trackChecker(EVENTS.signupClicked);
+                onSignupClick?.();
+              }}
+              onUnavailable={() => setMapUnavailable(true)}
+            />
+          )}
 
           <div className={styles.mapFooter}>
             <span>
