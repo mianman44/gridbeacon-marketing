@@ -13,6 +13,12 @@
 
 export const COMPETITORS_CHECKED = "September 2026";
 
+/* /best-local-rank-trackers was re-read in full, every vendor, on this
+   date (November 8, 2026): its table, reviews and FAQ use only figures
+   checked then. The comparison pages keep COMPETITORS_CHECKED until
+   their own figures are re-read. */
+export const ROUNDUP_CHECKED = "November 2026";
+
 /* ProMapRanker was added after the September check and read on its
    own date. Move this forward only after re-reading both its pages. */
 export const PROMAPRANKER_CHECKED = "November 2026";
@@ -33,7 +39,7 @@ export const SOURCES = {
      now 404. Figures read there are dated by LOCAL_VIKING_HELP_READ and
      no longer linked; scheduling comes from the Local Optics knowledge base. */
   localOpticsSchedules: "https://clientportal.localoptics.com/knowledge-base/live-geogrids-vs-scheduled-geogrids-",
-  semrushLocalPricing: "https://www.semrush.com/kb/1611-pricing-and-plans",
+  semrushLocalPricing: "https://www.semrush.com/kb/1611-local-toolkit-pricing-and-plans",
   semrushMapRankTracker: "https://www.semrush.com/kb/1399-map-rank-tracker",
   localoPricing: "https://localo.com/pricing",
   proMapRankerPricing: "https://promapranker.com/pricing",

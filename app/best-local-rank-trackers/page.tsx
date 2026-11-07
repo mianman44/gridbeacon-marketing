@@ -7,6 +7,7 @@ import {
   CtaBand,
   Faq,
   Hero,
+  InlineCta,
   Note,
   RelatedComparisons,
   Screenshot,
@@ -18,8 +19,8 @@ import {
   ToolReview,
   Tools,
 } from "@/components/marketing/seo-landing";
-import { ProductPageStructuredData } from "@/components/marketing/structured-data";
-import { COMPETITORS_CHECKED, PROMAPRANKER_CHECKED, ROUNDUP_PICKS, SOURCES } from "@/lib/competitors";
+import { ItemListStructuredData, ProductPageStructuredData } from "@/components/marketing/structured-data";
+import { PROMAPRANKER_CHECKED, ROUNDUP_CHECKED, ROUNDUP_PICKS, SOURCES } from "@/lib/competitors";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
 /*
@@ -57,8 +58,8 @@ const FAQS: [string, string][] = [
     "It depends on what you need beyond rankings. For Google Maps geo-grids at the lowest cost per scan, GridBeacon. For tracking Apple Maps and AI search as well, Local Falcon. For an all-in-one local SEO suite with citations and reviews, BrightLocal. For the cheapest entry plan, Whitespark Local Ranking Grids. For GBP post scheduling alongside grids, Local Viking.",
   ],
   [
-    "What is a geo-grid rank tracker?",
-    "A geo-grid rank tracker checks where a business ranks on Google Maps from many points laid out in a grid across its area, instead of from one location. The result is a heatmap that shows where the business appears in the map pack and where competitors take its place.",
+    "What is geo-location rank tracking?",
+    "Geo-location rank tracking, also called geo-grid rank tracking, checks where a business ranks on Google Maps from many points laid out in a grid across its area, instead of from one location. The result is a heatmap that shows where the business appears in the map pack and where competitors take its place.",
   ],
   [
     "Why do Google Maps rankings differ across a city?",
@@ -66,7 +67,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "How much does a local rank tracker cost?",
-    "Most charge by grid points scanned, by locations or by listings. Entry prices run from about $10 a month (Whitespark Local Ranking Grids) to $49 a month (Localo), and several tools have free credits or a free plan. Check what you pay per grid point and whether the price rises with each business you add.",
+    "Most charge by grid points scanned, by locations or by listings. Entry prices run from about $10 a month (Whitespark Local Ranking Grids) to $39 a month (Local Viking and Localo), and several tools have free credits or a free plan. Check what you pay per grid point and whether the price rises with each business you add.",
   ],
   [
     "What grid size should I use?",
@@ -74,7 +75,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Is there a free local rank tracker?",
-    "Several tools have a free starting point: GridBeacon has a free plan with 500 scan credits and a free 3 × 3 rank checker, Whitespark gives 200 free credits, Local Falcon 100 free credits, ProMapRanker 150, and Semrush has a limited free Map Rank Tracker allowance. BrightLocal and Localo offer 14-day trials.",
+    "Several tools have a free starting point: GridBeacon has a free plan with 500 scan credits and a free 3 × 3 rank checker, Whitespark gives 200 free credits, Local Falcon 100 free credits, ProMapRanker 150, and Semrush gives free users 50 Map Rank Tracker credits on 5 × 5 grids. BrightLocal and Localo offer 14-day trials.",
   ],
 ];
 
@@ -82,6 +83,11 @@ export default function BestLocalRankTrackersPage() {
   return (
     <SeoLandingPage>
       <ProductPageStructuredData name="Best Local Rank Trackers" path={PATH} />
+      <ItemListStructuredData
+        name="Best local rank trackers for Google Maps"
+        path={PATH}
+        items={ROUNDUP_PICKS.map((tool) => ({ name: tool.name, anchor: tool.id }))}
+      />
 
       <Hero
         eyebrow="Local rank tracker comparison"
@@ -98,7 +104,7 @@ export default function BestLocalRankTrackersPage() {
         primary={{ label: "See the Comparison", href: "#overview" }}
         secondary={{ label: "Try GridBeacon Free", href: SIGNUP_URL }}
         facts={["8 tools compared", "Prices from vendor sites", "Strengths and limits for each"]}
-        updated={COMPETITORS_CHECKED}
+        updated={ROUNDUP_CHECKED}
         media={
           <Screenshot
             src={`${IMAGES}/geo-grid-scan-dallas-20260919.webp`}
@@ -133,6 +139,9 @@ export default function BestLocalRankTrackersPage() {
             ["Semrush Local", "semrush-local"],
             ["Localo", "localo"],
             ["ProMapRanker", "promapranker"],
+            ["Free options", "free"],
+            ["Multi-location brands", "multi-location"],
+            ["Head-to-head", "head-to-head"],
             ["How to choose", "how-to-choose"],
             ["FAQ", "faq"],
           ]}
@@ -150,19 +159,19 @@ export default function BestLocalRankTrackersPage() {
           label="Eight local rank trackers compared"
           columns={["", "GridBeacon", "Local Falcon", "BrightLocal", "Whitespark Grids", "Local Viking", "Semrush Local", "Localo", "ProMapRanker"]}
           rows={[
-            ["Starting price", "$19.99/mo ($15.99 billed annually)", "$24.99/mo", "$31/mo per location, billed annually", "$10/mo", "$39/mo", "$30/mo per location", "$49/mo ($39 billed annually)", "$19/mo"],
-            ["Free option", "Free plan, 500 credits", "100 free credits", "14-day trial", "200 free credits", "Not listed", "Limited free allowance (5 × 5 only)", "14-day trial", "150 one-time credits"],
+            ["Starting price", "$19.99/mo ($15.99 billed annually)", "$24.99/mo", "$31/mo per location billed annually ($41 monthly)", "$10/mo", "$39/mo", "$30/mo per location", "$39/mo ($32.42 billed annually)", "$19/mo"],
+            ["Free option", "Free plan, 500 credits", "100 free credits", "14-day trial", "200 free credits", "Not listed", "1 campaign, 50 credits (5 × 5 only)", "14-day trial", "150 one-time credits"],
             ["Charges by", "Grid points", "Grid points", "Locations", "Grid points", "Listings + credits", "Locations + credits", "Profiles", "Credits + businesses"],
             ["Largest grid", "21 × 21", "21 × 21", "15 × 15", "225 points", "13 × 13", "Not listed", "Not listed", "21 × 21"],
-            ["Unlimited businesses", "Yes, paid plans", "Not listed", "No", "Not listed", "No (1–70 listings)", "No", "No (up to 120 on Pro)", "Agency plan only (5 or 30 below)"],
-            ["Competitor grids", "Yes, from every scan", "Competitor Report", "Side-by-side grid", "Up to 100 competitors", "Yes", "Yes", "Pro plan", "Gap reports, Growth and up"],
+            ["Unlimited businesses", "Yes, paid plans", "Yes (unlimited locations)", "No", "Not listed", "No (1–70 listings)", "No", "No (10 on Pro 10; more on Enterprise)", "Agency plan only (5 or 30 below)"],
+            ["Competitor grids", "Yes, from every scan", "Competitor Report", "Side-by-side grid", "Up to 100 competitors", "Yes", "Yes", "Yes", "Gap reports, Growth and up"],
             ["Beyond Google Maps", "No", "Apple Maps, AI engines", "Organic, AI visibility", "Separate products", "Organic keywords", "Full Semrush suite", "No", "AI-search visibility, API"],
-            ["White label", "Agency plan (reports, PDFs and share links)", "Yes", "Yes", "Share links", "Pro and up", "Not listed", "Pro plan", "Starter and up"],
+            ["White label", "Agency plan (reports, PDFs and share links)", "Yes", "Yes", "Share links", "Pro and up", "Not listed", "Pro 10 plan", "Starter and up"],
           ]}
           caption={
             <>
-              Monthly prices in USD from each vendor&apos;s website, checked
-              in {COMPETITORS_CHECKED} (ProMapRanker in {PROMAPRANKER_CHECKED}). &ldquo;Not listed&rdquo; means the
+              Monthly prices in USD from each vendor&apos;s website, all re-checked
+              in {ROUNDUP_CHECKED}. &ldquo;Not listed&rdquo; means the
               vendor does not publish it on the pages we checked. Sources are
               linked under each tool below.
             </>
@@ -202,7 +211,7 @@ export default function BestLocalRankTrackersPage() {
           />
           <p>
             Prices and limits come from each vendor&apos;s pricing page,
-            product pages and help centre in {COMPETITORS_CHECKED}, and ProMapRanker&apos;s in {PROMAPRANKER_CHECKED}. Review
+            product pages and help centre, all re-read in {ROUNDUP_CHECKED}. Review
             sites were not used for figures because they often lag behind
             price changes.
           </p>
@@ -286,7 +295,7 @@ export default function BestLocalRankTrackersPage() {
             rank={3}
             name="BrightLocal"
             bestFor="Agencies and businesses that want citations, listings, reviews and rankings in one suite"
-            price="From $31 a month per location, billed annually; 14-day trial"
+            price="From $31 a month per location billed annually ($41 monthly); 14-day trial"
             summary={
               <p>
                 BrightLocal is an all-in-one local SEO platform. Its Local
@@ -379,7 +388,7 @@ export default function BestLocalRankTrackersPage() {
               <>
                 Sources: <TextLink href={SOURCES.localOpticsPricing} rel="nofollow noopener">Local Optics pricing</TextLink>,{" "}
                 <TextLink href={SOURCES.localOpticsSchedules} rel="nofollow noopener">Local Optics knowledge base</TextLink>;
-                grid size from Local Viking&apos;s help centre as read in September 2026, since taken down.{" "}
+                grid size and credit rollover from Local Viking&apos;s help centre as read in September 2026, since taken down.{" "}
                 <TextLink href="/local-viking-alternative">GridBeacon vs Local Viking</TextLink>
               </>
             }
@@ -405,11 +414,11 @@ export default function BestLocalRankTrackersPage() {
               "Sits next to Semrush's keyword, site audit and backlink tools.",
               "Track your own business or any competitor.",
               "Listings and review management on Local Pro.",
-              "A limited free allowance to try Map Rank Tracker.",
+              "A free Map Rank Tracker allowance: 1 campaign and 50 credits (5 × 5 grids only).",
             ]}
             cons={[
               "Priced per location, like BrightLocal.",
-              "Credits per plan are not clearly published; Semrush's help pages give different figures.",
+              "Its help pages disagree on credits: 375 Map Rank Tracker credits on Local Base in one, 4,000 for $30 in another.",
               "Most useful if you already pay for Semrush.",
             ]}
             source={
@@ -425,14 +434,15 @@ export default function BestLocalRankTrackersPage() {
             rank={7}
             name="Localo"
             bestFor="Business owners who want guided, done-with-you profile optimization"
-            price="$49 a month for one profile ($39 billed annually); Pro $169 ($149)"
+            price="$39 a month for one profile ($32.42 billed annually); Pro 10 $69 ($58.25)"
             summary={
               <p>
                 Localo pairs a Position Map (its geo-grid) with tools for
                 owners: AI-written posts for Google and Facebook, review
-                replies, a schema generator and weekly optimization tasks on
-                Pro. The Pro plan covers 2 to 120 profiles and adds competitor
-                tracking, white-label reports and team access.
+                replies, a schema generator and guided optimisation tasks.
+                Pro 10 covers up to 10 profiles, with optimisation for up
+                to 5, and adds white-label reports, a reports manager and bulk
+                posting. Competitor tracking is on every plan.
               </p>
             }
             pros={[
@@ -442,8 +452,8 @@ export default function BestLocalRankTrackersPage() {
               "30-day money-back guarantee.",
             ]}
             cons={[
-              "The most expensive entry point here for a single business.",
-              "Competitor tracking only on Pro.",
+              "Pro 10 stops at 10 profiles; more need a custom Enterprise plan.",
+              "Optimisation tools cover up to 5 profiles on Pro 10.",
               "Grid size and scan limits are not listed on its pricing page.",
             ]}
             source={
@@ -484,7 +494,7 @@ export default function BestLocalRankTrackersPage() {
               <>
                 Sources: <TextLink href={SOURCES.proMapRankerPricing} rel="nofollow noopener">ProMapRanker pricing</TextLink>,{" "}
                 <TextLink href={SOURCES.proMapRankerFeatures} rel="nofollow noopener">features</TextLink>, checked in {PROMAPRANKER_CHECKED}.{" "}
-                <TextLink href="/promapranker-alternative">GridBeacon vs ProMapRanker</TextLink>
+                <TextLink href="/promapranker-alternative">ProMapRanker alternatives compared</TextLink>
               </>
             }
           />
@@ -492,7 +502,120 @@ export default function BestLocalRankTrackersPage() {
       </Section>
 
       <Section
+        id="free"
+        eyebrow="Free options"
+        title="Free Local Rank Trackers and Free Trials"
+        intro={
+          <p>
+            Every tool here can be tried before paying, but the free offers
+            differ a lot. Use them to scan one real keyword for your own
+            business and judge the result.
+          </p>
+        }
+      >
+        <ComparisonTable
+          label="Free plans, free credits and trials of local rank trackers"
+          columns={["Tool", "What you get free", "Card needed?"]}
+          rows={[
+            ["GridBeacon", <>Free plan: 500 one-time credits, 1 business and 3 keywords. Plus a <TextLink key="c" href="/google-maps-rank-checker">free 3 × 3 rank checker</TextLink> with no account</>, "No"],
+            ["Whitespark Local Ranking Grids", "200 trial credits", "No"],
+            ["ProMapRanker", "150 one-time credits, 1 saved business", "No"],
+            ["Local Falcon", "100 free credits on signup", "No"],
+            ["Semrush Local (Map Rank Tracker)", "Free user: 1 campaign, 50 credits, 5 × 5 grids, manual or weekly scans", "Not listed"],
+            ["BrightLocal", "14-day free trial", "No"],
+            ["Localo", "14-day free trial", "No"],
+            ["Local Viking (Local Optics)", "Not listed", "Not listed"],
+          ]}
+          caption={<>From each vendor&apos;s pricing or help pages, checked in {ROUNDUP_CHECKED}.</>}
+        />
+        <Note>
+          A credit is one grid point in every credit-based tool here, so 500
+          credits is twenty 5 × 5 scans or one 21 × 21 scan. Trials give full
+          access for a fixed time instead.
+        </Note>
+      </Section>
+
+      <Section
+        id="multi-location"
+        tone="tint"
+        eyebrow="Multi-location brands"
+        title="The Best Local Rank Tracker for Multi-Location Brands"
+      >
+        <Split
+          media={
+            <Note>
+              For many locations, look at what the price is tied to before
+              the entry price. A tool that charges per location can cost
+              more at 20 branches than a dearer-looking tool that charges by
+              grid points.
+            </Note>
+          }
+        >
+          <p>
+            Brands and agencies with many locations need three things: a
+            price that doesn&apos;t climb with every branch, a grid sized to
+            each location&apos;s own area, and reports that compare locations
+            side by side.
+          </p>
+          <Checklist
+            items={[
+              "Per location: BrightLocal (from $31 a location a month, billed annually) and Semrush Local ($30 or $60 a location a month).",
+              "Per listing: Local Optics, from 1 listing for $39 to 70 listings for $200 a month.",
+              "Per profile: Localo Pro 10 covers up to 10 profiles; more need Enterprise.",
+              "By grid points, with no location cap: GridBeacon and Local Falcon on every paid plan, and ProMapRanker on its Agency plan.",
+            ]}
+          />
+          <p>
+            GridBeacon adds keyword and location reports that put every
+            branch&apos;s ARP, ATRP and SoLV side by side. See{" "}
+            <TextLink href="/multi-location-rank-tracking">multi-location rank tracking</TextLink>.
+          </p>
+        </Split>
+      </Section>
+
+      <Section
+        id="head-to-head"
+        eyebrow="Head-to-head"
+        title="Popular Local Rank Tracker Comparisons"
+        intro={<p>Short answers to the matchups people search for most, using the figures above.</p>}
+      >
+        <Cards
+          columns={2}
+          items={[
+            {
+              title: "Local Falcon vs Semrush Local",
+              body: "Local Falcon is a dedicated grid tracker priced by credits ($24.99 for 7,500 a month) with no location limit, and it also tracks Apple Maps and AI answers. Semrush Local is priced per location ($30 or $60 a month) and sits inside the Semrush suite. Pick Local Falcon for many locations; Semrush if you already run your SEO there.",
+            },
+            {
+              title: "Local Falcon vs Local Viking",
+              body: "Local Falcon charges by credits with unlimited locations and grids up to 21 × 21. Local Viking (now Local Optics) charges by listings, 1 to 70, and adds unlimited Google Business Profile post scheduling. Pick Local Falcon for bigger grids, Local Viking for GBP posting.",
+            },
+            {
+              title: "BrightLocal vs Whitespark",
+              body: "BrightLocal is an all-in-one suite priced per location, with a geo-grid for up to 5 keywords and grids up to 15 × 15. Whitespark sells its grid tool separately from $10 a month by credits, with up to 225 points. Pick BrightLocal for citations and reviews too; Whitespark for cheap, flexible grids.",
+            },
+            {
+              title: "Localo vs other rank trackers",
+              body: "Localo is built for owners who want guided optimisation: a position map plus AI posts, review replies and tasks, from $39 a month for one profile. Dedicated trackers such as GridBeacon, Local Falcon and Whitespark charge by grid points and go deeper on grids and competitors.",
+            },
+          ]}
+        />
+        <InlineCta>
+          <TextLink href="/local-falcon-alternative">GridBeacon vs Local Falcon</TextLink>
+          {" · "}
+          <TextLink href="/brightlocal-alternative">GridBeacon vs BrightLocal</TextLink>
+          {" · "}
+          <TextLink href="/whitespark-alternative">GridBeacon vs Whitespark</TextLink>
+          {" · "}
+          <TextLink href="/local-viking-alternative">GridBeacon vs Local Viking</TextLink>
+          {" · "}
+          <TextLink href="/promapranker-alternative">ProMapRanker alternatives</TextLink>
+        </InlineCta>
+      </Section>
+
+      <Section
         id="how-to-choose"
+        tone="tint"
         eyebrow="Buying guide"
         title="How to Choose a Local Rank Tracker"
         intro={
@@ -540,7 +663,7 @@ export default function BestLocalRankTrackersPage() {
         <RelatedComparisons current={PATH} />
       </Section>
 
-      <Section id="faq" tone="tint" eyebrow="FAQ" title="Local Rank Tracker Questions">
+      <Section id="faq" eyebrow="FAQ" title="Local Rank Tracker Questions">
         <Faq items={FAQS.map(([question, answer]) => [question, <p key="a">{answer}</p>])} />
       </Section>
 

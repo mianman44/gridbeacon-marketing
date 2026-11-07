@@ -339,6 +339,37 @@ export function FreeRankCheckerStructuredData() {
   );
 }
 
+/* An ordered list of the tools a roundup reviews, each pointing at its
+   section on the page. Order must match the page's own order. */
+export function ItemListStructuredData({
+  name,
+  path,
+  items,
+}: {
+  name: string;
+  path: string;
+  items: { name: string; anchor: string }[];
+}) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "@id": `${SITE_URL}${path}#list`,
+        name,
+        itemListOrder: "https://schema.org/ItemListOrderAscending",
+        numberOfItems: items.length,
+        itemListElement: items.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          url: `${SITE_URL}${path}#${item.anchor}`,
+        })),
+      }}
+    />
+  );
+}
+
 /* /google-review-link-generator: the free tool and its breadcrumb. */
 export function ReviewLinkGeneratorStructuredData() {
   return (
