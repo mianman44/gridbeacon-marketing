@@ -23,6 +23,7 @@ const PAGES_UPDATED: Record<string, string> = {
   "/google-business-profile-monitoring": "2026-10-30",
   "/google-maps-rank-checker": "2026-11-08",
   "/google-maps-rank-tracker": "2026-11-02",
+  "/google-review-link-generator": "2026-11-08",
   "/how-gridbeacon-checks-rankings": "2026-11-02",
   "/google-review-analysis": "2026-10-30",
   "/how-it-works": "2026-11-02",
@@ -73,6 +74,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/white-label-rank-tracker",
       "/rank-tracking-by-city-and-zip-code",
       "/promapranker-alternative",
+      "/google-review-link-generator",
     ].map((path) => ({ url: `${baseUrl}${path}`, changeFrequency: "monthly" as const, priority: 0.8 })),
     {
       url: `${baseUrl}/tutorials`,

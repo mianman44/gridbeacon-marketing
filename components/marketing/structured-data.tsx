@@ -339,6 +339,33 @@ export function FreeRankCheckerStructuredData() {
   );
 }
 
+/* /google-review-link-generator: the free tool and its breadcrumb. */
+export function ReviewLinkGeneratorStructuredData() {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          breadcrumb("Google Review Link Generator", "/google-review-link-generator"),
+          {
+            "@type": "WebApplication",
+            "@id": `${SITE_URL}/google-review-link-generator#tool`,
+            name: "Free Google Review Link Generator",
+            url: `${SITE_URL}/google-review-link-generator`,
+            applicationCategory: "BusinessApplication",
+            operatingSystem: "Web browser",
+            isAccessibleForFree: true,
+            description:
+              "Finds a business's Google Business Profile and builds its direct Google review link, a printable QR code and ready-to-send review request messages, free and without an account.",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+            provider: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "GridBeacon", url: SITE_URL },
+          },
+        ],
+      }}
+    />
+  );
+}
+
 /* /about: the page, its place under home, and the founders. */
 export function AboutStructuredData() {
   return (

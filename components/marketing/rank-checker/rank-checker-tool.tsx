@@ -113,6 +113,18 @@ export function RankCheckerTool() {
 
   // step 1: the business
   const [query, setQuery] = useState("");
+
+  /* /google-maps-rank-checker?business=Name (from the review link
+     generator) fills the business box; the visitor still searches and
+     picks the listing, so nothing is looked up without them. */
+  useEffect(() => {
+    const name = new URLSearchParams(window.location.search).get("business")?.trim();
+    if (!name) return;
+    // After hydration, so the server-rendered empty box matches first.
+    const id = window.setTimeout(() => setQuery(name.slice(0, 160)), 0);
+    return () => window.clearTimeout(id);
+  }, []);
+
   const [candidates, setCandidates] = useState<BusinessCandidate[]>([]);
   const [selected, setSelected] = useState<BusinessCandidate | null>(null);
   const [searching, setSearching] = useState(false);

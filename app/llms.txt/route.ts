@@ -35,7 +35,7 @@ ${plans}
 - Competitor grids come from the same scan at no extra cost; rankings are matched by Google place ID.
 - No Google Business Profile login is needed: GridBeacon reads public Google Maps results, so any business can be tracked.
 - Metrics: ARP (average rank where the business ranks), ATRP (average over every point, unranked counts as 21), SoLV (share of points in the top 3) and visibility (share of points in the top 10).
-- Free tool: a 3 × 3 Google Maps rank checker with no account needed.
+- Free tools: a 3 × 3 Google Maps rank checker and a Google review link generator (link, QR code, message templates), both with no account needed.
 - Sign up: ${SIGNUP_URL}. Contact: founder@gridbeaconhq.com.
 
 ## Product
@@ -44,6 +44,7 @@ ${[
     link("/google-maps-rank-tracker", "Google Maps Rank Tracker", "the main product page: geo-grid scans, heatmaps, competitors, history and reports"),
     link("/gmb-rank-tracker", "GMB Rank Tracker", "tracking a Google Business Profile's rankings across an area"),
     link("/google-maps-rank-checker", "Free Google Maps Rank Checker", "free 3 × 3 rank check, no account"),
+    link("/google-review-link-generator", "Free Google Review Link Generator", "direct Google review link, QR code and message templates for any business, no account"),
     link("/pricing", "Pricing", "plans, credits and top-ups"),
     link("/features", "Features", "every feature by plan"),
     link("/how-it-works", "How It Works", "from setting up a grid to reading the results"),
