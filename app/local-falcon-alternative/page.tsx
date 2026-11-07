@@ -10,6 +10,7 @@ import {
   Hero,
   InlineCta,
   Note,
+  OtherAlternatives,
   RelatedComparisons,
   Screenshot,
   Section,
@@ -41,9 +42,9 @@ const LOCAL_FALCON_CHECKED = "September 2026";
 
 export const metadata: Metadata = pageMetadata({
   path: PATH,
-  title: "Local Falcon Alternative | GridBeacon Geo-Grid Rank Tracker",
+  title: "Local Falcon Alternatives & Pricing Compared | GridBeacon",
   description:
-    "Comparing GridBeacon and Local Falcon? See how the two geo-grid rank trackers differ on credit pricing, free credits, competitor grids, AI reports and features.",
+    "Local Falcon alternatives compared: Local Falcon pricing vs GridBeacon credit by credit, plus BrightLocal, Whitespark and Local Viking for Google Maps grids.",
   absoluteTitle: true,
   image: {
     url: `${IMAGES}/og-google-maps-rank-tracker.jpg`,
@@ -350,8 +351,17 @@ export default function LocalFalconAlternativePage() {
       </Section>
 
       <Section
-        id="faq"
+        id="other-alternatives"
         tone="tint"
+        eyebrow="Other options"
+        title="Other Local Falcon Alternatives Worth Comparing"
+        intro={<p>GridBeacon is not the only geo-grid tracker. These tools also track Google Maps rankings on a grid, each with a different strength. Facts are from each vendor&apos;s own site; follow a link for the sources and the date they were checked.</p>}
+      >
+        <OtherAlternatives exclude="local-falcon" />
+      </Section>
+
+      <Section
+        id="faq"
         eyebrow="FAQ"
         title="GridBeacon vs Local Falcon Questions"
       >

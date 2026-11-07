@@ -26,9 +26,9 @@ const mono = localFont({
 
 export const metadata = pageMetadata({
   path: "/google-maps-rank-checker",
-  title: "Free Google Maps Rank Checker",
+  title: "Free Google Maps Rank Checker (Geo-Grid Scan)",
   description:
-    "Free Google Maps rank checker. See where your business ranks across 9 locations and who is beating you. No card, no account, results in about a minute.",
+    "Free Google Maps rank checker: run a free geo-grid scan and see your Google Business Profile's rank at 9 points on a live map, plus who beats you. No card, no account.",
 });
 
 export default function Page() {

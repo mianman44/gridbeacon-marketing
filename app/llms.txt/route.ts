@@ -58,6 +58,8 @@ ${[
     link("/multi-location-rank-tracking", "Multi-Location Rank Tracking", "tracking many branches in one workspace"),
     link("/service-area-business-rank-tracking", "Service-Area Businesses", "tracking businesses with a hidden address"),
     link("/local-rank-tracker-for-agencies", "For Agencies", "how agencies use GridBeacon"),
+    link("/white-label-rank-tracker", "White-Label Rank Tracker", "branded reports, PDFs and client links on the Agency plan"),
+    link("/rank-tracking-by-city-and-zip-code", "Rank Tracking by City and ZIP Code", "covering a city or ZIP code with a geo-grid"),
   ].join("\n")}
 
 ## Comparisons
@@ -68,6 +70,7 @@ ${[
     link("/brightlocal-alternative", "BrightLocal Alternative", "GridBeacon vs BrightLocal"),
     link("/whitespark-alternative", "Whitespark Alternative", "GridBeacon vs Whitespark"),
     link("/local-viking-alternative", "Local Viking Alternative", "GridBeacon vs Local Viking (Local Optics)"),
+    link("/promapranker-alternative", "ProMapRanker Alternative", "GridBeacon vs ProMapRanker"),
   ].join("\n")}
 
 ## Guides

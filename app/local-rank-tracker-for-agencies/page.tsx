@@ -361,8 +361,8 @@ export default function AgencyPage() {
         <Split
           media={
             <Note>
-              White-label scan, keyword and location reports are included
-              on the Agency plan. If you need a client portal or an API,{" "}
+              <TextLink href="/white-label-rank-tracker">White-label scan, keyword and location reports</TextLink>{" "}
+              are included on the Agency plan. If you need a client portal or an API,{" "}
               <TextLink href="/local-falcon-alternative">Local Falcon</TextLink>,{" "}
               <TextLink href="/brightlocal-alternative">BrightLocal</TextLink> and{" "}
               <TextLink href="/local-viking-alternative">Local Viking</TextLink>{" "}

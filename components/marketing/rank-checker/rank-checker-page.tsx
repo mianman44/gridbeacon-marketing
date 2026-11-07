@@ -34,8 +34,8 @@ function RankHeatmapPreview({ compact = false }: { compact?: boolean }) {
 function RankCheckerHero() {
   return <section className={styles.hero} aria-labelledby="hero-heading"><div className={`${styles.container} ${styles.heroIntro}`}>
     <span className={styles.eyebrow}><Radar size={14} aria-hidden="true" /> FREE GOOGLE MAPS TOOL</span>
-    <h1 id="hero-heading">Check Your <span>Google Maps Rankings</span> for Free</h1>
-    <p className={styles.heroDescription}>See where your business ranks across 9 real points around your location, and who is beating you. Just verify your email. Results arrive in about a minute.</p>
+    <h1 id="hero-heading">Free <span>Google Maps Rank Checker</span></h1>
+    <p className={styles.heroDescription}>Run a free geo-grid scan and see where your business ranks across 9 real points around your location, and who is beating you. Just verify your email. Results arrive in about a minute.</p>
     <ol className={styles.heroSteps}>{["Find your business", "Verify your email", "See your heatmap"].map((step, index) => <li key={step}><span>{index + 1}</span>{step}</li>)}</ol>
   </div></section>;
 }
@@ -98,6 +98,8 @@ function RankCheckerFAQ() {
     ["How accurate is this check?", "Each of the 9 points is a real Google Maps search for your keyword from that coordinate. Rankings move during the day, so treat a scan as a snapshot of that moment rather than a permanent position."],
     ["How often should I check my rankings?", "Weekly is useful while you are actively working on your local SEO, and every two weeks or monthly is usually enough for steady monitoring. The free checker allows one scan per day."],
     ["Can I check a client's or competitor's business?", "Yes. You can check any business with a Google Maps listing, which is useful for sizing up a prospect or a competitor. The limit is one free check per email address per day, and each report has a link you can share."],
+    ["Does it check my Google Business Profile (GMB) ranking?", "Yes. Google Maps results are Google Business Profile listings, formerly called Google My Business. You pick your profile, enter a keyword, and the checker reports where that profile ranks in the map results at each of the 9 points."],
+    ["Is this a free geo-grid scan?", "Yes. The checker runs a 3×3 geo-grid: 9 real Google Maps searches spread around your business, shown as a heatmap on a live map. Larger grids, up to 21×21, are part of a GridBeacon account."],
     ["Does it work outside the United States?", "Yes. It works for businesses listed on Google Maps, using search results from the coordinates around that business."],
   ];
   return <section className={styles.faqSection} aria-labelledby="faq-heading"><div className={styles.container}><div className={styles.sectionHeading}><span className={styles.eyebrow}>A LITTLE MORE CLARITY</span><h2 id="faq-heading">Frequently Asked Questions</h2><p>Understanding your Google Maps rankings, one question at a time.</p></div><div className={styles.faqWrap}><Faq items={items} /></div></div></section>;

@@ -9,6 +9,7 @@ import {
   Hero,
   InlineCta,
   Note,
+  OtherAlternatives,
   RelatedComparisons,
   Screenshot,
   Section,
@@ -338,7 +339,16 @@ export default function LocalVikingAlternativePage() {
         <RelatedComparisons current={PATH} />
       </Section>
 
-      <Section id="faq" eyebrow="FAQ" title="GridBeacon vs Local Viking Questions">
+      <Section
+        id="other-alternatives"
+        eyebrow="Other options"
+        title="Other Local Viking Alternatives Worth Comparing"
+        intro={<p>GridBeacon is not the only geo-grid tracker. These tools also track Google Maps rankings on a grid, each with a different strength. Facts are from each vendor&apos;s own site; follow a link for the sources and the date they were checked.</p>}
+      >
+        <OtherAlternatives exclude="local-viking" />
+      </Section>
+
+      <Section id="faq" tone="tint" eyebrow="FAQ" title="GridBeacon vs Local Viking Questions">
         <Faq items={FAQS.map(([question, answer]) => [question, <p key="a">{answer}</p>])} />
       </Section>
 

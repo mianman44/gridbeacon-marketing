@@ -9,6 +9,7 @@ import {
   Hero,
   InlineCta,
   Note,
+  OtherAlternatives,
   RelatedComparisons,
   Screenshot,
   Section,
@@ -39,7 +40,7 @@ const IMAGES = "/marketing/google-maps-rank-tracker";
 
 export const metadata: Metadata = pageMetadata({
   path: PATH,
-  title: "Whitespark Alternative for Local Ranking Grids | GridBeacon",
+  title: "Best Whitespark Alternatives for Ranking Grids | GridBeacon",
   description:
     "Comparing Whitespark Local Ranking Grids with GridBeacon? See credit prices plan by plan, grid sizes, free credits, competitor data and where each tool wins.",
   absoluteTitle: true,
@@ -338,7 +339,16 @@ export default function WhitesparkAlternativePage() {
         <RelatedComparisons current={PATH} />
       </Section>
 
-      <Section id="faq" eyebrow="FAQ" title="GridBeacon vs Whitespark Questions">
+      <Section
+        id="other-alternatives"
+        eyebrow="Other options"
+        title="Other Whitespark Alternatives Worth Comparing"
+        intro={<p>GridBeacon is not the only geo-grid tracker. These tools also track Google Maps rankings on a grid, each with a different strength. Facts are from each vendor&apos;s own site; follow a link for the sources and the date they were checked.</p>}
+      >
+        <OtherAlternatives exclude="whitespark" />
+      </Section>
+
+      <Section id="faq" tone="tint" eyebrow="FAQ" title="GridBeacon vs Whitespark Questions">
         <Faq items={FAQS.map(([question, answer]) => [question, <p key="a">{answer}</p>])} />
       </Section>
 

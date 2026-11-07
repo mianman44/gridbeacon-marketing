@@ -39,3 +39,29 @@ The Austin, Daphne and New York captures above are now saved as `geo-grid-scan-a
 ## Rank MRI — October 31, 2026
 
 `public/marketing/rank-mri/rank-mri-{issues,why,competitors}.webp` are browser captures of the local GridBeacon app, from the fictional demo business in `backend/scripts/seed_rank_mri_demo.py`. The business, competitors and ranks are made up, and every use must stay captioned as example data.
+
+## White-label rank tracker page — November 8, 2026
+
+Four user-supplied captures of the live app, all of scan 706 (`coffee shop`, a Dallas coffee shop, November 3, 2026; 6 rings, 5-mile radius, 127 points). The business's name, address and the "Client:" footer were covered with grey bars, as were every competitor name on page two and in its "Competitor overlap" sentence. Nothing else was changed.
+
+- `public/marketing/white-label/scan-report-page1-20261108.webp`: the standard scan report, page 1, cropped below the map (817 × 770).
+- `public/marketing/white-label/scan-report-competitors-20261108.webp`: page 2, cropped to the competitor table (812 × 548).
+- `public/marketing/white-label/shared-report-link-20261108.webp`: the same report opened from its `/r/` share link; the browser address bar (which held the token) was cropped off (850 × 1195).
+- `public/marketing/white-label/white-label-settings-20261108.webp`: the White-label Reports settings card with placeholder values and white label switched off (857 × 874).
+
+None of these show white label switched on: the reports carry GridBeacon's own header, and the captions say what the Agency plan changes rather than presenting them as branded. Replace the page-1 and share-link captures with branded ones when available.
+
+## City and ZIP code page — November 8, 2026
+
+Four user-supplied captures of the live app, saved under `public/marketing/city-zip/` and scaled to 1600 px wide where larger:
+
+- `hartford-ring-scan-20261108.webp`: a `best pizza` scan of a Hartford, Connecticut pizza restaurant, November 3, 2026; 8 rings, 5-mile radius, 217 points, 57% visibility, average rank 4.9, 33% top-three. The business name, address and rating line in the side panel were covered with grey bars.
+- `service-area-centre-picker-20261108.webp`: the Add business dialog for a service-area business, cropped to the "How do customers find you?" step, ZIP search and map (the blurred business list behind it is cut away; 632 × 835). The listing's coordinates in the footer line were covered.
+- `scan-setup-21x21-new-york-20261108.webp` and `scan-setup-rings-new-york-20261108.webp`: scan setup for a New York locksmith (`locksmith near me`), 7-mile radius, as a 21 × 21 square (441 points) and as 10 rings (331 points). No scan was run. The business card (initials, name, rating and review count) was covered.
+
+## ProMapRanker alternative page — November 8, 2026
+
+Two user-supplied captures of the live app, saved under `public/marketing/promapranker/` at 1600 px wide:
+
+- `businesses-list-42-20261108.webp`: the Businesses list of a workspace with 42 businesses. The whole business column (photo, name, address or coordinates, category and place ID) was Gaussian-blurred so no business can be read; the chat bubble and a partial last row were cropped off.
+- `gap-view-dallas-20261108.webp`: the Gap view of scan 706 (`coffee shop`, Dallas, 6 rings, 5 miles) against its top competitor. Competitor names in the side panel and in the Your grid / competitor / Gap switch were covered with grey bars.

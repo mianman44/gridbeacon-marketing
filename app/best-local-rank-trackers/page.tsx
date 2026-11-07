@@ -19,7 +19,7 @@ import {
   Tools,
 } from "@/components/marketing/seo-landing";
 import { ProductPageStructuredData } from "@/components/marketing/structured-data";
-import { COMPETITORS_CHECKED, SOURCES } from "@/lib/competitors";
+import { COMPETITORS_CHECKED, PROMAPRANKER_CHECKED, ROUNDUP_PICKS, SOURCES } from "@/lib/competitors";
 import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 
 /*
@@ -39,9 +39,9 @@ const IMAGES = "/marketing/google-maps-rank-tracker";
 
 export const metadata: Metadata = pageMetadata({
   path: PATH,
-  title: "7 Best Local Rank Trackers for 2026, Compared | GridBeacon",
+  title: "8 Best Local Rank Trackers for 2026, Compared | GridBeacon",
   description:
-    "Best local rank trackers for Google Maps compared: GridBeacon, Local Falcon, BrightLocal, Whitespark, Local Viking, Semrush and Localo, with prices and limits.",
+    "Best local rank trackers for Google Maps compared: GridBeacon, Local Falcon, BrightLocal, Whitespark, Local Viking, Semrush, Localo and ProMapRanker.",
   absoluteTitle: true,
   image: {
     url: `${IMAGES}/og-google-maps-rank-tracker.jpg`,
@@ -74,7 +74,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Is there a free local rank tracker?",
-    "Several tools have a free starting point: GridBeacon has a free plan with 500 scan credits and a free 3 × 3 rank checker, Whitespark gives 200 free credits, Local Falcon 100 free credits, and Semrush has a limited free Map Rank Tracker allowance. BrightLocal and Localo offer 14-day trials.",
+    "Several tools have a free starting point: GridBeacon has a free plan with 500 scan credits and a free 3 × 3 rank checker, Whitespark gives 200 free credits, Local Falcon 100 free credits, ProMapRanker 150, and Semrush has a limited free Map Rank Tracker allowance. BrightLocal and Localo offer 14-day trials.",
   ],
 ];
 
@@ -85,19 +85,19 @@ export default function BestLocalRankTrackersPage() {
 
       <Hero
         eyebrow="Local rank tracker comparison"
-        title="The 7 Best Local Rank Trackers for Google Maps in 2026"
+        title="The 8 Best Local Rank Trackers for Google Maps in 2026"
         lede={
           <>
-            We compared seven tools that track Google Maps rankings on a
+            We compared eight tools that track Google Maps rankings on a
             geo-grid, using each vendor&apos;s own pricing pages and help
-            documentation. We make GridBeacon, one of the seven, so every
+            documentation. We make GridBeacon, one of the eight, so every
             figure below is sourced and each tool is listed for what it
             genuinely does best.
           </>
         }
         primary={{ label: "See the Comparison", href: "#overview" }}
         secondary={{ label: "Try GridBeacon Free", href: SIGNUP_URL }}
-        facts={["7 tools compared", "Prices from vendor sites", "Strengths and limits for each"]}
+        facts={["8 tools compared", "Prices from vendor sites", "Strengths and limits for each"]}
         updated={COMPETITORS_CHECKED}
         media={
           <Screenshot
@@ -119,15 +119,7 @@ export default function BestLocalRankTrackersPage() {
       >
         <Cards
           columns={4}
-          items={[
-            { tag: "Maps grids, lowest cost", title: "GridBeacon", body: "Most credits per dollar, grids to 21 × 21, unlimited businesses." },
-            { tag: "Maps, Apple and AI search", title: "Local Falcon", body: "Tracks Apple Maps and AI answer engines too, with white label and an API." },
-            { tag: "All-in-one local SEO", title: "BrightLocal", body: "Citations, listings, reviews and audits, with a geo-grid built in." },
-            { tag: "Smallest budget", title: "Whitespark", body: "Local Ranking Grids start at $10 a month for 2,000 credits." },
-            { tag: "GBP management", title: "Local Viking", body: "Geo-grids plus scheduled Google Business Profile posts." },
-            { tag: "Semrush users", title: "Semrush Local", body: "Map Rank Tracker inside the Semrush platform, priced per location." },
-            { tag: "Guided optimization", title: "Localo", body: "Position map with AI tasks and content publishing for owners." },
-          ]}
+          items={ROUNDUP_PICKS.map((tool) => ({ tag: tool.tag, title: tool.name, body: tool.body }))}
         />
         <Toc
           items={[
@@ -140,6 +132,7 @@ export default function BestLocalRankTrackersPage() {
             ["Local Viking", "local-viking"],
             ["Semrush Local", "semrush-local"],
             ["Localo", "localo"],
+            ["ProMapRanker", "promapranker"],
             ["How to choose", "how-to-choose"],
             ["FAQ", "faq"],
           ]}
@@ -154,22 +147,22 @@ export default function BestLocalRankTrackersPage() {
         intro={<p>Scroll the table sideways on a phone to see every tool.</p>}
       >
         <ComparisonTable
-          label="Seven local rank trackers compared"
-          columns={["", "GridBeacon", "Local Falcon", "BrightLocal", "Whitespark Grids", "Local Viking", "Semrush Local", "Localo"]}
+          label="Eight local rank trackers compared"
+          columns={["", "GridBeacon", "Local Falcon", "BrightLocal", "Whitespark Grids", "Local Viking", "Semrush Local", "Localo", "ProMapRanker"]}
           rows={[
-            ["Starting price", "$19.99/mo ($15.99 billed annually)", "$24.99/mo", "$31/mo per location, billed annually", "$10/mo", "$39/mo", "$30/mo per location", "$49/mo ($39 billed annually)"],
-            ["Free option", "Free plan, 500 credits", "100 free credits", "14-day trial", "200 free credits", "Not listed", "Limited free allowance (5 × 5 only)", "14-day trial"],
-            ["Charges by", "Grid points", "Grid points", "Locations", "Grid points", "Listings + credits", "Locations + credits", "Profiles"],
-            ["Largest grid", "21 × 21", "21 × 21", "15 × 15", "225 points", "13 × 13", "Not listed", "Not listed"],
-            ["Unlimited businesses", "Yes, paid plans", "Not listed", "No", "Not listed", "No (1–70 listings)", "No", "No (up to 120 on Pro)"],
-            ["Competitor grids", "Yes, from every scan", "Competitor Report", "Side-by-side grid", "Up to 100 competitors", "Yes", "Yes", "Pro plan"],
-            ["Beyond Google Maps", "No", "Apple Maps, AI engines", "Organic, AI visibility", "Separate products", "Organic keywords", "Full Semrush suite", "No"],
-            ["White label", "Agency plan (reports, PDFs and share links)", "Yes", "Yes", "Share links", "Pro and up", "Not listed", "Pro plan"],
+            ["Starting price", "$19.99/mo ($15.99 billed annually)", "$24.99/mo", "$31/mo per location, billed annually", "$10/mo", "$39/mo", "$30/mo per location", "$49/mo ($39 billed annually)", "$19/mo"],
+            ["Free option", "Free plan, 500 credits", "100 free credits", "14-day trial", "200 free credits", "Not listed", "Limited free allowance (5 × 5 only)", "14-day trial", "150 one-time credits"],
+            ["Charges by", "Grid points", "Grid points", "Locations", "Grid points", "Listings + credits", "Locations + credits", "Profiles", "Credits + businesses"],
+            ["Largest grid", "21 × 21", "21 × 21", "15 × 15", "225 points", "13 × 13", "Not listed", "Not listed", "21 × 21"],
+            ["Unlimited businesses", "Yes, paid plans", "Not listed", "No", "Not listed", "No (1–70 listings)", "No", "No (up to 120 on Pro)", "Agency plan only (5 or 30 below)"],
+            ["Competitor grids", "Yes, from every scan", "Competitor Report", "Side-by-side grid", "Up to 100 competitors", "Yes", "Yes", "Pro plan", "Gap reports, Growth and up"],
+            ["Beyond Google Maps", "No", "Apple Maps, AI engines", "Organic, AI visibility", "Separate products", "Organic keywords", "Full Semrush suite", "No", "AI-search visibility, API"],
+            ["White label", "Agency plan (reports, PDFs and share links)", "Yes", "Yes", "Share links", "Pro and up", "Not listed", "Pro plan", "Starter and up"],
           ]}
           caption={
             <>
               Monthly prices in USD from each vendor&apos;s website, checked
-              in {COMPETITORS_CHECKED}. &ldquo;Not listed&rdquo; means the
+              in {COMPETITORS_CHECKED} (ProMapRanker in {PROMAPRANKER_CHECKED}). &ldquo;Not listed&rdquo; means the
               vendor does not publish it on the pages we checked. Sources are
               linked under each tool below.
             </>
@@ -209,7 +202,7 @@ export default function BestLocalRankTrackersPage() {
           />
           <p>
             Prices and limits come from each vendor&apos;s pricing page,
-            product pages and help centre in {COMPETITORS_CHECKED}. Review
+            product pages and help centre in {COMPETITORS_CHECKED}, and ProMapRanker&apos;s in {PROMAPRANKER_CHECKED}. Review
             sites were not used for figures because they often lag behind
             price changes.
           </p>
@@ -456,6 +449,42 @@ export default function BestLocalRankTrackersPage() {
             source={
               <>
                 Source: <TextLink href={SOURCES.localoPricing} rel="nofollow noopener">Localo pricing</TextLink>.
+              </>
+            }
+          />
+          <ToolReview
+            id="promapranker"
+            rank={8}
+            name="ProMapRanker"
+            bestFor="Small teams that want credits which never expire and white label on a budget plan"
+            price="Free (150 credits); $19, $39 or $79 a month"
+            summary={
+              <p>
+                ProMapRanker is a credit-based geo-grid tracker with grids
+                from 3 × 3 to 21 × 21. Its plans are capped by saved
+                businesses (5 on Starter, 30 on Growth, unlimited on Agency),
+                its paid credits roll over, and it adds a GBP audit with an
+                AI fix list, review topic analysis, AI-search visibility
+                checks and a read-only API.
+              </p>
+            }
+            pros={[
+              "Paid credits roll over and never expire.",
+              "White label from the $19 Starter plan.",
+              "AI-search visibility checks in ChatGPT and Gemini.",
+              "7-day money-back guarantee on the first paid month.",
+            ]}
+            cons={[
+              "5 businesses on Starter and 30 on Growth.",
+              "Competitor gap reports only on Growth and Agency.",
+              "Its FAQ says 2 credits per grid point while its credit table uses 1.",
+              "No annual pricing listed.",
+            ]}
+            source={
+              <>
+                Sources: <TextLink href={SOURCES.proMapRankerPricing} rel="nofollow noopener">ProMapRanker pricing</TextLink>,{" "}
+                <TextLink href={SOURCES.proMapRankerFeatures} rel="nofollow noopener">features</TextLink>, checked in {PROMAPRANKER_CHECKED}.{" "}
+                <TextLink href="/promapranker-alternative">GridBeacon vs ProMapRanker</TextLink>
               </>
             }
           />

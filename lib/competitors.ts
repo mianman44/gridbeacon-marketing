@@ -13,6 +13,10 @@
 
 export const COMPETITORS_CHECKED = "September 2026";
 
+/* ProMapRanker was added after the September check and read on its
+   own date. Move this forward only after re-reading both its pages. */
+export const PROMAPRANKER_CHECKED = "November 2026";
+
 /* When the now-removed Local Viking help centre was read. Its grid
    size, point spacing and credit rollover figures can no longer be
    re-checked, so the pages say where and when they came from. */
@@ -32,6 +36,8 @@ export const SOURCES = {
   semrushLocalPricing: "https://www.semrush.com/kb/1611-pricing-and-plans",
   semrushMapRankTracker: "https://www.semrush.com/kb/1399-map-rank-tracker",
   localoPricing: "https://localo.com/pricing",
+  proMapRankerPricing: "https://promapranker.com/pricing",
+  proMapRankerFeatures: "https://promapranker.com/features",
 } as const;
 
 /* GridBeacon's own figures, from /pricing and the backend
@@ -48,3 +54,18 @@ export const GRIDBEACON = {
   grids: "3 × 3 to 21 × 21 (9 to 441 points)",
   radius: "0.1 to 100 miles",
 } as const;
+
+/* One line per geo-grid tracker, shared by the roundup's quick picks
+   and the "other alternatives" block on each comparison page. Same
+   sources and check date as above. `anchor` is the tool's section id
+   on /best-local-rank-trackers; `page` is its own comparison page. */
+export const ROUNDUP_PICKS = [
+  { id: "gridbeacon", name: "GridBeacon", tag: "Maps grids, lowest cost", body: "Most credits per dollar, grids to 21 × 21, unlimited businesses.", page: "/google-maps-rank-tracker" },
+  { id: "local-falcon", name: "Local Falcon", tag: "Maps, Apple and AI search", body: "Tracks Apple Maps and AI answer engines too, with white label and an API.", page: "/local-falcon-alternative" },
+  { id: "brightlocal", name: "BrightLocal", tag: "All-in-one local SEO", body: "Citations, listings, reviews and audits, with a geo-grid built in.", page: "/brightlocal-alternative" },
+  { id: "whitespark", name: "Whitespark", tag: "Smallest budget", body: "Local Ranking Grids start at $10 a month for 2,000 credits.", page: "/whitespark-alternative" },
+  { id: "local-viking", name: "Local Viking", tag: "GBP management", body: "Geo-grids plus scheduled Google Business Profile posts.", page: "/local-viking-alternative" },
+  { id: "semrush-local", name: "Semrush Local", tag: "Semrush users", body: "Map Rank Tracker inside the Semrush platform, priced per location.", page: null },
+  { id: "localo", name: "Localo", tag: "Guided optimization", body: "Position map with AI tasks and content publishing for owners.", page: null },
+  { id: "promapranker", name: "ProMapRanker", tag: "Credits that roll over", body: "Paid credits never expire, and white label comes with paid plans.", page: "/promapranker-alternative" },
+] as const;

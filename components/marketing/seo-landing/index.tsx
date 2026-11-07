@@ -10,6 +10,7 @@
  */
 
 import Image from "next/image";
+import { ROUNDUP_PICKS } from "@/lib/competitors";
 import Link from "next/link";
 import { isValidElement, type ReactNode } from "react";
 
@@ -220,10 +221,26 @@ const COMPARISONS: [string, string][] = [
   ["BrightLocal alternative", "/brightlocal-alternative"],
   ["Whitespark alternatives", "/whitespark-alternative"],
   ["Local Viking alternative", "/local-viking-alternative"],
+  ["ProMapRanker alternative", "/promapranker-alternative"],
   ["Local rank tracker for agencies", "/local-rank-tracker-for-agencies"],
+  ["White-label rank tracker", "/white-label-rank-tracker"],
   ["Multi-location rank tracking", "/multi-location-rank-tracking"],
   ["Google Maps rank tracker", "/google-maps-rank-tracker"],
 ];
+
+/* "Other X alternatives": the rest of the roundup, so a comparison
+   page answers the plural search ("brightlocal alternatives") rather
+   than offering one option. Facts come from ROUNDUP_PICKS. */
+export function OtherAlternatives({ exclude }: { exclude: string }) {
+  const items = ROUNDUP_PICKS.filter((tool) => tool.id !== exclude && tool.id !== "gridbeacon").map((tool) => ({
+    tag: tool.tag,
+    title: tool.name,
+    body: tool.body,
+    href: tool.page ?? `/best-local-rank-trackers#${tool.id}`,
+    linkLabel: tool.page ? `GridBeacon vs ${tool.name}` : `${tool.name} in the roundup`,
+  }));
+  return <Cards columns={3} items={items} />;
+}
 
 export function RelatedComparisons({ current }: { current: string }) {
   return (
