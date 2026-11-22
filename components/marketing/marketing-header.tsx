@@ -9,6 +9,7 @@ import { OFFER_LIVE_AT_BUILD, UPGRADE_OFFER, offerEndLabel, offerTimeLeft } from
 import styles from "./stitch-header.module.css";
 
 const links = [
+  ...(process.env.NEXT_PUBLIC_SEO_SERVICES_ENABLED === "true" ? [["/services", "Services"] as const] : []),
   ["/google-maps-rank-tracker", "Google Maps Rank Tracker"],
   ["/features", "Features"],
   ["/how-it-works", "How it Works"],

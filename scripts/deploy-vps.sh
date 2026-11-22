@@ -25,8 +25,8 @@ if [[ "${ANALYTICS_ENABLED:-}" != "true" && "${ANALYTICS_ENABLED:-}" != "false" 
   exit 1
 fi
 echo "Analytics enabled: ${ANALYTICS_ENABLED}"
-docker build --build-arg "NEXT_PUBLIC_ANALYTICS_ENABLED=${ANALYTICS_ENABLED}" --build-arg "NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}" --build-arg "NEXT_PUBLIC_PADDLE_CLIENT_TOKEN=${PADDLE_CLIENT_TOKEN}" --build-arg "NEXT_PUBLIC_PADDLE_ENVIRONMENT=${PADDLE_ENVIRONMENT}" --build-arg "NEXT_PUBLIC_REDDIT_PIXEL_ID=${REDDIT_PIXEL_ID:-}" --build-arg "NEXT_PUBLIC_GOOGLE_ADS_ID=${GOOGLE_ADS_ID:-}" --build-arg "NEXT_PUBLIC_GOOGLE_ADS_SIGNUP_LABEL=${GOOGLE_ADS_SIGNUP_LABEL:-}" --build-arg "NEXT_PUBLIC_TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY:-}" --build-arg "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:-}" --build-arg "NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID=${NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID:-}" -t "$image" "$staging"
-docker run -d --name "$candidate" -p 127.0.0.1:3014:3000 "$image"
+docker build --build-arg "NEXT_PUBLIC_ANALYTICS_ENABLED=${ANALYTICS_ENABLED}" --build-arg "NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}" --build-arg "NEXT_PUBLIC_PADDLE_CLIENT_TOKEN=${PADDLE_CLIENT_TOKEN}" --build-arg "NEXT_PUBLIC_PADDLE_ENVIRONMENT=${PADDLE_ENVIRONMENT}" --build-arg "NEXT_PUBLIC_REDDIT_PIXEL_ID=${REDDIT_PIXEL_ID:-}" --build-arg "NEXT_PUBLIC_GOOGLE_ADS_ID=${GOOGLE_ADS_ID:-}" --build-arg "NEXT_PUBLIC_GOOGLE_ADS_SIGNUP_LABEL=${GOOGLE_ADS_SIGNUP_LABEL:-}" --build-arg "NEXT_PUBLIC_TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY:-}" --build-arg "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:-}" --build-arg "NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID=${NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID:-}" --build-arg "NEXT_PUBLIC_SEO_SERVICES_ENABLED=${SEO_SERVICES_PUBLIC_ENABLED:-false}" --build-arg "NEXT_PUBLIC_SEO_SERVICE_FREE_CHECK_PROMOTION=${SEO_SERVICE_FREE_CHECK_PROMOTION:-false}" -t "$image" "$staging"
+docker run -d --name "$candidate" -e "SEO_SERVICE_API_URL=${SEO_SERVICE_API_URL:-}" -p 127.0.0.1:3014:3000 "$image"
 cleanup_candidate() { docker rm -f "$candidate" >/dev/null 2>&1 || true; }
 trap cleanup_candidate EXIT
 ready=false
@@ -49,7 +49,7 @@ rollback() {
   echo 'Deployment failed; previous container restored.' >&2
 }
 trap rollback ERR
-docker run -d --name gridbeacon-marketing --restart unless-stopped -p 127.0.0.1:3013:3000 "$image"
+docker run -d --name gridbeacon-marketing --restart unless-stopped -e "SEO_SERVICE_API_URL=${SEO_SERVICE_API_URL:-}" -p 127.0.0.1:3013:3000 "$image"
 ready=false
 for attempt in $(seq 1 40); do
   if curl -fsS http://127.0.0.1:3013/ >/dev/null; then ready=true; break; fi

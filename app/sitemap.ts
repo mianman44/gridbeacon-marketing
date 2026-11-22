@@ -1,3 +1,4 @@
+import {getServiceCatalog,servicesEnabled} from '@/lib/services';
 import type { MetadataRoute } from "next";
 
 import { BLOG_POSTS } from "@/lib/blog";
@@ -49,7 +50,7 @@ const PAGES_UPDATED: Record<string, string> = {
   "/white-label-rank-tracker": "2026-11-08",
 };
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://gridbeaconhq.com";
 
   const industryEntries: MetadataRoute.Sitemap = [
@@ -62,7 +63,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
+  const services = servicesEnabled ? await getServiceCatalog() : [];
   const entries: MetadataRoute.Sitemap = [
+    ...(services?.length ? [{url: `${baseUrl}/services`}, ...services.map(p => ({url: `${baseUrl}/services/${p.slug}`}))] : []),
     { url: `${baseUrl}/blog`, changeFrequency: "weekly", priority: 0.7 },
     ...BLOG_POSTS.map(post => ({ url: `${baseUrl}/blog/${post.slug}`, lastModified: post.date, changeFrequency: "monthly" as const, priority: 0.7 })),
     ...industryEntries,

@@ -19,6 +19,7 @@ import {
 } from "@/lib/free-rank-checker";
 import styles from "./rank-checker.module.css";
 import { RankCheckMap } from "./rank-check-map";
+import {FreeCheckServicePrompt} from "../service-tracking";
 
 /* The same bands the app uses: 1-3 green, 4-10 amber, 11+ red, and a
    neutral state when the business did not appear at that point. */
@@ -481,6 +482,7 @@ export function RankCheckResult({
       </div>
 
       <ScanSizes />
+      <FreeCheckServicePrompt />
 
       <p className={styles.resultHelp}>
         New to heatmaps?{" "}
