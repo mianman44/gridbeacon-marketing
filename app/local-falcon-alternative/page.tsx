@@ -97,7 +97,7 @@ export default function LocalFalconAlternativePage() {
           <>
             A Local Falcon alternative for tracking rankings across your
             service area, comparing competitors, and following changes over
-            time. Paid plans start at $19.99/month.
+            time. Paid plans start at $9/month for one business, or $19.99/month for unlimited businesses.
           </>
         }
         primary={{ label: "Start Free — 500 Credits", href: SIGNUP_URL }}

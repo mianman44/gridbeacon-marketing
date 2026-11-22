@@ -62,7 +62,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "How many keywords can BrightLocal's Local Search Grid track?",
-    "BrightLocal's pricing page lists geo-grid tracking for up to five keywords on each plan. Its help centre describes add-ons that raise this to a maximum of 30 keywords per report. GridBeacon has no keyword limit on paid plans: each scan uses one credit per grid point.",
+    "BrightLocal's pricing page lists geo-grid tracking for up to five keywords on each plan. Its help centre describes add-ons that raise this to a maximum of 30 keywords per report. GridBeacon has no keyword limit from its Starter plan up: each scan uses one credit per grid point.",
   ],
   [
     "What grid sizes do the two tools support?",
@@ -103,7 +103,7 @@ export default function BrightLocalAlternativePage() {
         primary={{ label: "Start Free", href: SIGNUP_URL }}
         primaryNote="No credit card required. New accounts get 500 free scan credits."
         secondary={{ label: "See the Comparison", href: "#comparison" }}
-        facts={["Unlimited keywords on paid plans", "Grids up to 21 × 21", "Plans from $19.99/month"]}
+        facts={["Unlimited keywords from Starter", "Grids up to 21 × 21", "Plans from $9/month"]}
         updated={COMPETITORS_CHECKED}
         media={
           <Screenshot
@@ -183,17 +183,17 @@ export default function BrightLocalAlternativePage() {
           rows={[
             ["What it is", "A dedicated Google Maps geo-grid rank tracker", "An all-in-one local SEO suite with a geo-grid tool (Local Search Grid)"],
             ["How you pay", "Monthly scan credits: 1 credit per grid point", "Per plan, priced by number of locations"],
-            ["Entry price", "$19.99/mo, or $15.99/mo billed annually", "$31/mo for one location, billed annually ($369/year)"],
+            ["Entry price", "$9/mo for one business and 5 keywords (Solo); $19.99/mo, or $15.99/mo billed annually, for unlimited (Starter)", "$31/mo for one location, billed annually ($369/year)"],
             ["Free option", "Free plan with 500 scan credits, no card", "14-day free trial, no card"],
-            ["Geo-grid keywords", "Unlimited on paid plans", "Up to 5 per location; up to 30 with add-ons"],
+            ["Geo-grid keywords", "Unlimited from Starter; 5 on Solo", "Up to 5 per location; up to 30 with add-ons"],
             ["Grid sizes", "3 × 3 to 21 × 21 (up to 441 points)", "3 × 3, 5 × 5, 7 × 7, 11 × 11, 15 × 15"],
             ["Scan radius", "0.1 to 100 miles, with points you can exclude", "Set by grid size and distance"],
-            ["Businesses", "Unlimited on paid plans", "Priced per location"],
+            ["Businesses", "Unlimited from Starter; 1 on Solo", "Priced per location"],
             ["Competitor grids", "Any competitor's grid and a Gap view from every scan, no extra credits", "Side-by-side grid comparison with a competitor"],
             ["Scheduled scans", "Daily, weekly, biweekly or monthly, with email alerts", "Recurring reports"],
             ["AI analysis", "AI Ranking Intelligence PDF and AI Action Plan (paid plans)", "AI Insights (Manage and Grow)"],
             ["Organic rank tracking", "Not available: Google Maps only", "Local Rank Tracker, up to 100 keywords"],
-            ["Citations and listings", "Citation Audit on paid plans (60+ directories, 300 credits); no citation building or listings sync", "Citation Tracker, listings sync, Citation Builder (pay per citation)"],
+            ["Citations and listings", "Citation Audit from Starter (60+ directories, 300 credits); no citation building or listings sync", "Citation Tracker, listings sync, Citation Builder (pay per citation)"],
             ["Review management", "Review Intelligence: analysis of up to 500 reviews", "Monitoring, replies, review campaigns and widgets (Grow)"],
             ["White-label reports", "Agency plan: scan, keyword and location reports", "Available"],
             ["API", "Not available", "Custom-priced API"],
@@ -245,7 +245,7 @@ export default function BrightLocalAlternativePage() {
         >
           <Checklist
             items={[
-              <><strong>Keywords.</strong> BrightLocal&apos;s plans include grids for up to five keywords per location, with add-ons up to 30. GridBeacon has no keyword cap on paid plans: you spend credits on the scans you run.</>,
+              <><strong>Keywords.</strong> BrightLocal&apos;s plans include grids for up to five keywords per location, with add-ons up to 30. GridBeacon has no keyword cap from Starter up: you spend credits on the scans you run.</>,
               <><strong>Grid size.</strong> BrightLocal tops out at 15 × 15 (225 points). GridBeacon goes to 21 × 21 (441 points), which matters for service-area businesses that cover a whole metro.</>,
               <><strong>Coverage.</strong> GridBeacon&apos;s radius runs from 0.1 to 100 miles, and you can switch off points that fall on water or empty land so you don&apos;t pay for them.</>,
               <><strong>Competitors.</strong> Each GridBeacon scan records every business Google Maps returned at every point, so you can open any competitor&apos;s grid, or a Gap view against yours, without scanning again.</>,
@@ -300,7 +300,7 @@ export default function BrightLocalAlternativePage() {
           items={[
             {
               title: "No per-location price",
-              body: "Paid plans include unlimited businesses, keywords and team members. You pay for scanning, not for how many profiles you manage.",
+              body: "Starter and higher plans include unlimited businesses, keywords and team members. You pay for scanning, not for how many profiles you manage.",
             },
             {
               title: "Bigger, wider grids",

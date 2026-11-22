@@ -109,7 +109,7 @@ export default function ProMapRankerAlternativePage() {
         primary={{ label: "Start Free", href: SIGNUP_URL }}
         primaryNote="No credit card required. New accounts get 500 free scan credits."
         secondary={{ label: "Compare Plans", href: "#plans" }}
-        facts={["Unlimited businesses on paid plans", "500 free credits", "32,000 credits for $69.99"]}
+        facts={["Unlimited businesses from Starter", "500 free credits", "32,000 credits for $69.99"]}
         updated={PROMAPRANKER_CHECKED}
         media={
           <Screenshot
@@ -141,7 +141,7 @@ export default function ProMapRankerAlternativePage() {
           <p>
             <strong>Choose GridBeacon</strong> if you manage more than 5
             businesses on a budget plan, or more than 30 on a mid-size one.
-            GridBeacon has no business or keyword cap on any paid plan, costs
+            GridBeacon has no business or keyword cap from Starter up, costs
             less at 32,000 credits, offers annual billing, and includes Rank
             MRI, a Citation Audit, Keyword Explorer and AI reports.
           </p>

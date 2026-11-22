@@ -59,7 +59,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Is GridBeacon a good Local Viking alternative?",
-    "For geo-grid rank tracking, yes, especially if you manage many businesses. Local Viking's plans are capped by the number of Google Business Profile listings (1 to 70); GridBeacon's paid plans have unlimited businesses and keywords and charge only for scan credits. Local Viking is the better fit if you also use it to schedule GBP posts and manage profiles.",
+    "For geo-grid rank tracking, yes, especially if you manage many businesses. Local Viking's plans are capped by the number of Google Business Profile listings (1 to 70); GridBeacon's Starter and higher plans have unlimited businesses and keywords and charge only for scan credits. Local Viking is the better fit if you also use it to schedule GBP posts and manage profiles.",
   ],
   [
     "How do Local Viking's GeoGrid credits compare with GridBeacon's?",
@@ -91,7 +91,7 @@ export default function LocalVikingAlternativePage() {
           <>
             Local Viking, now being renamed Local Optics, prices its plans by
             the number of Google Business Profiles you manage. GridBeacon
-            doesn&apos;t: paid plans cover unlimited businesses and keywords,
+            doesn&apos;t: Starter and above cover unlimited businesses and keywords,
             with larger grids and a wider radius. Here is how the two compare
             for geo-grid tracking, and what Local Viking does that GridBeacon
             doesn&apos;t.
@@ -164,7 +164,7 @@ export default function LocalVikingAlternativePage() {
           <p>
             Local Viking&apos;s plans each include a number of GBP listings,
             keyword credits and GeoGrid credits. GridBeacon&apos;s include
-            scan credits only, with unlimited businesses on every paid plan.
+            scan credits only, with unlimited businesses from Starter up.
           </p>
         }
       >
@@ -172,7 +172,7 @@ export default function LocalVikingAlternativePage() {
           label="Local Viking plans next to the GridBeacon plan with similar geo-grid credits"
           columns={["Local Viking plan", "Nearest GridBeacon plan", "Local Viking (Local Optics)"]}
           rows={[
-            ["Single", "Starter: $19.99/mo, 8,000 credits, unlimited businesses", "$39/mo: 1 listing, 7,500 GeoGrid credits, 1,600 keyword credits"],
+            ["Single", "Solo: $9/mo, 3,000 credits, 1 business, 5 keywords", "$39/mo: 1 listing, 7,500 GeoGrid credits, 1,600 keyword credits"],
             ["Starter", "Starter: $19.99/mo, 8,000 credits, unlimited businesses", "$59/mo: 10 listings, 8,100 GeoGrid credits, 3,200 keyword credits"],
             ["Pro", "Professional: $34.99/mo, 15,000 credits, unlimited businesses", "$99/mo: 20 listings, 16,200 GeoGrid credits, 5,600 keyword credits, white label"],
             ["Agency", "Agency: $69.99/mo, 32,000 credits, unlimited businesses", "$149/mo: 40 listings, 24,300 GeoGrid credits, 17,700 keyword credits, white label"],
@@ -201,7 +201,7 @@ export default function LocalVikingAlternativePage() {
           label="GridBeacon compared with Local Viking"
           columns={["", "GridBeacon", "Local Viking"]}
           rows={[
-            ["Businesses per plan", "Unlimited on paid plans", "1 to 70 GBP listings, by plan"],
+            ["Businesses per plan", "1 on Solo; unlimited from Starter", "1 to 70 GBP listings, by plan"],
             ["Grid sizes", "3 × 3 to 21 × 21 (up to 441 points)", "3 × 3 to 13 × 13 (up to 169 points)"],
             ["Coverage", "Radius from 0.1 to 100 miles", "0.1 to 10 miles between points"],
             ["Credit model", "1 credit per grid point", "1 credit per grid point"],
@@ -319,7 +319,7 @@ export default function LocalVikingAlternativePage() {
             },
             {
               title: "Add every client",
-              body: "Find each business by name or paste its Maps link. There is no listing limit on paid plans.",
+              body: "Find each business by name or paste its Maps link. There is no listing limit from the Starter plan up.",
             },
             {
               title: "Match your grids",

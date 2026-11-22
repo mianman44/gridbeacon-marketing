@@ -26,7 +26,7 @@ import { pageMetadata, SIGNUP_URL } from "@/lib/seo";
 /*
  * GridBeacon for local SEO agencies.
  *
- * The agency case rests on one verified fact: every paid plan has
+ * The agency case rests on one verified fact: Starter and up have
  * unlimited businesses, keywords and team members, so cost follows
  * scanning, not client count. Everything agencies ask for that is NOT
  * built (client portal or logins, an API, white-label AI reports,
@@ -42,7 +42,7 @@ export const metadata: Metadata = pageMetadata({
   path: PATH,
   title: "Local Rank Tracker for SEO Agencies | GridBeacon",
   description:
-    "Geo-grid rank tracking for local SEO agencies: unlimited clients and keywords on every paid plan, shared credits, team access, scheduled scans and PDF reports.",
+    "Geo-grid rank tracking for local SEO agencies: unlimited clients and keywords from the Starter plan up, shared credits, team access, scheduled scans and PDF reports.",
   absoluteTitle: true,
   image: {
     url: `${IMAGES}/og-google-maps-rank-tracker.jpg`,
@@ -55,7 +55,7 @@ export const metadata: Metadata = pageMetadata({
 const FAQS: [string, string][] = [
   [
     "How many clients can an agency track in GridBeacon?",
-    "As many as you like. Every paid plan includes unlimited businesses, unlimited keywords and unlimited team members. Your plan's monthly scan credits are the only limit, and they are shared across all your clients.",
+    "As many as you like. Starter and higher plans include unlimited businesses, unlimited keywords and unlimited team members. Your plan's monthly scan credits are the only limit, and they are shared across all your clients.",
   ],
   [
     "Which GridBeacon plan does an agency need?",
@@ -63,7 +63,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "Can my team work in the same GridBeacon account?",
-    "Yes. Paid plans include unlimited team members. You invite people by email and give each one an admin or member role.",
+    "Yes. Starter and higher plans include unlimited team members. You invite people by email and give each one an admin or member role.",
   ],
   [
     "Does GridBeacon have white-label reports or a client portal?",
@@ -95,7 +95,7 @@ export default function AgencyPage() {
           <>
             Most local rank trackers price by location, so every client you
             sign makes your tools more expensive. GridBeacon prices by scan
-            credits. Every paid plan includes unlimited client businesses,
+            credits. Starter and higher plans include unlimited client businesses,
             unlimited keywords and your whole team, so you choose how deeply
             to track each client.
           </>
@@ -188,7 +188,7 @@ export default function AgencyPage() {
             },
             {
               title: "Your whole team, no seat fees",
-              body: "Invite unlimited team members as admins or members on any paid plan.",
+              body: "Invite unlimited team members as admins or members on Starter and above.",
             },
             {
               title: "Scheduled scans and email alerts",

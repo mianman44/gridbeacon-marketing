@@ -18,7 +18,8 @@ function addUpgradeOffer(container: HTMLElement) {
   container.dataset.upgradeOffer = "applied";
 
   const prices = [...container.querySelectorAll<HTMLElement>(".price-val")]
-    .filter(el => (el.dataset.monthly ?? "").startsWith("$") && el.dataset.monthly !== "$0");
+    // Solo is outside the offer: the Paddle code covers Starter and up.
+    .filter(el => (el.dataset.monthly ?? "").startsWith("$") && el.dataset.monthly !== "$0" && !el.dataset.offerExempt);
   if (!prices.length) return;
 
   for (const el of prices) {
@@ -44,7 +45,7 @@ function addUpgradeOffer(container: HTMLElement) {
   if (cards?.parentElement) {
     const banner = document.createElement("div");
     banner.style.cssText = "max-width:880px;margin:0 auto 20px;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:16px;border:1px solid #fde68a;background:linear-gradient(90deg,#fff7ed,#fef3c7);color:#78350f;font-size:14px;line-height:1.5;text-align:left";
-    banner.innerHTML = `<span style="font-size:18px">🎁</span><span><strong>${UPGRADE_OFFER.percentOff}% off your first ${UPGRADE_OFFER.months} months</strong> <span data-offer-text>on any monthly plan. Start free, and it's applied automatically when you upgrade.</span> <span style="color:#b45309;font-weight:600;font-variant-numeric:tabular-nums">Ends in <span data-offer-timer>${offerTimeLeft().text}</span>.</span></span>`;
+    banner.innerHTML = `<span style="font-size:18px">🎁</span><span><strong>${UPGRADE_OFFER.percentOff}% off your first ${UPGRADE_OFFER.months} months</strong> <span data-offer-text>on monthly Starter, Professional and Agency plans. Start free, and it's applied automatically when you upgrade.</span> <span style="color:#b45309;font-weight:600;font-variant-numeric:tabular-nums">Ends in <span data-offer-timer>${offerTimeLeft().text}</span>.</span></span>`;
     cards.parentElement.insertBefore(banner, cards);
 
     const timer = banner.querySelector<HTMLElement>("[data-offer-timer]");
@@ -63,7 +64,7 @@ function showUpgradeOffer(container: HTMLElement, annual: boolean) {
   const text = container.querySelector<HTMLElement>("[data-offer-text]");
   if (text) text.textContent = annual
     ? "on monthly plans only. Switch to Monthly to see it."
-    : "on any monthly plan. Start free, and it's applied automatically when you upgrade.";
+    : "on monthly Starter, Professional and Agency plans. Start free, and it's applied automatically when you upgrade.";
 }
 
 export function StitchPricing() {
@@ -87,10 +88,12 @@ export function StitchPricing() {
       const credits = Math.round(locations * keywords * points * frequency);
       write("calc-credits-total", credits.toLocaleString("en-US"));
       write("calc-trimmed-pts", Math.round(credits * .7).toLocaleString("en-US"));
-      const tier = credits <= 500 ? 0 : credits <= 8000 ? 1 : credits <= 15000 ? 2 : 3;
-      const names = ["Free Tier", "Starter Plan", "Professional Plan", "Agency Plan"];
-      const caps = [500, 8000, 15000, 32000];
-      const prices = annual ? [0, 15.99, 27.99, 55.99] : [0, 19.99, 34.99, 69.99];
+      // Solo only fits one profile with up to 5 keywords.
+      const solo = locations === 1 && keywords <= 5 && credits <= 3000;
+      const tier = credits <= 500 ? 0 : solo ? 1 : credits <= 8000 ? 2 : credits <= 15000 ? 3 : 4;
+      const names = ["Free Tier", "Solo Plan", "Starter Plan", "Professional Plan", "Agency Plan"];
+      const caps = [500, 3000, 8000, 15000, 32000];
+      const prices = annual ? [0, 7.17, 15.99, 27.99, 55.99] : [0, 9, 19.99, 34.99, 69.99];
       write("calc-recommended-tier", names[tier]);
       write("calc-recommended-cap", tier === 0 ? "500 one-time signup credits ($0)" : `${caps[tier].toLocaleString("en-US")} monthly credits ($${prices[tier]}/mo)${credits > 32000 ? " + top-up credits required" : ""}`);
       write("calc-cta-btn", tier === 0 ? "Start with Free Tier" : `Choose ${names[tier]}`);

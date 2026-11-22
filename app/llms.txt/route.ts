@@ -31,7 +31,8 @@ Key facts:
 - Free plan: ${GRIDBEACON.freeCredits} one-time credits, 1 business, 3 keywords, no card required.
 ${plans}
 - Top-up credit packs: ${GRIDBEACON.topUps}.
-- Paid plans include unlimited businesses, keywords and team members, scheduled scans (daily, weekly, every two weeks or monthly) with email alerts, AI Ranking Intelligence reports, Rank MRI, Review Intelligence, GBP Activity monitoring and Citation Audit. White-label reports are on the Agency plan.
+- Solo: $9/month ($7.17/month billed annually), 3,000 credits a month, for 1 business and up to 5 keywords, without Keyword Explorer, Citation Audit or team members.
+- Starter and above include unlimited businesses, keywords and team members. Every paid plan includes scheduled scans (daily, weekly, every two weeks or monthly) with email alerts, AI Ranking Intelligence reports, Rank MRI, Review Intelligence, and GBP Activity monitoring; Citation Audit is on Starter and above. White-label reports are on the Agency plan.
 - Competitor grids come from the same scan at no extra cost; rankings are matched by Google place ID.
 - No Google Business Profile login is needed: GridBeacon reads public Google Maps results, so any business can be tracked.
 - Metrics: ARP (average rank where the business ranks), ATRP (average over every point, unranked counts as 21), SoLV (share of points in the top 3) and visibility (share of points in the top 10).

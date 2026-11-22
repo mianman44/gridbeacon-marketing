@@ -105,6 +105,7 @@ function softwareApplication() {
     ],
     offers: [
       ["Free", "0"],
+      ["Solo", "9"],
       ["Starter", "19.99"],
       ["Professional", "34.99"],
       ["Agency", "69.99"],

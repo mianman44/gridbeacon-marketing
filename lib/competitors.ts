@@ -56,6 +56,10 @@ export const GRIDBEACON = {
     ["Professional", "$34.99", "$27.99", "15,000"],
     ["Agency", "$69.99", "$55.99", "32,000"],
   ],
+  /* Solo: one business, up to 5 keywords, no team, Keyword Explorer
+     or Citation Audit (the app's PLAN_LIMITS). Kept out of `plans`,
+     which comparison tables index as Starter, Professional, Agency. */
+  solo: ["Solo", "$9", "$7.17", "3,000"],
   topUps: "2,000 for $9.99, 5,000 for $19.99, 10,000 for $34.99",
   grids: "3 × 3 to 21 × 21 (9 to 441 points)",
   radius: "0.1 to 100 miles",

@@ -57,7 +57,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "How much does a Citation Audit cost?",
-    "Each audit uses 300 credits from your plan's monthly credits, on any paid plan. If an audit cannot finish, or you stop it, the credits are refunded in full.",
+    "Each audit uses 300 credits from your plan's monthly credits, on Starter and above. If an audit cannot finish, or you stop it, the credits are refunded in full.",
   ],
   [
     "Does GridBeacon fix my listings?",
@@ -159,7 +159,7 @@ export default function CitationAuditPage() {
           </>
         }
         primary={{ label: "Start Free", href: SIGNUP_URL }}
-        primaryNote="Citation Audit is included on every paid plan: 300 credits per audit."
+        primaryNote="Citation Audit is included on Starter and above: 300 credits per audit."
         secondary={{ label: "See What It Checks", href: "#checks" }}
         facts={["60+ US directories", "300 credits per audit", "Refunded if it can't finish"]}
         media={<CitationAuditIllustration />}

@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/pricing",
   title: "Local Rank Tracker Pricing: Plans From $0",
   description:
-    "GridBeacon plans from $0 to $69.99 a month. One credit per grid point, 500 free credits at signup, monthly credit allowances and one-time top-up packs.",
+    "GridBeacon plans from $0 to $69.99 a month, with Solo at $9 for a single business. One credit per grid point, 500 free credits at signup, monthly credit allowances and one-time top-up packs.",
 });
 export default function PricingPage() {
   return <>

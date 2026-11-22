@@ -159,7 +159,7 @@ export default function BestLocalRankTrackersPage() {
           label="Eight local rank trackers compared"
           columns={["", "GridBeacon", "Local Falcon", "BrightLocal", "Whitespark Grids", "Local Viking", "Semrush Local", "Localo", "ProMapRanker"]}
           rows={[
-            ["Starting price", "$19.99/mo ($15.99 billed annually)", "$24.99/mo", "$31/mo per location billed annually ($41 monthly)", "$10/mo", "$39/mo", "$30/mo per location", "$39/mo ($32.42 billed annually)", "$19/mo"],
+            ["Starting price", "$9/mo for one business; $19.99/mo ($15.99 billed annually) for unlimited", "$24.99/mo", "$31/mo per location billed annually ($41 monthly)", "$10/mo", "$39/mo", "$30/mo per location", "$39/mo ($32.42 billed annually)", "$19/mo"],
             ["Free option", "Free plan, 500 credits", "100 free credits", "14-day trial", "200 free credits", "Not listed", "1 campaign, 50 credits (5 × 5 only)", "14-day trial", "150 one-time credits"],
             ["Charges by", "Grid points", "Grid points", "Locations", "Grid points", "Listings + credits", "Locations + credits", "Profiles", "Credits + businesses"],
             ["Largest grid", "21 × 21", "21 × 21", "15 × 15", "225 points", "13 × 13", "Not listed", "Not listed", "21 × 21"],
@@ -231,7 +231,7 @@ export default function BestLocalRankTrackersPage() {
             highlight
             name="GridBeacon"
             bestFor="Google Maps geo-grids at the lowest cost per scan; agencies with many clients"
-            price="Free plan (500 credits); $19.99, $34.99 or $69.99 a month"
+            price="Free plan (500 credits); $9, $19.99, $34.99 or $69.99 a month"
             summary={
               <p>
                 GridBeacon is a dedicated Google Maps geo-grid tracker. Each
@@ -244,7 +244,7 @@ export default function BestLocalRankTrackersPage() {
             pros={[
               "Lowest price per credit of the credit-based tools here: 32,000 credits for $69.99.",
               "Grids from 3 × 3 to 21 × 21 and a radius up to 100 miles, with excluded points.",
-              "Unlimited businesses, keywords and team members on paid plans.",
+              "Unlimited businesses, keywords and team members from the Starter plan up.",
               "AI Ranking Intelligence reports, Rank MRI, Review Intelligence, Keyword Explorer and a Citation Audit included.",
               "Free plan with 500 credits and no time limit.",
             ]}
@@ -562,7 +562,7 @@ export default function BestLocalRankTrackersPage() {
               "Per location: BrightLocal (from $31 a location a month, billed annually) and Semrush Local ($30 or $60 a location a month).",
               "Per listing: Local Optics, from 1 listing for $39 to 70 listings for $200 a month.",
               "Per profile: Localo Pro 10 covers up to 10 profiles; more need Enterprise.",
-              "By grid points, with no location cap: GridBeacon and Local Falcon on every paid plan, and ProMapRanker on its Agency plan.",
+              "By grid points, with no location cap: GridBeacon from its Starter plan up, Local Falcon on every paid plan, and ProMapRanker on its Agency plan.",
             ]}
           />
           <p>

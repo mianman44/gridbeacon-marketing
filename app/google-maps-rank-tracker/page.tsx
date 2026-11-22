@@ -62,7 +62,7 @@ const PLANS = [
     title: "Free: $0",
     body: `${GRIDBEACON.freeCredits} one-time credits, enough for ${Number(GRIDBEACON.freeCredits) / SCAN_POINTS} scans at 5 × 5. One business and three keywords.`,
   },
-  ...GRIDBEACON.plans.map(([name, monthly, annual, credits]) => ({
+  ...[GRIDBEACON.solo, ...GRIDBEACON.plans].map(([name, monthly, annual, credits]) => ({
     title: `${name}: ${monthly}/mo`,
     body: `${annual} a month billed annually. ${credits} credits a month, enough for ${Math.floor(Number(credits.replace(",", "")) / SCAN_POINTS).toLocaleString("en-US")} scans at 5 × 5.`,
   })),
@@ -127,8 +127,9 @@ const FAQS: [string, React.ReactNode][] = [
   [
     "Can I track multiple keywords?",
     <p key="a">
-      Yes. The free plan covers one business and three keywords. Paid
-      plans track unlimited businesses and keywords; every scan uses
+      Yes. The free plan covers one business and three keywords. Solo
+      covers one business and five keywords, and Starter and above track
+      unlimited businesses and keywords; every scan uses
       credits based on its grid size.
     </p>,
   ],
@@ -138,7 +139,7 @@ const FAQS: [string, React.ReactNode][] = [
       One credit per grid point, and you see the cost before you run it.
       A 5 × 5 scan uses 25 credits and a 21 × 21 scan uses 441. New
       accounts start with 500 free credits, and paid plans start at{" "}
-      {GRIDBEACON.plans[0][1]} a month; see{" "}
+      {GRIDBEACON.solo[1]} a month; see{" "}
       <TextLink href="/pricing">pricing</TextLink> for plan allowances and
       top-ups.
     </p>,
@@ -563,10 +564,10 @@ export default function GoogleMapsRankTrackerPage() {
             <Cards
               columns={2}
               items={[
-                { title: "Many businesses", body: "Unlimited businesses and keywords on paid plans." },
+                { title: "Many businesses", body: "Unlimited businesses and keywords from the Starter plan up." },
                 { title: "Visual results", body: "Heatmaps clients understand without an SEO glossary." },
                 { title: "Proof over time", body: "Before-and-after scans and movement by keyword." },
-                { title: "Team access", body: "Invite unlimited team members with admin or member roles, on paid plans." },
+                { title: "Team access", body: "Invite unlimited team members with admin or member roles, from the Starter plan up." },
                 { title: "Client share links", body: "Send a live report link that opens without a login, on paid plans." },
                 { title: "White-label reports", body: "Your logo and colors on scan, keyword and location reports, on the Agency plan." },
               ]}
@@ -731,8 +732,8 @@ export default function GoogleMapsRankTrackerPage() {
       >
         <Cards columns={4} items={PLANS} />
         <Note>
-          Paid plans add unlimited businesses, keywords and team members,
-          scheduled scans, Rank MRI and AI reports. The Agency plan adds
+          Paid plans add scheduled scans, Rank MRI and AI reports, and
+          Starter and above add unlimited businesses, keywords and team members. The Agency plan adds
           white-label reports. Credit top-ups: {GRIDBEACON.topUps}.
         </Note>
         <InlineCta>

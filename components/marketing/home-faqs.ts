@@ -55,7 +55,7 @@ export const homeFaqs: HomeFaq[] = [
   {
     question: "Can I track GMB / GBP rankings for my clients?",
     answer:
-      "Yes. Paid plans include unlimited Google Business Profiles and keywords, scheduled scans, team access, client share links and AI Ranking Intelligence PDF reports you can send to clients. White-label reports are on the Agency plan.",
+      "Yes. Starter and higher plans include unlimited Google Business Profiles and keywords, scheduled scans, team access, client share links and AI Ranking Intelligence PDF reports you can send to clients. White-label reports are on the Agency plan.",
   },
 ];
 

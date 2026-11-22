@@ -45,7 +45,7 @@ export function MarketingHeader() {
       <a className={styles.offerBar} href={SIGNUP_URL} onClick={() => trackEvent("offer_bar_click", { placement: "marketing_header" })}>
         <span aria-hidden="true">🎁</span>{" "}
         <strong>{UPGRADE_OFFER.percentOff}% off your first {UPGRADE_OFFER.months} months</strong>
-        <span className={styles.offerLong}> on any monthly plan</span>
+        <span className={styles.offerLong}> on Starter and up</span>
         {offerLeft
           ? <>{" · ends in "}<span className={styles.offerTimer}>{offerLeft}</span></>
           : <>{" · ends "}{offerEndLabel()}</>}

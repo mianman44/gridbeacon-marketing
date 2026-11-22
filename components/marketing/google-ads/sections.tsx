@@ -699,7 +699,7 @@ const FAQS = [
   ],
   [
     "Can agencies manage multiple businesses?",
-    "Yes, on paid plans: multiple businesses, recurring scheduled scans and team members, plus PDF reports for clients.",
+    "Yes, on Starter and above: multiple businesses, recurring scheduled scans and team members, plus PDF reports for clients.",
   ],
 ];
 

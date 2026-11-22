@@ -72,7 +72,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "How much does it cost to track a city?",
-    "One credit per grid point. A 9 × 9 grid across a city uses 81 credits per keyword per scan. New accounts get 500 free credits, and paid plans start at $19.99 a month for 8,000 credits.",
+    "One credit per grid point. A 9 × 9 grid across a city uses 81 credits per keyword per scan. New accounts get 500 free credits, and paid plans start at $9 a month for one business (3,000 credits), or $19.99 for 8,000 credits and unlimited businesses.",
   ],
 ];
 
