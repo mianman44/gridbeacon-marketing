@@ -4,6 +4,8 @@ import type { MetadataRoute } from "next";
 import { BLOG_POSTS } from "@/lib/blog";
 
 import { INDUSTRIES } from "@/lib/industries";
+// The catalog is read from the API per request; a build-time prerender would freeze it.
+export const dynamic='force-dynamic';
 
 /* When each page's own content last changed. Move a date only with a real
    content edit: Google stops trusting lastmod that changes on every build. */
